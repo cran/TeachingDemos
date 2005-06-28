@@ -89,7 +89,7 @@ rgl.clear()
 plot.rgl.coin(heads=coin.faces$H, tails=coin.faces$T)
 
 # biased flip
-flip.rgl.coin( sample(2,1, prob=c(0.65, 0.35) )
+flip.rgl.coin( sample(2,1, prob=c(0.65, 0.35) ) )
 
 rgl.clear()
 

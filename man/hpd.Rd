@@ -38,6 +38,7 @@ emp.hpd(x, conf=0.95)
 \note{These functions assume that the posterior distribution is
   unimodal, they compute only 1 interval, not the set of intervals that
   are appropriate for multimodal distributions.}
+\seealso{\code{hdr} in the hdrcde package.}
 \examples{
 
 hpd(qbeta, shape1=50, shape2=250)
