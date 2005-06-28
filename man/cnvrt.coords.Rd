@@ -3,11 +3,12 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Convert between the 4 different coordinate sytems on a graphical device}
 \description{
-  Takes a set of coordinates in any of the 4 coordinate systems (usr,
-  plt, fig, or dev) and returns the same points in all 4 coordinate systems.
+  Takes a set of coordinates in any of the 5 coordinate systems (usr,
+  plt, fig, dev, or tdev) and returns the same points in all 5
+  coordinate systems.
 }
 \usage{
-cnvrt.coords(x, y = NULL, input = c("usr", "plt", "fig", "dev"))
+cnvrt.coords(x, y = NULL, input = c("usr", "plt", "fig", "dev","tdev"))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,7 +19,7 @@ cnvrt.coords(x, y = NULL, input = c("usr", "plt", "fig", "dev"))
     input points. }
 }
 \details{
-  Every plot has 4 coordinate systems:
+  Every plot has 5 coordinate systems:
 
   usr (User): the coordinate system of the data, this is shown by the
   tick marks and axis labels.
@@ -35,22 +36,32 @@ cnvrt.coords(x, y = NULL, input = c("usr", "plt", "fig", "dev"))
   area on the device (layout, mfrow, or mfcol has not been used).
 
   dev (Device): Device area, coordinates range from 0 to 1 with 0
+  corresponding to the bottom and left of the device region within the
+  outer margins and 1 is the top and right of the region withing the
+  outer margins.  If the outer margins are all set to 0 then tdev and
+  dev should be identical.
+  
+  tdev (Total Device): Total Device area, coordinates range from 0 to 1 with 0
   corresponding to the bottom and left edges of the device (piece of
   paper, window on screen) and 1 corresponds to the top and right edges.
 }
 \value{
-  A list with 4 components, each component is a list with vectors named
-  x and y.  The 4 sublists are:
+  A list with 5 components, each component is a list with vectors named
+  x and y.  The 5 sublists are:
   \item{usr}{The coordinates of the input points in usr (User) coordinates.}
   \item{plt}{The coordinates of the input points in plt (Plot)
     coordinates.}
   \item{fig}{The coordinates of the input points in fig (Figure)
     coordinates.}
-  \item{dev}{The coordinates of the input points in dev (Device) coordinates.}
+  \item{dev}{The coordinates of the input points in dev (Device)
+    coordinates.}
+  \item{tdev}{The coordinates of the input points in tdev (Total Device)
+    coordinates. 
+  }
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{Greg Snow \email{greg.snow@ihc.com}}
-\note{ You must provide both x and y, but one of the may be \code{NA}. }
+\author{Greg Snow \email{greg.snow@intermountainmail.org}}
+\note{ You must provide both x and y, but one of them may be \code{NA}. }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
@@ -118,92 +129,7 @@ hist(rnorm(100))
 
 par(old.par)
 
-
-
-
-## The function is currently defined as
-function(x,y=NULL,input=c('usr','plt','fig','dev')) {
-
-  input <- match.arg(input)
-  xy <- xy.coords(x,y)
-  
-  cusr <- par('usr')
-  cplt <- par('plt')
-  cfig <- par('fig')
-  
-  if(input=='usr'){
-    usr <- xy
-    
-    plt <- list()
-    plt$x <- (xy$x-cusr[1])/(cusr[2]-cusr[1])
-    plt$y <- (xy$y-cusr[3])/(cusr[4]-cusr[3])
-
-    fig <- list()
-    fig$x <- plt$x*(cplt[2]-cplt[1])+cplt[1]
-    fig$y <- plt$y*(cplt[4]-cplt[3])+cplt[3]
-
-    dev <- list()
-    dev$x <- fig$x*(cfig[2]-cfig[1])+cfig[1]
-    dev$y <- fig$y*(cfig[4]-cfig[3])+cfig[3]
-
-    return( list( usr=usr, plt=plt, fig=fig, dev=dev ) )
-  }
-
-  if(input=='plt') {
-
-    plt <- xy
-
-    usr <- list()
-    usr$x <- plt$x*(cusr[2]-cusr[1])+cusr[1]
-    usr$y <- plt$y*(cusr[4]-cusr[3])+cusr[3]
-
-    fig <- list()
-    fig$x <- plt$x*(cplt[2]-cplt[1])+cplt[1]
-    fig$y <- plt$y*(cplt[4]-cplt[3])+cplt[3]
-
-    dev <- list()
-    dev$x <- fig$x*(cfig[2]-cfig[1])+cfig[1]
-    dev$y <- fig$y*(cfig[4]-cfig[3])+cfig[3]
-
-    return( list( usr=usr, plt=plt, fig=fig, dev=dev ) )
-  }
-
-  if(input=='fig') {
-
-    fig <- xy
-
-    plt <- list()
-    plt$x <- (fig$x-cplt[1])/(cplt[2]-cplt[1])
-    plt$y <- (fig$y-cplt[3])/(cplt[4]-cplt[3])
-
-    usr <- list()
-    usr$x <- plt$x*(cusr[2]-cusr[1])+cusr[1]
-    usr$y <- plt$y*(cusr[4]-cusr[3])+cusr[3]
-
-    dev <- list()
-    dev$x <- fig$x*(cfig[2]-cfig[1])+cfig[1]
-    dev$y <- fig$y*(cfig[4]-cfig[3])+cfig[3]
-    
-    return( list( usr=usr, plt=plt, fig=fig, dev=dev ) )
-  }
-
-  dev <- xy
-
-  fig <- list()
-  fig$x <- (dev$x-cfig[1])/(cfig[2]-cfig[1])
-  fig$y <- (dev$y-cfig[3])/(cfig[4]-cfig[3])
-
-  plt <- list()
-  plt$x <- (fig$x-cplt[1])/(cplt[2]-cplt[1])
-  plt$y <- (fig$y-cplt[3])/(cplt[4]-cplt[3])
-
-  usr <- list()
-  usr$x <- plt$x*(cusr[2]-cusr[1])+cusr[1]
-  usr$y <- plt$y*(cusr[4]-cusr[3])+cusr[3]
-
-  return( list( usr=usr, plt=plt, fig=fig, dev=dev ) )
-
-  }
 }
+
 \keyword{ dplot }% at least one, from doc/KEYWORDS
 \keyword{ aplot }% __ONLY ONE__ keyword per line

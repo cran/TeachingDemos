@@ -10,7 +10,7 @@
 data(state.vbm)
 }
 \details{
-  A Map object (for use with the maptools package) to plot a map of the
+  A polylist object (for use with the maptools package) to plot a map of the
   US states where the sizes of the states have been adjusted to be more
   equal.
 
@@ -38,7 +38,11 @@ data(state.vbm)
 \examples{
 library(maptools)
 data('state.vbm',package='TeachingDemos')
-plot(state.vbm)
-plot(state.vbm,auxvar=state.x77[,'Income'])
+plot(state.vbm,axes=FALSE)
+
+tmp <- state.x77[,'HS Grad']
+tmp2 <- cut(tmp, seq(min(tmp),max(tmp), length.out=11),
+  include.lowest=TRUE)
+plot(state.vbm,col=cm.colors(10)[tmp2],axes=FALSE)
 }
 \keyword{datasets}

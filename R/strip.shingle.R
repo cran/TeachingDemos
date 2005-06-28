@@ -2,8 +2,9 @@
 function (which.given, which.panel, var.name, factor.levels, 
     shingle.intervals, strip.names = c(FALSE, TRUE), style = 1, 
     bg = trellis.par.get("strip.background")$col[which.given], 
-    fg = trellis.par.get("strip.shingle")$col[which.given], par.strip.text = trellis.par.get("add.text")) 
+    fg = trellis.par.get("strip.shingle")$col[which.given], par.strip.text = trellis.par.get("add.text"), ...) 
 {
+  warning('This function is now depricated, see the documentation for an example of doing the same thing using native lattice commands')
     pushViewport(viewport(y = (which.given - 0.5)/length(which.panel), 
         height = 1/length(which.panel), name = paste("strip.default", 
             which.given, sep = ".")))

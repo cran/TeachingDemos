@@ -32,11 +32,13 @@ recenter.Map(Map, center = 0, range = c(-180, 180))
 %\references{ ~put references to the literature/web site here ~ }
 \author{ Greg Snow \email{greg.snow@ihc.com} }
 \note{ This is beta level software and will probably be superceded by
-  the \code{spproj} or \code{sp} packages. }
+  the \code{spproj} or \code{sp} packages. The function \code{plot.Map} has
+  been depricated, use \code{plot.polylist} instead (use \code{Map2poly}
+to convert).}
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{ \code{plot.Map} }
+\seealso{ \code{plot.polylist} }
 \examples{
 \dontrun{
 ## this assumes that the time zone shape files have been downloaded
@@ -46,9 +48,9 @@ recenter.Map(Map, center = 0, range = c(-180, 180))
 
 us <- read.shape('st99_d00')
 tz <- read.shape('WRLDTZA')
-plot(us)
-plot(recenter.Map(us,-100))
-plot(recenter.Map(tz,-165))
+plot(Map2poly(us))
+plot(Map2poly(recenter.Map(us,-100)))
+plot(Map2poly(recenter.Map(tz,-165)))
 }
 }
 \keyword{ manip }% at least one, from doc/KEYWORDS

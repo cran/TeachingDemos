@@ -81,7 +81,7 @@ subplot( hist(rt(100,3)), c(12,16), c(57,59), pars=list(lwd=3,ask=FALSE) )
 # augment a map
 if( require(TeachingDemos) && require(maptools) ){
 	plot(state.vbm,fg=NULL)
-	tmp <- get.Pcent(state.vbm)
+	tmp <- t(sapply(state.vbm, function(x) attr(x,"centroid")))
 	for( i in 1:50 ){
 		tmp2 <- as.matrix(USArrests[i,c(1,4)])
 		tmp3 <- max(USArrests[,c(1,4)])
