@@ -21,7 +21,7 @@ function (which.given, which.panel, var.name, factor.levels,
         grid.rect(x = unit(r %*% c(0.5, 0.5), "npc"), width = max(unit(c(diff(r), 
             1), c("npc", "mm"))), gp = gpar(col = fg, fill = fg))
         if (strip.names){
-          name <- sub('equal\.count.([a-zA-Z. ]+).*$','\\1', name)
+          name <- sub('equal.count.([a-zA-Z. ]+).*$','\\1', name)
           name <- sub('shingle.([a-zA-Z. ]+).*$','\\1',name)
           name <-paste(name,': ', format(shingle.intervals[level,1], digits=4),
                        ' to ', format(shingle.intervals[level,2], digits=4),
