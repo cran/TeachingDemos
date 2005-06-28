@@ -1,0 +1,54 @@
+\name{vis.boxcox}
+\alias{vis.boxcox}
+\alias{vis.boxcoxu}
+%- Also NEED an '\alias' for EACH other topic documented here.
+\title{ Interactively visualize Box-Cox transformations }
+\description{
+  Explore the Box-Cox family of distributions by plotting data
+  transformed and untransformed and interactively choose values for lambda.
+}
+\usage{
+vis.boxcox(lambda = sample(c(-1, -0.5, 0, 1/3, 1/2, 1, 2), 1))
+
+vis.boxcoxu(lambda = sample(c(-1, -0.5, 0, 1/3, 1/2, 1, 2), 1))
+}
+%- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{lambda}{ The true value of lambda to use. }
+}
+\details{
+  These functions will generate a sample of data and plot the
+  untrasformed data (left panels) and the transformed data (right
+  panels).  Initially the value of \code{lambda} is 1 and the 2 sets of
+  plots will be identical.
+
+  You then adjust the transformation parameter \code{lambda} to see how
+  the right panels change.
+
+  The function \code{vis.boxcox} shows the effect of transforming the
+  y-variable in a simple linear regression.
+
+  The function \code{vis.boxcoxu} shows a single variable compared to
+  the normal distribution.
+}
+\value{
+  These functions are run for the side effects.  There is no meaningful
+  return value.
+}
+\references{ GEP Box; DR Cox. An Analysis of Transformations.  Journal
+  of the Royal Statitical Society. Series B, Vol. 26, No. 2 (1964) 211-252 }
+\author{ Greg Snow \email{greg.snow@ihc.com} }
+%\note{ ~~further notes~~ }
+
+% ~Make other sections like Warning with \section{Warning }{....} ~
+
+\seealso{ \code{\link{bct}}, \code{\link{boxcox}} in package MASS }
+\examples{
+\dontrun{
+vis.boxcoxu()
+vis.boxcox()
+}
+}
+\keyword{ dynamic }% at least one, from doc/KEYWORDS
+\keyword{ univar }% __ONLY ONE__ keyword per line
+\keyword{ regression }
