@@ -1,7 +1,7 @@
 \name{cnvrt.coords}
 \alias{cnvrt.coords}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Convert between the 4 different coordinate sytems on a graphical device}
+\title{Convert between the 5 different coordinate sytems on a graphical device}
 \description{
   Takes a set of coordinates in any of the 5 coordinate systems (usr,
   plt, fig, dev, or tdev) and returns the same points in all 5

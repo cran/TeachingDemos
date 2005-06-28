@@ -30,7 +30,7 @@ recenter.Map(Map, center = 0, range = c(-180, 180))
   copy of the input Map but with the longitudes shifted.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@ihc.com} }
+\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
 \note{ This is beta level software and will probably be superceded by
   the \code{spproj} or \code{sp} packages. The function \code{plot.Map} has
   been depricated, use \code{plot.polylist} instead (use \code{Map2poly}

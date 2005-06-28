@@ -31,8 +31,11 @@ function(x=rnorm(25,10,1), y=rnorm(25,11,1.5) ){
     par(mar=c(5,4,0,1)+.1)
     layout( matrix(c(1,2), ncol=1), heights=c(2,1))
 
+    op <- par(pty="s")
     plot(.spec,.sens, xlab="1-Specificity",ylab="Sensitivity",
          xlim=c(0,1),ylim=c(0,1))
+    par(pty="m")
+
     tmp <- chull(c(1,.spec),c(0,.sens))
     lines(c(NA,.spec)[tmp],c(NA,.sens)[tmp])
     points(spec,sens, col='red',pch=16)

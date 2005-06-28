@@ -24,7 +24,7 @@ rgl.Map(Map, which, ...)
   There is no return value, this function is run for its side effect.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@ihc.com} }
+\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
 \note{ This function is still beta level software (some extra lines show
 up).}
 

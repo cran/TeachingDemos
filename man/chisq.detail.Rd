@@ -33,7 +33,7 @@ chisq.detail(tab)
   \item{chi2}{The chi-squared test statistic.}
 }
 \references{ ~put references to the literature/web site here ~ Moore, bps }
-\author{Greg Snow, \email{greg.snow@ihc.com}}
+\author{Greg Snow, \email{greg.snow@intermountainmail.org}}
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~

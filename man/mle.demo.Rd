@@ -37,7 +37,7 @@ mle.demo(x = rnorm(10, 10, 2), start.mean = mean(x) - start.sd, start.sd = 1.2 *
   This function is run for its side effects and returns NULL.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@ihc.com} }
+\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~

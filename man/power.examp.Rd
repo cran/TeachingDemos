@@ -56,7 +56,7 @@ run.power.examp()
   \code{run.power.examp} does not return anything meaningful.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@ihc.com} }
+\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
 %\note{ ~~further notes~~ }
 
  %~Make other sections like Warning with \section{Warning }{....} ~
