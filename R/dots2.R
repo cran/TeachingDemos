@@ -16,7 +16,7 @@ function( x, y, colx='green', coly='blue',
              type="n",...)
 	points( sx1, sy1, col=colx,...)
 	points( sx2, sy2, col=coly,...)
-	axis(2, at=c(0.5,1.5), labels= c(lab1,lab2),srt=90,ticks=FALSE)
+	axis(2, at=c(0.5,1.5), labels= c(lab1,lab2),srt=90,tick=FALSE)
 
 }
 
