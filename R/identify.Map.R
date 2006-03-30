@@ -8,7 +8,7 @@ function(x, labels=as.character(Map$att.data$NAME),
 		Pol <- Map
 	}
 	library(sgeostat)
-
+        in.polygon <- get('in.polygon','package:sgeostat')
 	idents <- numeric(0)
 	i <- 0
 	while( i < n ){

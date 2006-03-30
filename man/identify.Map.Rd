@@ -34,7 +34,10 @@ identify.polylist(...)
 %\references{ ~put references to the literature/web site here ~ }
 \author{ Greg Snow \email{greg.snow@ihc.com} }
 \note{ These functions are beta level at best and will probably soon be
-  seperceeded by functions in \code{maptools}, \code{sp}, or \code{spproj}. }
+  seperceeded by functions in \code{maptools}, \code{sp}, or
+  \code{spproj}. The plot.Map function has been depricated so use
+  plot.polylist instead (convert Map objects to polylist objects before
+  plotting), identify.Map works on polylist objects as well.}
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 

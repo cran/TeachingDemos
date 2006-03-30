@@ -39,9 +39,12 @@ library(mapproj)
 # from: http://openmap.bbn.com/data/shape/timezone/
 
 tz <- read.shape('WRLDTZA')
-plot(project.Map(tz,'bonne',param=45))
-plot(project.Map(tz,'albers',param=c(30,40)))
-plot(project.Map(tz,'gnomonic',orient=c(0,-100,0)))
+plot(Map2poly(project.Map(tz,'bonne',param=45)))
+
+plot(Map2poly(project.Map(tz,'bonne',param=45)),
+  col=rainbow(48)[tz$att.data$OFFSET])
+
+plot(Map2poly(project.Map(tz,'albers',param=c(30,40))))
 }
 }
 \keyword{ manip }% at least one, from doc/KEYWORDS
