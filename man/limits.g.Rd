@@ -43,20 +43,27 @@ limits.g(center, std.dev, sizes, conf)
   the number of non-events between events.
 }
 
-%\references{ ~put references to the literature/web site here ~ }
+\references{ Kaminsky, FC et. al. (1992): Statistical Control Charts
+  Based on a Geometric Distribution, Journal of Quality Technology, 24,
+  pp 63--69.
+
+Yang, Z et. al. (2002): On the Performance of Geometric Charts with
+Estimated Control Limits, Journal of Quality Technology, 34, pp 448--458.
+}
 \author{ Greg Snow \email{greg.snow@ihc.com} }
-\note{ The geometric distribution is quite skewed so using 'conf' > 1
-  does not give good limits, use a value of 'conf' between 0 and 1. }
+\note{ The geometric distribution is quite skewed so it is best to set
+  conf at the required confidence interval (0 < conf < 1) rather than as
+a multiplier of sigma.}
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{ \code{qcc}}
 \examples{
 if(require(qcc)){
-  tmp <- rbinom(1000, 1, 0.01)
-  tmp2 <- diff(which(c(1,tmp)==1))-1
-  qcc(tmp,'np',1)
-  qcc(tmp2, "g")
+  success <- rbinom(1000, 1, 0.01)
+  num.noevent <- diff(which(c(1,success)==1))-1
+  qcc(success, type='np', sizes=1)
+  qcc(num.noevent, type="g")
 }
 }
 \keyword{ hplot }% __ONLY ONE__ keyword per line

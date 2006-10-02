@@ -6,7 +6,7 @@
     lcl <- center - conf * sqrt(1-p)/p
     lcl[lcl < 0] <- 0
     ucl <- center + conf * sqrt(1-p)/p
-    warning("Geometric distribution is quite skewed, it is better to use conf between 0 and 1")
+    warning("The Geometric distribution is quite skewed, it is better to set conf at the required confidence level (0 < conf < 1) instead of as a multiplier of sigma.")
   }
   else {
     if (conf > 0 & conf < 1) {

@@ -56,11 +56,12 @@ dimnames(x)[[1]], legend = NULL, legend.split = NULL, inner = TRUE, inner.col = 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{ \code{triangle.plot} in package ade4,
-  \code{ternaryplot} in package vcd. }
+  \code{ternaryplot} in package vcd, \code{tri} in package cwhtool,
+  \code{soil.texture} and \code{triax.plot} in package plotrix. }
 \examples{
 triplot(USArrests[c(1,4,2)])
 tmp <- triplot(USArrests[c(1,4,2)],txt=NULL)
-\dontrun{ identify(tmp, lab=rownames(USArrestes) ) }
+\dontrun{ identify(tmp, lab=rownames(USArrests) ) }
 
 tmp <- rbind( HairEyeColor[,,'Male'], HairEyeColor[,,'Female'])
 tmp[,3] <- tmp[,3] + tmp[,4]

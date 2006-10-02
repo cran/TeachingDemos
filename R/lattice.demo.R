@@ -23,7 +23,9 @@ function(x,y,z, show3d=TRUE){
     
     if(s3d){
       print(xyplot(y~x|shingle(z,rbind(range(z),c(shingle.min,shingle.max))),
-                   index.cond=list(2),strip=strip.shingle),
+                   index.cond=list(2),
+                   strip=strip.custom(strip.names=TRUE,strip.levels=TRUE),
+                   par.strip.text=list(cex=0.75)),
             split=c(1,1,1,2), more=T)
 
       print(cloud(y~z+x, panel=function(x,y,z,...){
@@ -37,7 +39,10 @@ function(x,y,z, show3d=TRUE){
       
     } else {
       print(xyplot(y~x|shingle(z,rbind(range(z),c(shingle.min,shingle.max))),
-                   index.cond=list(2), strip=strip.shingle),
+                   index.cond=list(2),
+                   strip=strip.custom(strip.names=TRUE,strip.levels=TRUE),
+                   par.strip.text=list(cex=0.75)
+                   ),
             split=c(1,1,1,1), more=F)
             
     }

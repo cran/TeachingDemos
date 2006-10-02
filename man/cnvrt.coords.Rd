@@ -67,7 +67,7 @@ cnvrt.coords(x, y = NULL, input = c("usr", "plt", "fig", "dev","tdev"))
 
 \seealso{ \code{\link{par}} specifically 'usr','plt', and 'fig'.  Also
   'xpd' for plotting outside of the plotting region and 'mfrow' and
-  'mfcol' for multi figure plotting.}
+  'mfcol' for multi figure plotting. \code{\link{subplot}}}
 \examples{
 
 old.par <- par(no.readonly=TRUE)
@@ -115,7 +115,7 @@ text( cnvrt.coords(1.05, NA, input='plt')$usr$x,
 
 par(mfrow=c(1,1))
 
-## create a subplot within another plot
+## create a subplot within another plot (see also subplot)
 
 plot(1:10, 1:10)
 
