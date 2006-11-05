@@ -63,7 +63,7 @@ faces2(mat, which = 1:ncol(mat), labels = rownames(mat),
 }
 \references{ Chernoff, H. (1973): The use of faces to represent statistiscal assoziation,
 JASA, 68, pp 361--368. }
-\author{ Original code by  ; current implementation by Greg Snow \email{greg.snow@ihc.com} }
+\author{ Original code by  ; current implementation by Greg Snow \email{greg.snow@intermountainmail.org} }
 \note{ If you choose to not scale the data and any data values are
   outside of the 0 to 1 range, then strange things may happen.
 

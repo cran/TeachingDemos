@@ -63,7 +63,7 @@ roll.rgl.die(side = sample(6, 1), steps = 250)
   \code{sides} argument.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@ihc.com} }
+\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
 \note{ The current algorithm for animating the die roll shows all the
   sides, but I am not satisfied with it.  Please suggest improvements. }
 

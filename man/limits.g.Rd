@@ -50,7 +50,7 @@ limits.g(center, std.dev, sizes, conf)
 Yang, Z et. al. (2002): On the Performance of Geometric Charts with
 Estimated Control Limits, Journal of Quality Technology, 34, pp 448--458.
 }
-\author{ Greg Snow \email{greg.snow@ihc.com} }
+\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
 \note{ The geometric distribution is quite skewed so it is best to set
   conf at the required confidence interval (0 < conf < 1) rather than as
 a multiplier of sigma.}

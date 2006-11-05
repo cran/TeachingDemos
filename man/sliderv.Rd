@@ -33,7 +33,7 @@ sliderv(refresh.code, names, minima, maxima, resolutions, starts, title = "contr
   Returns the value of a given slider when used as: \code{slider(no=i)}.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@ihc.com} }
+\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
 \note{
   You can move the slider in 3 different ways:  You can left click
   and drag the slider itself, you can left click in the trough to either

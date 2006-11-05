@@ -50,7 +50,7 @@ dimnames(x)[[1]], legend = NULL, legend.split = NULL, inner = TRUE, inner.col = 
 }
 \references{ Allen, Terry. Using and Interpreting the Trilinear Plot.
   Chance. 15 (Summer 2002). }
-\author{ Greg Snow \email{greg.snow@ihc.com} }
+\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
