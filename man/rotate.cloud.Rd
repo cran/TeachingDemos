@@ -8,14 +8,14 @@
   Interactively rotate common 3d plots: cloud, persp, and wireframe.
 }
 \usage{
-rotate.cloud(formula, ...)
+rotate.cloud(x, ...)
 rotate.persp(x, y, z)
-rotate.wireframe(formula, ...)
+rotate.wireframe(x, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{formula}{ \code{formula}, see \code{cloud} and \code{wireframe} }
-  \item{x}{ \code{x}, see \code{persp} }
+  \item{x}{ \code{x}, see \code{persp}, or formula/matrix to pass to
+    cloud or wireframe }
   \item{y}{ \code{y}, see \code{persp}  }
   \item{z}{ \code{z}, see \code{persp}  }  
   \item{\dots}{ additional arguments passed on to \code{cloud} or \code{persp}}
