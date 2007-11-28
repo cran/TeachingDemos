@@ -1,5 +1,5 @@
 "rotate.wireframe" <-
-function(formula, ...){
+function(x, ...){
 
   if(!exists('slider.env')) slider.env <<-new.env()
   library(tcltk)
@@ -28,7 +28,7 @@ function(formula, ...){
     sl <- list(val1,val2,val3)
     names(sl) <- c(lab1,lab2,lab3)
 
-    wire.options$formula <- formula
+    wire.options$x <- x
     wire.options$screen <- sl
 
     print( do.call('wireframe',wire.options) )

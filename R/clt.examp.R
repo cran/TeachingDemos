@@ -12,11 +12,11 @@ function( n=1, reps=10000, nclass=16){
 	
 	x <- seq( min(norm.mean), max(norm.mean), length=50)
 	normmax <- max( dnorm(x,mean(norm.mean),sd(norm.mean)) )
-	tmp.hist <- hist( norm.mean, plot=FALSE ,prob=TRUE, nclass=nclass)
+	tmp.hist <- hist( norm.mean, plot=FALSE ,freq=FALSE, nclass=nclass)
 	normmax <- max( tmp.hist$density, normmax )*1.05
 
 	hist( norm.mean, main="Normal",xlab="x",col='skyblue'
-             ,prob=TRUE,ylim=c(0,normmax), nclass=nclass)
+             ,freq=FALSE,ylim=c(0,normmax), nclass=nclass)
 	lines( x, dnorm(x,mean(norm.mean),sd(norm.mean)) )
 	
 	# Eponential
@@ -25,11 +25,11 @@ function( n=1, reps=10000, nclass=16){
 	
 	x <- seq( min(exp.mean), max(exp.mean), length=50)
 	expmax <- max( dnorm(x,mean(exp.mean),sd(exp.mean)) )
-	tmp.hist <- hist( exp.mean, plot=FALSE, prob=TRUE, nclass=nclass)
+	tmp.hist <- hist( exp.mean, plot=FALSE, freq=FALSE, nclass=nclass)
 	expmax <- max( tmp.hist$density, expmax)*1.05
 	
 	hist( exp.mean, main="Exponential",xlab="x",col='skyblue',
-             prob=TRUE,ylim=c(0,expmax), nclass=nclass)
+             freq=FALSE,ylim=c(0,expmax), nclass=nclass)
 	lines( x, dnorm(x,mean(exp.mean),sd(exp.mean)) )
 	
 	# Uniform
@@ -38,11 +38,11 @@ function( n=1, reps=10000, nclass=16){
 	
 	x <- seq( min(unif.mean), max(unif.mean), length=50)
 	unimax <- max( dnorm(x,mean(unif.mean),sd(unif.mean)) )
-	tmp.hist <- hist( unif.mean, plot=FALSE, prob=TRUE, nclass=nclass)
+	tmp.hist <- hist( unif.mean, plot=FALSE, freq=FALSE, nclass=nclass)
 	unimax <- max( tmp.hist$density, unimax)*1.05
 	
 	hist( unif.mean, main="Uniform", xlab="x",col='skyblue',
-             prob=TRUE,ylim=c(0,unimax), nclass=nclass)
+             freq=FALSE,ylim=c(0,unimax), nclass=nclass)
 	lines( x, dnorm(x,mean(unif.mean),sd(unif.mean)) )
 	
 	# Beta
@@ -51,11 +51,11 @@ function( n=1, reps=10000, nclass=16){
 	
 	x <- seq( min(beta.mean), max(beta.mean), length=50)
 	betamax <- max( dnorm(x,mean(beta.mean),sd(beta.mean)) )
-	tmp.hist <- hist( beta.mean, plot=FALSE, prob=TRUE, nclass=nclass)
+	tmp.hist <- hist( beta.mean, plot=FALSE, freq=FALSE, nclass=nclass)
 	betamax <- max( tmp.hist$density, betamax)
 	
 	hist( beta.mean, main="Beta", xlab="x",col='skyblue',
-             prob=TRUE, ylim=c(0,betamax), nclass=nclass)
+             freq=FALSE, ylim=c(0,betamax), nclass=nclass)
 	lines( x, dnorm(x,mean(beta.mean),sd(beta.mean)) )
 
 	mtext( paste("sample size =",n), outer=TRUE ,cex=2)
