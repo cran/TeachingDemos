@@ -1,4 +1,4 @@
-"vis.boxcox" <-
+vis.boxcox.old <-
 function(lambda = sample( c(-1,-0.5,0,1/3,1/2,1,2), 1) ) {
 
 
@@ -53,3 +53,80 @@ function(lambda = sample( c(-1,-0.5,0,1/3,1/2,1,2), 1) ) {
   
 }
 
+vis.boxcox <- function(lambda = sample( c(-1,-0.5,0,1/3,1/2,1,2), 1),
+                       hscale=1.5, vscale=1.5, wait=FALSE) {
+
+  x <- runif(100, 1, 10)
+  y <- 3+2*x + rnorm(100)
+  if( min(y) <= 0 ) y <- y - min(y) + 0.05
+  if(lambda==0) {
+    y <- exp(y)
+  } else {
+    y <- y^(1/lambda)
+  }
+
+  lam <- tclVar()
+  tclvalue(lam) <- 1
+  hsc <- tclVar()
+  tclvalue(hsc) <- hscale
+  vsc <- tclVar()
+  tclvalue(vsc) <- hscale
+
+  replot <- function(...) {
+    tmp.l <- as.numeric(tclvalue(lam))
+
+    par(mfcol=c(2,2))
+
+    tmp1 <- lm(y~x)
+    tmp2 <- lm( bct(y,tmp.l)~x)
+    plot(x,y,main="Raw Data")
+    abline(tmp1)
+    scatter.smooth(x,resid(tmp1), main="Raw Residuals", ylab='Residuals')
+    abline(h=0, lty=2)
+    plot(x,bct(y,tmp.l), main=bquote( lambda == .(tmp.l) ), ylab="Transformed y")
+    abline(tmp2)
+    scatter.smooth(x,resid(tmp2), main=bquote( lambda == .(tmp.l) ),
+                   ylab='Residuals')
+    abline(h=0, lty=2)
+  }
+
+  tt <- tktoplevel()
+  tkwm.title(tt, "Box Cox Demo")
+
+  img <- tkrplot(tt, replot, vscale=vscale, hscale=hscale)
+  tkpack(img, side='top')
+
+  tkpack(fr <- tkframe(tt), side='top')
+  tkpack(tklabel(fr, text='lambda: '), side='left', anchor='s')
+  tkpack(tkscale(fr, variable=lam, orient='horizontal',
+                 command=function(...) tkrreplot(img,
+                   hscale=as.numeric(tclvalue(hsc)),
+                   vscale=as.numeric(tclvalue(vsc)) ),
+                 from=-2, to=4, resolution=.05), side='right')
+
+  tkpack(tfr <- tkframe(tt), side='bottom', fill='x')
+  tkpack(tkbutton(tfr, text="Refresh", command=function() tkrreplot(img,
+                                         hscale=as.numeric(tclvalue(hsc)),
+                                         vscale=as.numeric(tclvalue(vsc)) ) ),
+                  side='left',anchor='s')
+
+  tkpack(tkbutton(tfr, text="Exit", command=function()tkdestroy(tt)),
+             side='right',anchor='s')
+
+  tkpack(tfr <- tkframe(tt), side='bottom', fill='x')
+  tkpack(tklabel(tfr,text="Hscale: "), side='left')
+  tkpack(tkentry(tfr,textvariable=hsc,width=6), side='left')
+  tkpack(tklabel(tfr,text="      Vscale: "), side='left')
+  tkpack(tkentry(tfr,textvariable=vsc,width=6), side='left')
+
+  if(wait) {
+    tkwait.window(tt)
+    return( list(lambda = as.numeric(tclvalue(lam)),
+                 x=x, y=y,
+                 ty = bct(y, as.numeric(tclvalue(lam)))
+                 ))
+  } else {
+    return(invisible(NULL))
+  }
+}
+  

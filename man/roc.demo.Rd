@@ -36,7 +36,7 @@ roc.demo(x = rnorm(25, 10, 1), y = rnorm(25, 11, 1.5))
   side effects.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
@@ -45,7 +45,7 @@ roc.demo(x = rnorm(25, 10, 1), y = rnorm(25, 11, 1.5))
   Epi, \code{auROC} in package limma, package ROC }
 \examples{
 
-\dontrun{
+if(interactive()){
 roc.demo()
 with(CO2,
   roc.demo(uptake[Type=='Mississippi'],

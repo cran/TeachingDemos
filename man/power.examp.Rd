@@ -1,6 +1,7 @@
 \name{power.examp}
 \alias{power.examp}
 \alias{run.power.examp}
+\alias{run.power.examp.old}
 \alias{power.refresh}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ Graphically illustrate the concept of power. }
@@ -10,7 +11,8 @@
 }
 \usage{
 power.examp(n = 1, stdev = 1, diff = 1, alpha = 0.05, xmin = -2, xmax = 4)
-run.power.examp()
+run.power.examp(hscale=1.5, vscale=1.5, wait=FALSE)
+run.power.examp.old()
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -20,6 +22,9 @@ run.power.examp()
   \item{alpha}{ The type I error rate to use for the test. }
   \item{xmin}{ The minimum x value to show on the graph. }
   \item{xmax}{ The maximum x value to show on the graph. }
+  \item{hscale}{Controls width of plot, passed to \code{tkrplot}.}
+  \item{vscale}{Controls height of plot, passed to \code{tkrplot}.}
+  \item{wait}{Should R wait for the window to close.}
 }
 \details{
   This function will draw 2 graphs representing an upper-tailed test of
@@ -53,10 +58,13 @@ run.power.examp()
 \value{
   \code{power.examp} invisibly returns the power computed.
 
-  \code{run.power.examp} does not return anything meaningful.
+  \code{run.power.examp} returns a list with the parameter settings and
+  the power if \code{wait} is TRUE.
+
+  \code{run.power.examp.old} does not return anything meaningful.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 %\note{ ~~further notes~~ }
 
  %~Make other sections like Warning with \section{Warning }{....} ~

@@ -36,7 +36,7 @@ z.test(x, mu = 0, stdev, alternative = c("two.sided", "less", "greater"), sd = s
   An object of class \code{htest} containing the results
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 \note{ This function should be used for learning only, real data should
   generally use \code{t.test}. }
 

@@ -30,7 +30,7 @@ recenter.Map(Map, center = 0, range = c(-180, 180))
   copy of the input Map but with the longitudes shifted.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 \note{ This is beta level software and will probably be superceded by
   the \code{spproj} or \code{sp} packages. The function \code{plot.Map} has
   been depricated, use \code{plot.polylist} instead (use \code{Map2poly}
@@ -40,7 +40,7 @@ to convert).}
 
 \seealso{ \code{plot.polylist} }
 \examples{
-\dontrun{
+if(interactive()){
 ## this assumes that the time zone shape files have been downloaded
 ## from: http://openmap.bbn.com/data/shape/timezone/
 ## and the US states map (st99_d00) files have been downloaded from

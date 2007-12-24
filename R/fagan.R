@@ -1,12 +1,14 @@
 fagan.plot<-function(probs.pre.test, LR, test.result="+") {
     opar <- par(no.readonly = T)
-    on.exit(par = opar)
+    on.exit(par(opar))
     par(mar = c(1.5, 6, 2, 6))
     stato <- ifelse(test.result == "+", "disease", "no disease")
     if (probs.pre.test > 1 | probs.pre.test < 0 | LR < 0 | is.infinite(LR) |
-        is.nan(LR) | test.result %in% c("+", "-") == F)
-        stop("wrong values !!")
-    else logits <- function(p) log(p/(1 - p))
+        is.nan(LR) | test.result %in% c("+", "-") == F) {
+      stop("wrong values !!")
+    } else {
+      logits <- function(p) log(p/(1 - p))
+    }
     logits.pre <- logits(probs.pre.test)
     logits.post <- log(LR) + logits.pre
     probs.post.test <- exp(logits.post)/(1 + exp(logits.post))
@@ -53,7 +55,7 @@ fagan.plot<-function(probs.pre.test, LR, test.result="+") {
 
 
 
-plotFagan<-function(){
+plotFagan.old<-function(){
   refresh.code <- function(...) {
     probs.pre.test <- slider(no = 1)
     LR <- slider(no = 2)
@@ -77,7 +79,7 @@ plotFagan<-function(){
 }
 
 
-plotFagan2<-function(){
+plotFagan2.old<-function(){
   refresh.code <- function(...) {
     probs.pre.test <- slider(no = 1)
     LR <- slider(no=2)/(1-slider(no=3))
@@ -101,3 +103,180 @@ plotFagan2<-function(){
 }
 
 
+plotFagan <- function(hscale=1.5, vscale=1.5, wait=FALSE) {
+
+  ppt <- tclVar()
+  tclvalue(ppt) <- 0.5
+  lr <- tclVar()
+  tclvalue(lr) <- 1
+  tr <- tclVar()
+  tclvalue(tr) <- '+'
+  
+  hsc <- tclVar()
+  tclvalue(hsc) <- hscale
+  vsc <- tclVar()
+  tclvalue(vsc) <- hscale
+  
+  replot <- function(...) {
+    probs.pre.test <- as.numeric(tclvalue(ppt))
+    LR <- as.numeric(tclvalue(lr))
+    test.result <- tclvalue(tr)
+    fagan.plot(probs.pre.test, LR, test.result)
+  }
+
+  tt <- tktoplevel()
+  tkwm.title(tt, "Fagan Plot Demo")
+
+  img <- tkrplot(tt, replot, vscale=vscale, hscale=hscale)
+  tkpack(img, side='top')
+
+  tkpack(fr <- tkframe(tt), side='top')
+  tkpack(tklabel(fr, text='Pre Test Probability: '), side='left', anchor='s')
+  tkpack(tkscale(fr, variable=ppt, orient='horizontal',
+                 command=function(...) tkrreplot(img,
+                   hscale=as.numeric(tclvalue(hsc)),
+                   vscale=as.numeric(tclvalue(vsc)) ),
+                 from=0, to=1, resolution=.01), side='right')
+
+  tkpack(fr <- tkframe(tt), side='top')
+  tkpack(tklabel(fr, text='Likelihood Ratio: '), side='left', anchor='s')
+  tkpack(tkscale(fr, variable=lr, orient='horizontal',
+                 command=function(...) tkrreplot(img,
+                   hscale=as.numeric(tclvalue(hsc)),
+                   vscale=as.numeric(tclvalue(vsc)) ),
+                 from=0.01, to=100, resolution=.01), side='right')
+
+  tkpack(fr <- tkframe(tt), side='top')
+  tkpack(tkcheckbutton(fr, text='Positive Test Result', variable=tr,
+                       onvalue='+', offvalue='-',
+                       command=function(...) tkrreplot(img,
+                         hscale=as.numeric(tclvalue(hsc)),
+                         vscale=as.numeric(tclvalue(vsc)) )
+                       ),
+         side='left')
+
+  tkpack(tfr <- tkframe(tt), side='bottom', fill='x')
+  tkpack(tkbutton(tfr, text="Refresh", command=function() tkrreplot(img,
+                                         hscale=as.numeric(tclvalue(hsc)),
+                                         vscale=as.numeric(tclvalue(vsc)) ) ),
+                  side='left',anchor='s')
+
+  tkpack(tkbutton(tfr, text="Exit", command=function()tkdestroy(tt)),
+             side='right',anchor='s')
+
+
+  tkpack(tfr <- tkframe(tt), side='bottom', fill='x')
+  tkpack(tklabel(tfr,text="Hscale: "), side='left')
+  tkpack(tkentry(tfr,textvariable=hsc,width=6), side='left')
+  tkpack(tklabel(tfr,text="      Vscale: "), side='left')
+  tkpack(tkentry(tfr,textvariable=vsc,width=6), side='left')
+
+  if(wait) {
+    tkwait.window(tt)
+    return( list(ppt = as.numeric(tclvalue(ppt)),
+                 lr = as.numeric(tclvalue(lr)),
+                 tr = tclvalue(tr)
+                 ))
+  } else {
+    return(invisible(NULL))
+  }
+}
+
+
+
+
+
+plotFagan2 <- function(hscale=1.5, vscale=1.5, wait=FALSE) {
+
+  ppt <- tclVar()
+  tclvalue(ppt) <- 0.5
+  sens <- tclVar()
+  tclvalue(sens) <- 0.5
+  spec <- tclVar()
+  tclvalue(spec) <- 0.5
+  tr <- tclVar()
+  tclvalue(tr) <- '+'
+  
+  hsc <- tclVar()
+  tclvalue(hsc) <- hscale
+  vsc <- tclVar()
+  tclvalue(vsc) <- hscale
+  
+  replot <- function(...) {
+    probs.pre.test <- as.numeric(tclvalue(ppt))
+    sns <- as.numeric(tclvalue(sens))
+    spc <- as.numeric(tclvalue(spec))
+    test.result <- tclvalue(tr)
+    fagan.plot(probs.pre.test, sns/(1-spc), test.result)
+  }
+
+  tt <- tktoplevel()
+  tkwm.title(tt, "Fagan Plot Demo")
+
+  img <- tkrplot(tt, replot, vscale=vscale, hscale=hscale)
+  tkpack(img, side='top')
+
+  tkpack(fr <- tkframe(tt), side='top')
+  tkpack(tklabel(fr, text='Pre Test Probability: '), side='left', anchor='s')
+  tkpack(tkscale(fr, variable=ppt, orient='horizontal',
+                 command=function(...) tkrreplot(img,
+                   hscale=as.numeric(tclvalue(hsc)),
+                   vscale=as.numeric(tclvalue(vsc)) ),
+                 from=0, to=1, resolution=.01), side='right')
+
+  tkpack(fr <- tkframe(tt), side='top')
+  tkpack(tklabel(fr, text='Sensitivity: '), side='left', anchor='s')
+  tkpack(tkscale(fr, variable=sens, orient='horizontal',
+                 command=function(...) tkrreplot(img,
+                   hscale=as.numeric(tclvalue(hsc)),
+                   vscale=as.numeric(tclvalue(vsc)) ),
+                 from=0, to=1, resolution=.01), side='right')
+
+   tkpack(fr <- tkframe(tt), side='top')
+  tkpack(tklabel(fr, text='Specificity: '), side='left', anchor='s')
+  tkpack(tkscale(fr, variable=spec, orient='horizontal',
+                 command=function(...) tkrreplot(img,
+                   hscale=as.numeric(tclvalue(hsc)),
+                   vscale=as.numeric(tclvalue(vsc)) ),
+                 from=0, to=1, resolution=.01), side='right') 
+
+  tkpack(fr <- tkframe(tt), side='top')
+  tkpack(tkcheckbutton(fr, text='Positive Test Result', variable=tr,
+                       onvalue='+', offvalue='-',
+                       command=function(...) tkrreplot(img,
+                         hscale=as.numeric(tclvalue(hsc)),
+                         vscale=as.numeric(tclvalue(vsc)) )
+                       ),
+         side='left')
+
+  tkpack(tfr <- tkframe(tt), side='bottom', fill='x')
+  tkpack(tkbutton(tfr, text="Refresh", command=function() tkrreplot(img,
+                                         hscale=as.numeric(tclvalue(hsc)),
+                                         vscale=as.numeric(tclvalue(vsc)) ) ),
+                  side='left',anchor='s')
+
+  tkpack(tkbutton(tfr, text="Exit", command=function()tkdestroy(tt)),
+             side='right',anchor='s')
+
+
+  tkpack(tfr <- tkframe(tt), side='bottom', fill='x')
+  tkpack(tklabel(tfr,text="Hscale: "), side='left')
+  tkpack(tkentry(tfr,textvariable=hsc,width=6), side='left')
+  tkpack(tklabel(tfr,text="      Vscale: "), side='left')
+  tkpack(tkentry(tfr,textvariable=vsc,width=6), side='left')
+
+  if(wait) {
+    tkwait.window(tt)
+    return( list(ppt = as.numeric(tclvalue(ppt)),
+                 sens = as.numeric(tclvalue(sens)),
+                 spec = as.numeric(tclvalue(spec)),
+                 tr = tclvalue(tr)
+                 ))
+  } else {
+    return(invisible(NULL))
+  }
+}
+  
+  
+
+  

@@ -56,7 +56,7 @@ ms.sunflowers(n,r=0.3,adj=pi/2, ...)
   These functions either return a 2 column matrix of points to be passed
   to \code{lines} or \code{NULL}.
 }
-\author{Greg Snow \email{greg.snow@intermountainmail.org}}
+\author{Greg Snow \email{greg.snow@imail.org}}
 \seealso{\code{\link{my.symbols}}, \code{\link{polygon}},
   \code{\link{arrows}}, \code{\link{lines}}
 }

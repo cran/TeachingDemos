@@ -40,16 +40,16 @@ rotate.wireframe(x, ...)
   windows, nothing meaninful is returned.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{ \code{\link{cloud}} it the lattice package,
-  \code{\link{persp}}, \code{\link{wireframe}} in the lattice package }
+\seealso{ \code{cloud} it the lattice package,
+  \code{\link{persp}}, \code{wireframe} in the lattice package }
 \examples{
 
-\dontrun{
+if(interactive()){
 rotate.cloud(Sepal.Length ~ Petal.Length*Petal.Width, data=iris)
 
 rotate.wireframe(volcano)

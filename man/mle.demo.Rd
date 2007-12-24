@@ -37,16 +37,16 @@ mle.demo(x = rnorm(10, 10, 2), start.mean = mean(x) - start.sd, start.sd = 1.2 *
   This function is run for its side effects and returns NULL.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{ \code{\link{fitdistr}} in package MASS, \code{\link{mle}} in
+\seealso{ \code{fitdistr} in package MASS, \code{mle} in
   package stats4, \code{\link{slider}} }
 \examples{
 
-\dontrun{
+if(interactive()){
 mle.demo()
 
 m <- runif(1, 50,100)

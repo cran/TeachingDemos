@@ -24,7 +24,7 @@ rgl.Map(Map, which, ...)
   There is no return value, this function is run for its side effect.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 \note{ This function is still beta level software (some extra lines show
 up).}
 
@@ -33,7 +33,7 @@ up).}
 \seealso{\code{rgl} in package rgl, \code{plot.Map} in
   package maptools }
 \examples{
-\dontrun{
+if(interactive()){
 # assumes that the time zone shape files have been downloaded
 # from: http://openmap.bbn.com/data/shape/timezone/
 

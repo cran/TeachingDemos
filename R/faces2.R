@@ -35,7 +35,7 @@ function(mat, which=1:ncol(mat), labels=rownames(mat),
   }
 
   if(ncol(mat) > 18){
-    warn("using only first 18 columns of input")
+    warning("using only first 18 columns of input")
     mat <- mat[,1:18]
   }
 

@@ -1,0 +1,48 @@
+New to TeachingDemos version 2.0
+
+* TeachingDemos now has a NAMESPACE so you can access just parts of
+  the package without loading everything.  Fewer packages are now
+  loaded with it, so it should load smaller and faster.
+
+* Some of the gui demonstrations (e.g. run.cor.examp) were rewritten
+  using the tkrplot package so that the graph shows up in the same
+  window as the controls.  Old versions will remain, but with the word
+  "old" inserted into the name.  More will change eventually.
+
+* Many of the examples sections have replaced \dontrun with
+  if(interactive()) so that the examples can be run using the
+  "examples" function (recommended to use ask=FALSE).
+
+* clt.demo function will now allow you to specify parameters of the
+  distributions and the exponential was replaced with a gamma (the
+  defaults match the prior information).
+
+* New function "tkexamp" for creating interactive
+  examples/demonstrations of the effect of changing parameter values
+  on a graph.
+
+* New functions "dynIdentify" and "TkIdentify" which create a
+  scatterplot, place labels on the points, then allow you to drag the
+  labels to new locations.
+
+* New function "col2grey" for getting an idea of how a graph will look
+  if printed or copied to greyscale.
+
+* New function "SensSpec.demo" to show how to move from Sensitivity
+  and Specificity to predictive power positive and negative using an
+  intuitive virtual population method rather than the explicit math of
+  Bayes formula.
+
+* New functions "TkApprox" and "TkSpline" to interactivly interpolate
+  on graphs and find values, differences, derivatives.
+
+* New function "tkprogress" for a popup progress bar window to show
+  you how a loop is progressing.
+
+* New functions "txtStart", "etxtStart", etc to create transcript
+  files and script files of your session.  Final result is a text file
+  or a text file that can be converted to postscript and others via
+  the enscript program.  The later version can include copies of
+  graphs.
+
+

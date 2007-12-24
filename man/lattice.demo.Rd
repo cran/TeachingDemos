@@ -38,15 +38,15 @@ lattice.demo(x, y, z, show3d = TRUE)
   No meaningful return value, this function is run for the side effects.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 %\note{ ~~further notes~~ }
 
 
 
-\seealso{\code{\link{xyplot}}}
+\seealso{\code{xyplot} in lattice package}
 \examples{
 
-\dontrun{
+if(interactive()){
 require(stats)
 lattice.demo(quakes$long, quakes$lat, quakes$depth)
 }

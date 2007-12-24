@@ -22,15 +22,23 @@ clipplot(fun, xlim = par("usr")[1:2], ylim = par("usr")[3:4])
   lines, etc. that are outside the rectange are not plotted.
 
   A side effect of this function is a call to the \code{box()} command,
-  most of the time this will have no visible effect unless you
-  suppressed the drawing of the box initially.
+  it is called with a fully transparent color so if your graphics device
+  honors transparency then you will probably see no effect.
 }
 \value{
   Nothing meaningful is returned
 }
 
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
-\seealso{ \code{\link{par}}, \code{\link{lines}} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
+\note{
+  This function abuses some of the intent of what par(plt=...) is
+  supposed to mean.  In R2.7.0 and beyond there is a new funcntion
+  \code{clip} with the intended purpose of doing this in a more proper
+  manner (however as of my last test it is not working perfectly either,
+  so \code{clipplot} will remain undepricated for now).
+}
+\seealso{ \code{\link{par}}, \code{\link{lines}}, \code{clip} in R2.7.0
+  and later }
 \examples{
 x <- seq(1,100)
 y <- rnorm(100)

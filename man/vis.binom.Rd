@@ -36,14 +36,14 @@ vis.t()
   anything meaningful.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{ \code{\link{dnorm}}, \code{\link{dgamma}}, etc. }
 \examples{
-\dontrun{
+if(interactive()){
 vis.binom()
 vis.normal()
 vis.gamma()

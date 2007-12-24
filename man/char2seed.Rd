@@ -39,7 +39,7 @@ char2seed(x, set = TRUE, ...)
   This returns an integer (but mode numeric) to use as a seed for the
   RNG.  If \code{set} is true then it is returned invisibly.
 }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 \seealso{ \code{\link{set.seed}} }
 \examples{
 char2seed('Snow')

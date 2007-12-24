@@ -21,14 +21,14 @@ run.hist.demo(x)
   No meaninful value is returned.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{ \code{\link{hist}}, \code{\link{slider}}  }
 \examples{
-\dontrun{
+if(interactive()){
 run.hist.demo( rnorm(250, 100, 5) )
 }
 }

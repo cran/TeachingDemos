@@ -1,4 +1,9 @@
+.gp <- numeric(0)
+.gp.tempfiles <- character(0)
+
 gp.open <- function(where='c:/progra~1/GnuPlot/bin/pgnuplot.exe'){
+  unlockBinding('.gp', env=environment(gp.open))
+  unlockBinding('.gp.tempfiles', env=environment(gp.open))
 	.gp <<- pipe(where,'w')
 	.gp.tempfiles <<- character(0)
 	invisible(.gp)
@@ -10,9 +15,9 @@ gp.close <- function(pipe=.gp){
 	close(pipe)
 	if(exists('.gp.tempfiles')){
 		unlink(.gp.tempfiles)
-		rm(.gp.tempfiles,pos=1)
+		.gp.tempfiles <<- character(0)
 	}
-	rm(.gp,pos=1)
+	.gp <<- numeric(0)
 	invisible()
 }
 

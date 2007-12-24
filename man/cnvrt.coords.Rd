@@ -40,7 +40,7 @@ cnvrt.coords(x, y = NULL, input = c("usr", "plt", "fig", "dev","tdev"))
   outer margins and 1 is the top and right of the region withing the
   outer margins.  If the outer margins are all set to 0 then tdev and
   dev should be identical.
-  
+
   tdev (Total Device): Total Device area, coordinates range from 0 to 1 with 0
   corresponding to the bottom and left edges of the device (piece of
   paper, window on screen) and 1 corresponds to the top and right edges.
@@ -56,18 +56,25 @@ cnvrt.coords(x, y = NULL, input = c("usr", "plt", "fig", "dev","tdev"))
   \item{dev}{The coordinates of the input points in dev (Device)
     coordinates.}
   \item{tdev}{The coordinates of the input points in tdev (Total Device)
-    coordinates. 
+    coordinates.
   }
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{Greg Snow \email{greg.snow@intermountainmail.org}}
-\note{ You must provide both x and y, but one of them may be \code{NA}. }
+\author{Greg Snow \email{greg.snow@imail.org}}
+\note{ You must provide both x and y, but one of them may be \code{NA}.
+
+This function is becoming depricated with the new functions
+\code{grconvertX} and \code{grconvertY} in R version 2.7.0 and beyond.
+These new functions use the correct coordinate system names and have
+more coordinate systems available, you should start using them instead.
+}
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{ \code{\link{par}} specifically 'usr','plt', and 'fig'.  Also
   'xpd' for plotting outside of the plotting region and 'mfrow' and
-  'mfcol' for multi figure plotting. \code{\link{subplot}}}
+  'mfcol' for multi figure plotting. \code{\link{subplot}},
+  \code{grconvertX} and \code{grconvertY} in R2.7.0 and later}
 \examples{
 
 old.par <- par(no.readonly=TRUE)
@@ -107,7 +114,7 @@ tmp.range2 <- cnvrt.coords(NA, 0.02, input='plt')
 tmp.range3 <- cnvrt.coords(NA, tmp.range1$dev$y, input='dev')
 rect( 9, tmp.range2$usr$y, 11, tmp.range3$usr$y, border='yellow')
 
-# put a label just to the right of the plot and 
+# put a label just to the right of the plot and
 #  near the top of the figure region.
 text( cnvrt.coords(1.05, NA, input='plt')$usr$x,
 	cnvrt.coords(NA, 0.75, input='fig')$usr$y,

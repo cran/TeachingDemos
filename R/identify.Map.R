@@ -3,7 +3,7 @@ function(x, labels=as.character(Map$att.data$NAME),
 	n=Inf, ...){
         Map <- x # for consistancy with identify and readability
 	if (class(Map) != 'polylist'){
-		Pol <- Map2poly(Map)
+		Pol <- maptools:::Map2poly(Map)
 	} else {
 		Pol <- Map
 	}
