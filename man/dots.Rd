@@ -31,7 +31,7 @@ deparse(substitute(x)), lab2 = deparse(substitute(y)),...)
   creating a plot.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{Greg Snow \email{greg.snow@intermountainmail.org } }
+\author{Greg Snow \email{greg.snow@imail.org } }
 %\note{ ~~further notes~~ }
 
 

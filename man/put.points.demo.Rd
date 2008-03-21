@@ -45,7 +45,7 @@ put.points.demo(x = NULL, y = NULL, lsline = TRUE)
   This function does not return anything.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 %\note{ ~~further notes~~ }
 
  
@@ -53,7 +53,7 @@ put.points.demo(x = NULL, y = NULL, lsline = TRUE)
 \seealso{ \code{\link{plot}}, \code{\link{cor}} }
 \examples{
 
-\dontrun{
+if(interactive()){
 put.points.demo()
 
 x <- rnorm(25, 5, 1)

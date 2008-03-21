@@ -23,13 +23,13 @@ bct(y, lambda)
  A vector of the same length as y with the corresponding transformed values.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{Greg Snow \email{greg.snow@intermountainmail.org}}
+\author{Greg Snow \email{greg.snow@imail.org}}
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{\code{\link{vis.boxcox}}, \code{\link{vis.boxcoxu}},
-  \code{\link{boxcox}} in package MASS, other implementations in various
+  \code{boxcox} in package MASS, other implementations in various
   packages}
 \examples{
 y <- rlnorm(500, 3, 2)
@@ -40,16 +40,7 @@ qqnorm(bct(y,0))
 hist(bct(y,0))
 
 
-## The function is currently defined as
-function(y,lambda){
 
-  gm <- exp( mean( log(y) ) )
-
-  if(lambda==0) return( log(y)*gm )
-  
-  yt <- (y^lambda - 1)/( lambda * gm^(lambda-1) )
-  return(yt)
-  }
 }
 \keyword{manip}% at least one, from doc/KEYWORDS
 \keyword{datagen}

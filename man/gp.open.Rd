@@ -48,7 +48,7 @@ gp.plot(x,y,type='p',add=FALSE, title=deparse(substitute(y)),pipe=.gp)
 \references{
   \url{http://www.gnuplot.info/}
 }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 \note{
   These functions create some temporary files and 2 temporary global
   variables (.gp and .gp.tempfiles), running \code{gp.close} will clean

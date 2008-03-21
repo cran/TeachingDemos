@@ -52,11 +52,11 @@ tkBrush(mat,hscale=1.75,vscale=1.75,wait=TRUE,...)
   Either NULL (if Wait=FALSE) or a list with components \code{col} and
   \code{pch} corresponding to the state of the points.
 }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org}}
+\author{ Greg Snow \email{greg.snow@imail.org}}
 \seealso{\code{\link{pairs}},\code{colors},\code{\link{points}},
   the \code{iplots} package}
 \examples{
-\dontrun{
+if(interactive()){
 
 # Iris dataset
 

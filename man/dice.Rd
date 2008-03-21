@@ -39,7 +39,7 @@ plot.dice(x, ...)
   If \code{plot.it} is TRUE, then the return value will be invisible.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org }}
+\author{ Greg Snow \email{greg.snow@imail.org }}
 \note{ If the plot function is used or if \code{plot.it} is TRUE, then a
 plot will be created on the current graphics device.}
 

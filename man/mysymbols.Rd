@@ -71,7 +71,7 @@ my.symbols(x, y=NULL, symb, inches=1, add=TRUE,
   This function is run for its side effect of plotting, it returns an
   invisible NULL.
 }
-\author{Greg Snow \email{greg.snow@intermountainmail.org}}
+\author{Greg Snow \email{greg.snow@imail.org}}
 \note{Since the '...' argument is passed to both \code{lines} and
   \code{symb}, the \code{symb} function should have a '...' argument so
   that it will ignore any additional arguments.

@@ -33,26 +33,30 @@ sliderv(refresh.code, names, minima, maxima, resolutions, starts, title = "contr
   Returns the value of a given slider when used as: \code{slider(no=i)}.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 \note{
   You can move the slider in 3 different ways:  You can left click
   and drag the slider itself, you can left click in the trough to either
   side of the slider and the slider will move 1 unit in the direction
   you clicked, or you can right click in the trough and the slider will
   jump to the location you clicked at.
+
+  This function may not stay in this package (consider it
+  semi-depricated).  See the \code{\link{tkexamp}} function for another
+  approach to do the same thing.
 }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{ \code{\link{slider}} }
+\seealso{ \code{\link{tkexamp}}, \code{\link{slider}} }
 \examples{
-\dontrun{
+if(interactive()){
 face.refresh <- function(...){
 	vals <- sapply(1:15, function(x) slider(no=x))
 	faces( rbind(0, vals, 1), scale=F)
 }
 
-sliderv( face.refresh, as.character(1:15), rep(0,15), rep(1,15), 
+sliderv( face.refresh, as.character(1:15), rep(0,15), rep(1,15),
 	rep(0.05, 15), rep(0.5,15), title='Face Demo')
 }
 }

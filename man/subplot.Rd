@@ -61,7 +61,7 @@ subplot(fun, x, y, size=c(1,1), vadj=0.5, hadj=0.5, pars=NULL)
  enable you to augment the embedded plot.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{Greg Snow \email{greg.snow@intermountainmail.org}}
+\author{Greg Snow \email{greg.snow@imail.org}}
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~

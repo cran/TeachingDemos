@@ -2,7 +2,8 @@
 \alias{fagan.plot}
 \alias{plotFagan}
 \alias{plotFagan2}
-
+\alias{plotFagan.old}
+\alias{plotFagan2.old}
 \title{Create a Fagan plot to demonstrate Bayes Theorem and screening
   tests}
 \description{
@@ -12,14 +13,19 @@
 }
 \usage{
 fagan.plot(probs.pre.test, LR, test.result="+")
-plotFagan()
-plotFagan2()
+plotFagan(hscale=1.5, vscale=1.5, wait=FALSE)
+plotFagan2(hscale=1.5, vscale=1.5, wait=FALSE)
+plotFagan.old()
+plotFagan2.old()
 }
 \arguments{
   \item{probs.pre.test}{ The prior probability }
   \item{LR}{ the likelihood ratio (sensitivity/(1-specificity))}
   \item{test.result}{either '+' or '-' indicating whether you want the
     probability of the event or of not seeing the event}
+  \item{hscale}{Horizontal scale, passed to \code{tkrplot}}
+  \item{vscale}{Vertical scale, passed to \code{tkrplot}}
+  \item{wait}{Should the R session wait for the window to close}
 }
 \details{
   When Bayes theorem is expressed in terms of log-odds it turns out that
@@ -41,23 +47,24 @@ plotFagan2()
   More detail on the plots and the math behind them can be found at the
   websites below.
 }
-\value{ These functions are run for their side effects and do not return
-  a meaningful value }
+\value{ The old functions are run for their side effects and do not return
+  a meaningful value.  If \code{wait} is FALSE then NULL is returned, if
+\code{wait} is TRUE, then a list with the current values is returned.}
 \references{
-  Fagan TJ. Nomogram for Bayes theorem. N Engl J Med 1975;293(5):257-61. 
+  Fagan TJ. Nomogram for Bayes theorem. N Engl J Med 1975;293(5):257-61.
 \url{http://www.cmh.edu/stats/definitions/fagan.htm}
 \url{http://ebm.bmjjournals.com/cgi/content/full/6/6/164}
 }
 
 \author{ Guazzetti Stefano and Greg Snow
-  \email{greg.snow@intermountainmail.org}}
+  \email{greg.snow@imail.org}}
 \seealso{ \code{slider}}
 \examples{
-\dontrun{
  fagan.plot(0.8, 2)
 
  fagan.plot(0.8, 0.95/(1-0.90) )
 
+if(interactive()) {
  plotFagan()
 
  plotFagan2()

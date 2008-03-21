@@ -1,11 +1,11 @@
 tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
 
-  if(!require(tkrplot)) stop('The "tkrplot" package must be available\n')
+
   first <- TRUE
   bp <- FALSE
 
   cols <- character(0)
-  
+
   colhist <- function(x,...){
     tmp <- hist(x,plot=F)
     br <- tmp$breaks
@@ -26,7 +26,7 @@ tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
       di <<- c(di,seq(along=tmp$x))
     }
   }
-  
+
   pcols <- rep('black',nrow(mat))
   tcols <- rep(NA,nrow(mat))
 
@@ -42,7 +42,7 @@ tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
   ecol<-tclVar('red')
 
   devlims <- c(0.05,0.95,0.05,0.95)
-  
+
   replot <- function(){
     if(first){
       cols <<- pcols
@@ -59,13 +59,13 @@ tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
     } else {
 
       cols <<- ifelse(is.na(tcols),pcols,tcols)
-      
+
       pairs(mat, #upper.panel=NULL,
             diag.panel=colhist,
             pch=ifelse(is.na(tpch),ppch,tpch),
             col=ifelse(is.na(tcols),pcols,tcols))
       par(fig=c(0,1,0,1),plt=c(0,1,0,1),usr=c(0,1,0,1),xpd=TRUE)
-      
+
       rect(rx-rw,ry,rx,ry+rh,border='green')
      }
   }
@@ -100,10 +100,10 @@ tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
     if(tx > devlims[2]) tx <- devlims[2]
     if(ty < devlims[3]) ty <- devlims[3]
     if(ty+rh > devlims[4]) ty <- devlims[4] - rh
-    
+
     rx <<- tx
     ry <<- ty
-    
+
     tmp <- di[ dx >= rx-rw & dx <= rx & dy >= ry & dy <= ry+rh ]
 
     tmpc <- rep(NA,nrow(mat))
@@ -111,7 +111,7 @@ tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
     if( !( tmpcol %in% colors() ) ) tmpcol <- 'black'
     tmpc[tmp] <- tmpcol
     tcols <<- tmpc
-    
+
     tmpp <- rep(NA,nrow(mat))
     tmppch <-  as.numeric(tclvalue(epch))
     if(is.na(tmppch)) tmppch <- as.character(tclvalue(epch))
@@ -133,7 +133,7 @@ tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
     if( !( tmpcol %in% colors() ) ) tmpcol <- 'black'
     tmpc[tmp] <- tmpcol
     tcols <<- tmpc
-    
+
     tmpp <- rep(NA,nrow(mat))
     tmppch <-  as.numeric(tclvalue(epch))
     if(is.na(tmppch)) tmppch <- as.character(tclvalue(epch))
@@ -146,7 +146,7 @@ tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
     }
     tkrreplot(img)
   }
-  
+
   tkbind(img, '<Motion>', mm)
   tkbind(img, '<ButtonPress-1>', function() {bp<<-TRUE;mmm()})
   tkbind(img, '<ButtonRelease-1>', function() bp<<-FALSE)
@@ -162,4 +162,4 @@ tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
     return(invisible(NULL))
   }
 }
-            
+

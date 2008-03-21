@@ -47,14 +47,14 @@ run.ci.examp(reps = 100, seed, method="z", n=25)
   The function \code{run.ci.examp} also creates a Tk slider that will
   allow you to interactively change the confidence level and replot the
   intervals to show how the interval widths change with the confidence
-  level.  
+  level.
 }
 \value{
   These functions are run solely for the side effect of plotting the
   intervals, there is no meaningfull return value.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{Greg Snow \email{greg.snow@imail.org} }
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
@@ -62,7 +62,10 @@ run.ci.examp(reps = 100, seed, method="z", n=25)
 \seealso{\code{\link{z.test}}, \code{\link{t.test}} }
 \examples{
 ci.examp()
-\dontrun{run.ci.examp()}
+
+if(interactive()) {
+  run.ci.examp()
+}
 
 # 1 sided confidence intervals
 ci.examp(lower.conf=0, upper.conf=0.95)

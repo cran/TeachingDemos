@@ -1,0 +1,34 @@
+export(bct,char2seed,chisq.detail,ci.examp,clipplot,clt.examp,cnvrt.coords,
+       dice,dots,dots2,emp.hpd,faces,faces2,fagan.plot,
+       flip.rgl.coin,gp.close,gp.open,gp.plot,gp.send,hpd,identify.Map,
+       identify.polylist,lattice.demo,limits.g,loess.demo,mle.demo,
+       ms.arrows,ms.female,ms.filled.polygon,ms.male,ms.polygon,ms.polygram,
+       ms.sunflowers,my.symbols,panel.dice,plot.dice,plot.rgl.coin,
+       plot.rgl.die,plot2script,plotFagan,plotFagan2,plotFagan.old,
+       plotFagan2.old,power.examp,
+       prepanel.dice,project.Map,put.points.demo,
+       recenter.Map,rgl.Map,roc.demo,roll.rgl.die,rotate.cloud,
+       rotate.persp,rotate.wireframe,run.ci.examp,run.cor.examp,
+       run.cor2.examp,run.old.cor.examp,run.old.cor2.examp,
+       run.hist.demo,run.power.examp,run.power.examp.old,sd.g,slider,
+       sliderv,squishplot,SensSpec.demo,tkprogress,
+       stats.g,strip.shingle,subplot,
+       tkBrush,tree.demo,triplot,vis.binom,vis.boxcox,vis.boxcoxu,
+       vis.boxcox.old, vis.boxcoxu.old,
+       vis.gamma,vis.normal,vis.t,z.test,zoomplot,tkexamp,col2grey,col2gray,
+       TkApprox,TkSpline,txtStart,txtStop,txtComment,txtSkip,etxtStart,
+       etxtStop,etxtComment,etxtSkip,etxtPlot,dynIdentify,TkIdentify)
+
+import(rgl)
+import(tcltk)
+import(tcltk2)
+#import(tkrplot)
+
+S3method(identify, Map)
+S3method(identify, polylist)
+S3method(plot, dice)
+
+
+
+
+

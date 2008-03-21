@@ -40,7 +40,7 @@ plot2script(file='clipboard')
   This function is run for its side effects and does not return anything
   meaningful.
 }
-\author{Greg Snow \email{greg.snow@intermountainmail.org}}
+\author{Greg Snow \email{greg.snow@imail.org}}
 \note{ For any serious projects it is best to put your code into a
   script to begin with and edit the original script rather than using
   this function.
@@ -52,7 +52,7 @@ plot2script(file='clipboard')
 \seealso{\code{\link{history}}, \code{\link{savehistory}},
   \code{\link{recordPlot}}, \code{\link{source}} }
 \examples{
-\dontrun{
+if(interactive()){
 
 # create a plot
 plot(runif(10),rnorm(10))

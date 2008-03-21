@@ -40,7 +40,7 @@ strip.shingle(which.given, which.panel, var.name, factor.levels, shingle.interva
   This function is only usefull for its side effects.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
@@ -55,7 +55,7 @@ Depth <- equal.count(quakes$depth, number=8, overlap=.1)
 xyplot(lat ~ long | Depth, data = quakes, strip=strip.shingle)
 }
 
-\dontrun{
+if(require(lattice)) {
 xyplot(lat ~ long | Depth, data=quakes,
   strip=strip.custom(strip.names=TRUE, strip.levels=TRUE),
   par.strip.text=list(cex=0.75))

@@ -1,7 +1,7 @@
 plot.rgl.coin <- function(x, col='black', heads=x[[1]],
                           tails=x[[2]], ... ) {
   if(missing(x)) x <- coin.faces
-  require(rgl)
+
   rgl.viewpoint(0,0)
 
   for(i in 0:39) {
@@ -30,7 +30,7 @@ plot.rgl.coin <- function(x, col='black', heads=x[[1]],
 
   rgl.lines( tails[tmp,1], tails[tmp,2], rep(-0.005, length(tmp) ),
              col=col, lit=FALSE)
-    
+
 }
 
 

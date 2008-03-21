@@ -63,7 +63,7 @@ roll.rgl.die(side = sample(6, 1), steps = 250)
   \code{sides} argument.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 \note{ The current algorithm for animating the die roll shows all the
   sides, but I am not satisfied with it.  Please suggest improvements. }
 
@@ -72,7 +72,7 @@ roll.rgl.die(side = sample(6, 1), steps = 250)
 \seealso{ \code{\link{dice}}, \code{\link{plot.dice}},
   \code{\link{coin.faces}}, \code{\link{sample}} }
 \examples{
-\dontrun{
+if(interactive()){
 plot.rgl.coin()
 flip.rgl.coin()
 flip.rgl.coin(1)

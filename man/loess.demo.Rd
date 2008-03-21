@@ -63,7 +63,7 @@ loess.demo(x, y, span = 2/3, degree = 1, nearest = F, xlim = numeric(0), ylim = 
   effects.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 %\note{ ~~further notes~~ }
 
 
@@ -71,7 +71,7 @@ loess.demo(x, y, span = 2/3, degree = 1, nearest = F, xlim = numeric(0), ylim = 
 \seealso{ \code{\link{loess}}, \code{\link{locator}} }
 \examples{
 
-\dontrun{
+if(interactive()){
 data(ethanol, package='lattice')
 attach(ethanol)
 loess.demo(E, NOx)

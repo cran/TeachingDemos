@@ -1,0 +1,1 @@
+slider.env <- new.env()

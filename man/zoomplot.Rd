@@ -32,7 +32,7 @@ zoomplot(xlim, ylim=NULL )
   This function is run for its side effects and does not return anything
   meaningful.
 }
-\author{Greg Snow \email{greg.snow@intermountainmail.org}}
+\author{Greg Snow \email{greg.snow@imail.org}}
 \note{ For any serious projects it is best to put your code into a
   script to begin with and edit the original script rather than using
   this function.
@@ -45,7 +45,7 @@ zoomplot(xlim, ylim=NULL )
   \code{\link{matplot}}, \code{\link{plot2script}},
   \code{\link{source}}}
 \examples{
-\dontrun{
+if(interactive()){
 
 with(iris, plot(Sepal.Length, Petal.Width,
     col=c('red','green','blue')[Species]))

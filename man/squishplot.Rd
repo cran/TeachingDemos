@@ -41,7 +41,7 @@ squishplot(xlim, ylim, asp = 1)
   were in place before the call to \code{squishplot} that can be used to
   reset the graphical parameters after plotting is finished.
 }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
+\author{ Greg Snow \email{greg.snow@imail.org} }
 \note{ 
   Remember to set other graphical parameters, then call
   \code{squishplot}, then call the plotting function(s), then reset the

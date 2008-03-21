@@ -24,9 +24,9 @@ project.Map(Map, projection = "", parameters = NULL, orientation = c(90, 0, 0))
   An object of class \code{Map} with the coordinates transformed.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@intermountainmail.org} }
-\note{ This is beta level software and will someday be superceded by the
-\code{spproj} package.}
+\author{ Greg Snow \email{greg.snow@imail.org} }
+\note{ This is beta level software, there are now better alternatives in
+the sp or related packages.}
 
 
 
