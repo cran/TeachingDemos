@@ -2,14 +2,14 @@
 function(){
 
   if(!exists('slider.env')) slider.env<<-new.env()
-  library(tcltk)
+  #library(tcltk)
 
   n <- 10  ; assign('n',tclVar(n),env=slider.env)
   p <-  0.5; assign('p',tclVar(p),env=slider.env)
 
   sn <- 0  ; assign('sn',tclVar(sn), env=slider.env)
   sp <- 0  ; assign('sp',tclVar(sp), env=slider.env)
-  
+
 
   binom.refresh <- function(...){
     n <- as.numeric(evalq(tclvalue(n), env=slider.env))
@@ -17,7 +17,7 @@ function(){
 
     sn <- as.numeric(evalq(tclvalue(sn), env=slider.env))
     sp <- as.numeric(evalq(tclvalue(sp), env=slider.env))
-    
+
     mu <- p*n
     sd <- sqrt(n*p*(1-p))
 
@@ -34,7 +34,7 @@ function(){
       lines(xx, dnorm(xx,mu,sd), col='green')
       points( seq(0,n), dbinom( seq(0,n), n, p), type='h' )
       points( seq(0,n), dbinom( seq(0,n), n, p), type='p' )
- 
+
     } else {
       if(sp){
         plot( seq(0,n), dpois( seq(0,n), mu ), type='h', col='blue',

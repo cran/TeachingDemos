@@ -2,7 +2,7 @@
 function(x, ...){
 
   if(!exists('slider.env')) slider.env <<-new.env()
-  library(tcltk)
+  #library(tcltk)
 
   lab1 <- 'z'; assign('lab1', tclVar(lab1), env=slider.env)
   lab2 <- 'y'; assign('lab2', tclVar(lab2), env=slider.env)
@@ -24,7 +24,7 @@ function(x, ...){
     val2 <- as.numeric(evalq(tclvalue(val2), env=slider.env))
     val3 <- as.numeric(evalq(tclvalue(val3), env=slider.env))
 
-    
+
     sl <- list(val1,val2,val3)
     names(sl) <- c(lab1,lab2,lab3)
 
@@ -33,7 +33,7 @@ function(x, ...){
 
     print( do.call('wireframe',wire.options) )
 
-    
+
   }
 
   m <- tktoplevel()
@@ -52,7 +52,7 @@ function(x, ...){
   evalq(tkconfigure(sc, variable=val1), env=slider.env)
   assign('e',e,env=slider.env)
   evalq(tkconfigure(e,textvariable=lab1), env=slider.env)
-  
+
   # two
   tkpack(fr <- tkframe(m), side='top')
   tkpack(e <- tkentry(fr, width=2), side='left')
@@ -65,7 +65,7 @@ function(x, ...){
   evalq(tkconfigure(sc, variable=val2), env=slider.env)
   assign('e',e,env=slider.env)
   evalq(tkconfigure(e,textvariable=lab2), env=slider.env)
-  
+
   # three
   tkpack(fr <- tkframe(m), side='top')
   tkpack(e <- tkentry(fr, width=2), side='left')
@@ -78,12 +78,12 @@ function(x, ...){
   evalq(tkconfigure(sc, variable=val3), env=slider.env)
   assign('e',e,env=slider.env)
   evalq(tkconfigure(e,textvariable=lab3), env=slider.env)
-  
+
   tkpack(tkbutton(m, text="Refresh", command=wire.refresh),side='left')
 
   tkpack(tkbutton(m, text="Exit", command=function()tkdestroy(m)),
          side='right')
 
-  
+
 }
 

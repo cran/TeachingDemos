@@ -2,18 +2,18 @@
 function(){
 
   if(!exists('slider.env')) slider.env<<-new.env()
-  library(tcltk)
+  #library(tcltk)
 
   shape <- 1; assign('shape',tclVar(shape),env=slider.env)
   rate  <- 1; assign('rate',tclVar(rate),env=slider.env)
   scale <- 1; assign('scale',tclVar(scale),env=slider.env)
-  mean  <- 1; assign('mean', tclVar(mean), env=slider.env) 
+  mean  <- 1; assign('mean', tclVar(mean), env=slider.env)
   sd    <- 1; assign('sd',tclVar(sd), env=slider.env)
 
   se <- 0; assign('se', tclVar(se), env=slider.env)
   sc2 <- 0; assign('sc2', tclVar(sc2), env=slider.env)
   sg <- 1; assign('sg', tclVar(sg), env=slider.env)
-  
+
   xmin <- 0; assign('xmin',tclVar(xmin),env=slider.env)
   xmax <- 5; assign('xmax',tclVar(xmax),env=slider.env)
   ymin <- 0; assign('ymin',tclVar(ymin),env=slider.env)
@@ -25,7 +25,7 @@ function(){
   old.mean  <- mean
   old.sd    <- sd
 
-  
+
   gamma.refresh <- function(...){
 
     shape <- as.numeric(evalq(tclvalue(shape), env=slider.env))
@@ -44,7 +44,7 @@ function(){
       try(eval(parse(text=paste("tclvalue(sd)<-",
                        sd,sep="")),env=slider.env));
       old.shape <<- shape; old.mean <<- mean; old.sd <<- sd
-      
+
     }
 
     if ( rate != old.rate ) {
@@ -61,7 +61,7 @@ function(){
                        sd,sep="")),env=slider.env));
       old.rate <<- rate; old.scale <<- scale;
       old.mean <<- mean; old.sd <<- sd
-      
+
     }
 
     if ( scale != old.scale ) {
@@ -78,7 +78,7 @@ function(){
                        sd,sep="")),env=slider.env));
       old.rate <<- rate; old.scale <<- scale;
       old.mean <<- mean; old.sd <<- sd
-      
+
     }
 
     if ( mean != old.mean ) {
@@ -95,7 +95,7 @@ function(){
                        scale,sep="")),env=slider.env));
       old.shape <<- shape; old.rate <<- rate; old.scale <<- scale;
       old.mean <<- mean; old.sd <<- sd
-      
+
     }
 
 
@@ -113,7 +113,7 @@ function(){
                        scale,sep="")),env=slider.env));
       old.shape <<- shape; old.rate <<- rate; old.scale <<- scale;
       old.mean <<- mean; old.sd <<- sd
-      
+
     }
 
 
@@ -130,7 +130,7 @@ function(){
 
     plot(xx,xx, xlim=c(xmin,xmax),ylim=c(ymin,ymax),
          xlab='x', ylab='y',type='n')
-    
+
     if(se) {
       yye <- dexp(xx,1/mean)
       lines(xx,yye, lwd=3, col='green')
@@ -153,7 +153,7 @@ function(){
       lines(c(mean,mean+sd), dgamma(mean+sd, shape, rate)*c(1,1),
             lty=2)
     }
-    
+
   }
 
 
@@ -239,7 +239,7 @@ function(){
   assign('sc',sc,env=slider.env)
   evalq(tkconfigure(sc, variable=sg),env=slider.env)
 
-  
+
   # xmin
   tkpack(fr <- tkframe(m),side='top')
   tkpack(tklabel(fr, text='Xmin:', width=6), side='left')
@@ -266,11 +266,11 @@ function(){
   assign('e',e,env=slider.env)
   evalq(tkconfigure(e, textvariable=ymax), env=slider.env)
 
-  
+
   tkpack(tkbutton(m, text="Refresh", command=gamma.refresh),side='left')
 
   tkpack(tkbutton(m, text="Exit", command=function()tkdestroy(m)),
          side='right')
-  
+
 }
 

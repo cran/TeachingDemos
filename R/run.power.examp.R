@@ -49,7 +49,7 @@ run.power.examp <- function(hscale=1.5, vscale=1.5, wait=FALSE) {
 
     tkpack(fr <- tkframe(tt), side='top', fill='x')
     tkpack(tklabel(fr, text="n: "), side='left')
-    tkpack(tk2spinbox(fr, values=c(1,2,3,4,5,10,20,30,40,50),
+    tkpack(tdspinner(fr, values=c(1,2,3,4,5,10,20,30,40,50),
                       width=5, textvariable=n,
                       command=function(...) tkrreplot(img,
                         hscale=as.numeric(tclvalue(hsc)),

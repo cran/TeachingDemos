@@ -2,7 +2,7 @@
 function(){
 
   if(!exists('slider.env')) slider.env<<-new.env()
-  library(tcltk)
+  #library(tcltk)
 
   df <- 1; assign('df',tclVar(df),env=slider.env)
   sn <- 0; assign('sn',tclVar(sn),env=slider.env)
@@ -13,7 +13,7 @@ function(){
   ymax <- round(dnorm(0,0,1),2); assign('ymax',tclVar(ymax),env=slider.env)
 
 
-  
+
   t.refresh <- function(...){
 
     df <- as.numeric(evalq(tclvalue(df), env=slider.env))
@@ -36,7 +36,7 @@ function(){
     } else {
       plot(xx,yyt,type='l', xlim=c(xmin,xmax), ylim=c(ymin,ymax),
            ylab='',xlab='x',lwd=2)
-    }    
+    }
   }
 
 
@@ -62,7 +62,7 @@ function(){
   assign('sc',sc,env=slider.env)
   evalq(tkconfigure(sc, variable=sn),env=slider.env)
 
-  
+
   # xmin
   tkpack(fr <- tkframe(m),side='top')
   tkpack(tklabel(fr, text='Xmin:', width=6), side='left')
@@ -89,11 +89,11 @@ function(){
   assign('e',e,env=slider.env)
   evalq(tkconfigure(e, textvariable=ymax), env=slider.env)
 
-  
+
   tkpack(tkbutton(m, text="Refresh", command=t.refresh),side='left')
 
   tkpack(tkbutton(m, text="Exit", command=function()tkdestroy(m)),
          side='right')
-  
+
 }
 

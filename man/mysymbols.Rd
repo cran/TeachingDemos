@@ -48,7 +48,7 @@ my.symbols(x, y=NULL, symb, inches=1, add=TRUE,
   will be connected with lines to draw the symbol.  If you want a closed
   polygon then be sure to replicate the 1st point as the last point.
 
-  I any point contains an NA then the line will not be drawn to or from
+  If any point contains an NA then the line will not be drawn to or from
   that point.  This can be used to create a symbol with disjoint parts
   that should not be connected.
 
@@ -56,7 +56,7 @@ my.symbols(x, y=NULL, symb, inches=1, add=TRUE,
   along with any arguments to define the symbol.  Any unmatched
   arguments that end up in the '...' argument will be replicated to the
   same length as 'x' (using the \code{rep} function) then the values
-  will be passed one at a time to the \code{symb} function.  If 
+  will be passed one at a time to the \code{symb} function.  If
   \code{MoreArgs} is specified, the elements of it will also be passed
   to \code{symb} without modification.  The \code{symb} function can
   either return a matrix or list with the points that will then be
@@ -136,8 +136,8 @@ mypoints <- expand.grid(x=x1, y=y1)
 mypoints[,1] <- mypoints[,1] + rep( c(0,sqrt(3)), each=10, length.out=100 )
 
 plot(mypoints, asp=1, xlim=c(-2,35))
-my.symbols(mypoints, symb=ms.filled.polygon, n=6, 
-  inches=par('pin')[1]/(diff(par('usr')[1:2]))*4, 
+my.symbols(mypoints, symb=ms.filled.polygon, n=6,
+  inches=par('pin')[1]/(diff(par('usr')[1:2]))*4,
   bg=paste('gray',1:100,sep=''), fg='green' )
 
 }

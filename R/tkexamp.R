@@ -143,7 +143,7 @@ tkexamp <- function(FUN, param.list, vscale=1.5, hscale=1.5, wait=FALSE,
                 el2 <- el[-1]
                 el2$init <- NULL
                 alist <- c(alist,el2)
-                tkpack( do.call('tk2spinbox',alist), side=pkdir)
+                tkpack( do.call('tdspinner',alist), side=pkdir)
                 tmpcl <- as.list(cl)
                 tmpl <- list(substitute(as.numeric(tclvalue(VNAME)),
                                         list(VNAME=as.character(tmp))))
@@ -195,7 +195,7 @@ tkexamp <- function(FUN, param.list, vscale=1.5, hscale=1.5, wait=FALSE,
                 } else { "" }
                 el2$values <- NULL
                 alist <- c(alist,el2)
-                tkpack( cb <-do.call('tk2combobox',alist), side=pkdir)
+                tkpack( cb <-do.call('ttkcombobox',alist), side=pkdir)
                 tkconfigure(cb, values=tmpvars)
                 tkconfigure(cb, textvariable=tmp)
                 tmpcl <- as.list(cl)

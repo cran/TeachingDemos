@@ -20,7 +20,7 @@ slider <- function (sl.functions, sl.names, sl.mins, sl.maxs, sl.deltas,
   }
   if (missing(title))
       title <- "slider control widget"
-  require(tcltk)
+  #require(tcltk)
   nt <- tktoplevel()
   tkwm.title(nt, title)
   tkwm.geometry(nt, "+0+0")
