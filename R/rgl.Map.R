@@ -1,7 +1,8 @@
 "rgl.Map" <-
 function(Map,which,...) {
   if (missing(which)) which <- T
-  library(rgl)
+  if(!require(rgl)) stop("This function depends on the 'rgl' package which is not available")
+
   lapply(Map$Shapes[which], function(shape) {
     long <- shape$verts[,1] * pi/180
     lat  <- pi/2 - shape$verts[,2] * pi/180
@@ -14,7 +15,7 @@ function(Map,which,...) {
     y <- cos(lat)
     x <- sin(long)*sin(lat)
 
-    
+
     tmp.i <- rep( seq(along=x), each=2)
     tmp.i <- c(tmp.i[-1],1)
 

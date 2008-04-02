@@ -9,7 +9,7 @@ function(lambda = sample( c(-1, -0.5, 0, 1/3, 1/2, 1, 2), 1)) {
   }
 
     if(!exists('slider.env')) slider.env <<-new.env()
-  library(tcltk)
+  #library(tcltk)
 
   lam <- 1 ; assign('lam',tclVar(lam), env=slider.env)
 
@@ -49,14 +49,14 @@ function(lambda = sample( c(-1, -0.5, 0, 1/3, 1/2, 1, 2), 1)) {
   tkpack(tkbutton(m, text="Refresh", command=bc.refresh), side='left')
   tkpack(tkbutton(m, text="Exit", command=function()tkdestroy(m)),
          side='right')
-  
+
 }
 
 
 
 
 vis.boxcoxu <- function(lambda = sample( c(-1,-0.5,0,1/3,1/2,1,2), 1),
-                        y, xlab=deparse(substitute(y)), 
+                        y, xlab=deparse(substitute(y)),
                         hscale=1.5, vscale=1.5, wait=FALSE) {
 
   if( missing(y) ) {
@@ -68,9 +68,9 @@ vis.boxcoxu <- function(lambda = sample( c(-1,-0.5,0,1/3,1/2,1,2), 1),
     } else {
       y <- y^(1/lambda)
     }
-  } 
+  }
 
-  
+
   lam <- tclVar()
   tclvalue(lam) <- 1
   hsc <- tclVar()

@@ -19,10 +19,9 @@ export(bct,char2seed,chisq.detail,ci.examp,clipplot,clt.examp,cnvrt.coords,
        TkApprox,TkSpline,txtStart,txtStop,txtComment,txtSkip,etxtStart,
        etxtStop,etxtComment,etxtSkip,etxtPlot,dynIdentify,TkIdentify)
 
-import(rgl)
+
 import(tcltk)
-import(tcltk2)
-#import(tkrplot)
+
 
 S3method(identify, Map)
 S3method(identify, polylist)

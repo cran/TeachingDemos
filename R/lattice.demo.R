@@ -2,7 +2,7 @@
 function(x,y,z, show3d=TRUE){
 
   if(!exists('slider.env')) slider.env <<- new.env()
-  library(tcltk)
+  #library(tcltk)
 
   center <- mean(z); assign('center',tclVar(center), env=slider.env)
   width <- diff(range(z))/20*3; assign('width',tclVar(width), env=slider.env)
@@ -20,7 +20,7 @@ function(x,y,z, show3d=TRUE){
 
     shingle.scaled.range <- c( (shingle.min-min(z))/diff(range(z)),
                                (shingle.max-min(z))/diff(range(z))) - 0.5
-    
+
     if(s3d){
       print(xyplot(y~x|shingle(z,rbind(range(z),c(shingle.min,shingle.max))),
                    index.cond=list(2),
@@ -36,7 +36,7 @@ function(x,y,z, show3d=TRUE){
           panel.3dwire(x=shingle.scaled.range,
                        y=c(-.5,.5), z=rep(-.5,4), at=c(-.57,.57), ...)
         },...) }), split=c(1,2,1,2),more=F)
-      
+
     } else {
       print(xyplot(y~x|shingle(z,rbind(range(z),c(shingle.min,shingle.max))),
                    index.cond=list(2),
@@ -44,9 +44,9 @@ function(x,y,z, show3d=TRUE){
                    par.strip.text=list(cex=0.75)
                    ),
             split=c(1,1,1,1), more=F)
-            
+
     }
-                         
+
   }
 
   m <- tktoplevel()

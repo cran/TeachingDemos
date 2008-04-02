@@ -1,6 +1,7 @@
 plot.rgl.die <- function(x = 1:6, col.cube='white',col.pip='black',sides=x, ...) {
 
-  require(rgl)
+  if(!require(rgl)) stop("This function depends on the 'rgl' package wich is not available")
+
   rgl.viewpoint(45,45)
 
   pip.coords <- function( x,y ) {
@@ -19,7 +20,7 @@ plot.rgl.die <- function(x = 1:6, col.cube='white',col.pip='black',sides=x, ...)
                   cbind( c(.25, .25, .75, .75, .5), c(.25, .75, .75, .25, .5)),
                   cbind( c(.25, .25, .25, .75, .75, .75),
                          c(.25, .5, .75, .75, .5, .25)))
-  
+
   rgl.quads( c(0,0,1,1), c(0,1,1,0), c(0,0,0,0), col=col.cube)
   rgl.quads( c(0,0,1,1), c(0,1,1,0), c(1,1,1,1), col=col.cube)
   rgl.quads( c(0,0,0,0), c(0,1,1,0), c(0,0,1,1), col=col.cube)

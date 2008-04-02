@@ -2,11 +2,11 @@
 function(x=rnorm(25,10,1), y=rnorm(25,11,1.5) ){
 
   if(!exists('slider.env')) slider.env <<- new.env()
-  library(tcltk)
+  #library(tcltk)
 
   range.min <- min(x,y) - 0.1 * diff(range(x,y))
   range.max <- max(x,y) + 0.1 * diff(range(x,y))
-  
+
   cutoff <- range.max; assign('cutoff',tclVar(cutoff), env=slider.env)
 
   .sens <-c(0,1)
@@ -27,7 +27,7 @@ function(x=rnorm(25,10,1), y=rnorm(25,11,1.5) ){
     .sens <<- c(.sens, sens)
     .spec <<- c(.spec, spec)
 
-    
+
     par(mar=c(5,4,0,1)+.1)
     layout( matrix(c(1,2), ncol=1), heights=c(2,1))
 
@@ -50,8 +50,8 @@ function(x=rnorm(25,10,1), y=rnorm(25,11,1.5) ){
     d <- (1-.sens)^2 + (.spec)^2
     dd <- which.min(d)
     lines(c(0,.spec[dd]),c(1,.sens[dd]), col='purple')
-    
-   
+
+
     plot( dx$x, dx$y, type='l', col='red', xlim=c(range.min,range.max),
          xlab=paste("Sensitivity = ",round(sens,3),", Specificity = ",round(1-spec,3),sep=''),
          ylab="Densities",ylim=c(0,max(dx$y,dy$y)))
@@ -59,13 +59,13 @@ function(x=rnorm(25,10,1), y=rnorm(25,11,1.5) ){
       rug(x[x<=cutoff], col='red', ticksize=.3)
     if(any(x > cutoff))
       rug(x[x>cutoff], col='red', ticksize=.3, side=3)
-    
+
     lines( dy$x, dy$y, col='blue')
     if(any(y<=cutoff))
       rug(y[y<=cutoff], col='blue',ticksize=.3)
     if(any(y>cutoff))
       rug(y[y>cutoff], col='blue',ticksize=.3, side=3)
-    
+
     abline(v=cutoff, col='green')
   }
 

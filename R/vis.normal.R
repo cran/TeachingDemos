@@ -2,7 +2,7 @@
 function(){
 
   if(!exists('slider.env')) slider.env<<-new.env()
-  library(tcltk)
+  #library(tcltk)
 
   mu <- 0; assign('mu',tclVar(mu),env=slider.env)
   sd <- 1; assign('sd',tclVar(sd),env=slider.env)
@@ -14,7 +14,7 @@ function(){
 
   sd.old <- sd
   s2.old <- s2
-  
+
   norm.refresh <- function(...){
 
     mu <- as.numeric(evalq(tclvalue(mu), env=slider.env))
@@ -35,7 +35,7 @@ function(){
                        sd,sep="")),env=slider.env));
       sd.old <<- sd; s2.old <<- s2
     }
-    
+
     xmin <- as.numeric(evalq(tclvalue(xmin), env=slider.env))
     xmax <- as.numeric(evalq(tclvalue(xmax), env=slider.env))
     ymin <- as.numeric(evalq(tclvalue(ymin), env=slider.env))
@@ -47,7 +47,7 @@ function(){
          ylab='',xlab='x')
     lines(c(mu,mu),c(par('usr')[3],dnorm(0,0,sd)), lty=2, col='blue')
     lines(c(mu,mu+sd), dnorm(sd,0,sd)*c(1,1), lty=2, col='blue')
-    
+
   }
 
 
@@ -85,8 +85,8 @@ function(){
          side='left')
   assign('sc',sc,env=slider.env)
   evalq(tkconfigure(sc, variable=s2),env=slider.env)
-  
-  
+
+
   # xmin
   tkpack(fr <- tkframe(m),side='top')
   tkpack(tklabel(fr, text='Xmin:', width=6), side='left')
@@ -113,11 +113,11 @@ function(){
   assign('e',e,env=slider.env)
   evalq(tkconfigure(e, textvariable=ymax), env=slider.env)
 
-  
+
   tkpack(tkbutton(m, text="Refresh", command=norm.refresh),side='left')
 
   tkpack(tkbutton(m, text="Exit", command=function()tkdestroy(m)),
          side='right')
-  
+
 }
 

@@ -1,5 +1,7 @@
 plot.rgl.coin <- function(x, col='black', heads=x[[1]],
                           tails=x[[2]], ... ) {
+    if(!require(rgl)) stop("This function depends on the 'rgl' library which is not available")
+
   if(missing(x)) x <- coin.faces
 
   rgl.viewpoint(0,0)

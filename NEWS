@@ -1,3 +1,8 @@
+For TeachingDemos version 2.1
+
+*  Removed dependence on rgl and tcltk2 packages
+
+
 New to TeachingDemos version 2.0
 
 * TeachingDemos now has a NAMESPACE so you can access just parts of

@@ -12,7 +12,7 @@ function(refresh.code,names,minima,maxima,resolutions,starts,
    }
 
   if(!exists("slider.env")) slider.env<<-new.env()
-  library(tcltk);
+  #library(tcltk);
   nt<-tktoplevel(); tkwm.title(nt,title); tkwm.geometry(nt,"+0+0")
   for(i in seq(names))
     eval(parse(text=paste("assign(\"slider",i,"\",tclVar(starts[i]),env=slider.env)",sep="")))

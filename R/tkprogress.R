@@ -11,7 +11,7 @@ tkprogress <- function(numsteps=100, title='Progress') {
                        orient='horizontal')
         tkpack(bar, side='top',fill='both')
     } else {
-        bar <- tk2progress(tt, variable=pg, maximum=numsteps)
+        bar <- ttkprogressbar(tt, variable=pg, maximum=numsteps)
         tkpack(bar, side='top',fill='both')
     }
 

@@ -3,7 +3,7 @@ function(x=rnorm(10, 10, 2), start.mean = mean(x)-start.sd,
                      start.sd = 1.2* sqrt(var(x)) ){
 
   if(!exists('slider.env')) slider.env <<- new.env()
-  library(tcltk)
+  #library(tcltk)
 
   mu <- start.mean; assign('mu',tclVar(mu),env=slider.env)
   sig <- start.sd;  assign('sig',tclVar(sig),env=slider.env)
@@ -18,7 +18,7 @@ function(x=rnorm(10, 10, 2), start.mean = mean(x)-start.sd,
     on.exit(par(old.par))
 
     par(mar=c(5,4,0,2)+.1)
-    
+
     .mu <<- c(.mu, mu)
     .sig <<- c(.sig, sig)
 
@@ -38,7 +38,7 @@ function(x=rnorm(10, 10, 2), start.mean = mean(x)-start.sd,
     text(xx[1], dnorm(0,0,0.5*sqrt(var(x)))*.9, paste("Log Likelihood =",
                                                       format(ll, digit=5)),
          adj=0,cex=3)
-    
+
     plot(.mu, .ll, xlab=expression(mu), ylab='Log Likelihood')
     points(mu,ll, pch=16, col='red')
     plot(.sig, .ll, xlab=expression(sigma), ylab='Log Likelihood')
