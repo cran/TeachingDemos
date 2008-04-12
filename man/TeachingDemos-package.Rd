@@ -68,7 +68,6 @@
     to a new position \cr
     TkIdentify \tab Scatterplot with lables that can be dragged to new
     positions \cr
-    tkprogress \tab Show a progress bar while looping.\cr
     gp.plot \tab send commonds to gnuplot\cr
     hpd \tab Highest Posterior Density intervals\cr
     my.symbols \tab Create plots using user defined symbols.\cr
@@ -76,6 +75,7 @@
     plot.\cr
     squishplot \tab Set the margins so that a plot has a specific aspect
     ratio without large whitespace inside.\cr
+    spread.labs \tab Spread out coordinates so that labels do not overlap.\cr
     subplot \tab create a plot inside of an existing plot.\cr
     tkexamp \tab create plots that can have parameters adjusted
     interactively.\cr

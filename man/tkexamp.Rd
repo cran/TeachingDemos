@@ -86,8 +86,8 @@ plotloc='top', ...)
   bring up a list of values to choose from.  This value is passed to
   \code{FUN} as a character string.  The important parameter to set is
   "values" which is a vector of character strings to choose between.
-  This option will only work in R2.7 or later and will probably produce
-  an error in earlier versions.
+  This option will only work with tcl version 8.5 or later and will
+  probably produce an error in earlier versions.
 
   "radiobuttons", a set of choices with check boxes next to each, when
   one is selected the previous selection is cleared.  The important

@@ -8,6 +8,7 @@ char2seed <- function(x,set=TRUE,...){
 	xsplit <- tmp[ strsplit(x,'')[[1]] ]
 
 	seed <- sum(rev( 7^(seq(along=xsplit)-1) ) * xsplit)
+        seed <- as.integer( seed %% (2^31-1) )
 
 	if(set){
 		set.seed(seed,...)
