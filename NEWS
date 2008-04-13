@@ -1,3 +1,11 @@
+New in TeachingDemos version 2.2
+
+* tkprogress was removed, use tkProgressBar in utils package (by
+  Prof. Ripley) as a better version.
+
+* New function spread.labs to spread coordinates out for adding labels
+  to a plot.
+
 For TeachingDemos version 2.1
 
 *  Removed dependence on rgl and tcltk2 packages

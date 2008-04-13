@@ -57,7 +57,7 @@
 %}
 \examples{
 if( interactive() ){
-  with(towork, TkApprox(Distance.m, Speed))
+  with(ccc, TkApprox(Distance, Elevation))
 }
 }
 \keyword{datasets}
