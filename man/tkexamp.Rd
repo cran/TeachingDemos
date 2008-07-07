@@ -125,7 +125,7 @@ plotloc='top', ...)
   jump to the location you clicked at.
     }
 
-\seealso{ \code{tkrplot} }
+\seealso{ \code{tkrplot}, the fgui package, the playwith package }
 
 \examples{
 if(interactive()){

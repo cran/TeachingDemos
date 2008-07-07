@@ -47,6 +47,9 @@ function(n=100,seed) {
 
 
 run.cor2.examp <- function(n=100,seed,vscale=1.5,hscale=1.5,wait=FALSE) {
+
+    if( !require(tkrplot) ) stop('This function depends on the tkrplot package being available')
+
     if(!missing(seed) ) set.seed(seed)
 
     x <- scale(matrix(rnorm(2*n,0,1), ncol=2))

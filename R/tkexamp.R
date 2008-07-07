@@ -4,6 +4,7 @@ tkexamp <- function(FUN, param.list, vscale=1.5, hscale=1.5, wait=FALSE,
     if(!require("tkrplot")) {
         stop('The tkrplot package is needed')
     }
+    require(tcltk2)
 
     ocl <- cl <- substitute(FUN)
     exargs <- as.list(quote(list()))
@@ -180,6 +181,7 @@ tkexamp <- function(FUN, param.list, vscale=1.5, hscale=1.5, wait=FALSE,
                 next
             }
             if( tolower(el[[1]])== 'combobox' ){
+                if( !have.ttk() ) stop('The combobox depends on having tcl 8.5 or higher, either install tcl 8.5 or rerun the function with a different control')
                 tkpack(fr <- tkframe(frame), side=pkdir)
                 tkpack(tklabel(fr,text=eln),
                        side=ifelse(pkdir=='top','left','top'))

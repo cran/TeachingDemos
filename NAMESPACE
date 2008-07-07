@@ -5,14 +5,14 @@ export(bct,char2seed,chisq.detail,ci.examp,clipplot,clt.examp,cnvrt.coords,
        ms.arrows,ms.female,ms.filled.polygon,ms.male,ms.polygon,ms.polygram,
        ms.sunflowers,my.symbols,panel.dice,plot.dice,plot.rgl.coin,
        plot.rgl.die,plot2script,plotFagan,plotFagan2,plotFagan.old,
-       plotFagan2.old,power.examp,
+       plotFagan2.old,power.examp,updateusr,pairs2,
        prepanel.dice,project.Map,put.points.demo,
        recenter.Map,rgl.Map,roc.demo,roll.rgl.die,rotate.cloud,
        rotate.persp,rotate.wireframe,run.ci.examp,run.cor.examp,
        run.cor2.examp,run.old.cor.examp,run.old.cor2.examp,
        run.hist.demo,run.power.examp,run.power.examp.old,sd.g,slider,
        sliderv,squishplot,SensSpec.demo,spread.labs,
-       stats.g,strip.shingle,subplot,
+       stats.g,strip.shingle,subplot,TkListView,
        tkBrush,tree.demo,triplot,vis.binom,vis.boxcox,vis.boxcoxu,
        vis.boxcox.old, vis.boxcoxu.old,
        vis.gamma,vis.normal,vis.t,z.test,zoomplot,tkexamp,col2grey,col2gray,
@@ -20,7 +20,7 @@ export(bct,char2seed,chisq.detail,ci.examp,clipplot,clt.examp,cnvrt.coords,
        etxtStop,etxtComment,etxtSkip,etxtPlot,dynIdentify,TkIdentify)
 
 
-import(tcltk)
+
 
 
 S3method(identify, Map)

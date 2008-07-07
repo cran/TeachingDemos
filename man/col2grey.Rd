@@ -14,7 +14,7 @@ col2gray(cols)
   \item{cols}{ Colors to convert.}
 }
 \details{
-  converts colors to greyscale using teh formula grey=0.3*red +
+  converts colors to greyscale using the formula grey=0.3*red +
   0.59*green + 0.11*blue.  This allows you to see how your color plot
   will approximately look when printed on a non-color printer or photocopied.
 }
