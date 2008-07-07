@@ -55,6 +55,7 @@ function(lambda = sample( c(-1,-0.5,0,1/3,1/2,1,2), 1) ) {
 
 vis.boxcox <- function(lambda = sample( c(-1,-0.5,0,1/3,1/2,1,2), 1),
                        hscale=1.5, vscale=1.5, wait=FALSE) {
+  if( !require(tkrplot) ) stop('This function depends on the tkrplot package being available')
 
   x <- runif(100, 1, 10)
   y <- 3+2*x + rnorm(100)

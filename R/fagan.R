@@ -105,18 +105,20 @@ plotFagan2.old<-function(){
 
 plotFagan <- function(hscale=1.5, vscale=1.5, wait=FALSE) {
 
+  if( !require(tkrplot) ) stop('This function depends on the tkrplot package being available')
+
   ppt <- tclVar()
   tclvalue(ppt) <- 0.5
   lr <- tclVar()
   tclvalue(lr) <- 1
   tr <- tclVar()
   tclvalue(tr) <- '+'
-  
+
   hsc <- tclVar()
   tclvalue(hsc) <- hscale
   vsc <- tclVar()
   tclvalue(vsc) <- hscale
-  
+
   replot <- function(...) {
     probs.pre.test <- as.numeric(tclvalue(ppt))
     LR <- as.numeric(tclvalue(lr))
@@ -188,6 +190,8 @@ plotFagan <- function(hscale=1.5, vscale=1.5, wait=FALSE) {
 
 plotFagan2 <- function(hscale=1.5, vscale=1.5, wait=FALSE) {
 
+  if( !require(tkrplot) ) stop('This function depends on the tkrplot package being available')
+
   ppt <- tclVar()
   tclvalue(ppt) <- 0.5
   sens <- tclVar()
@@ -196,12 +200,12 @@ plotFagan2 <- function(hscale=1.5, vscale=1.5, wait=FALSE) {
   tclvalue(spec) <- 0.5
   tr <- tclVar()
   tclvalue(tr) <- '+'
-  
+
   hsc <- tclVar()
   tclvalue(hsc) <- hscale
   vsc <- tclVar()
   tclvalue(vsc) <- hscale
-  
+
   replot <- function(...) {
     probs.pre.test <- as.numeric(tclvalue(ppt))
     sns <- as.numeric(tclvalue(sens))
@@ -238,7 +242,7 @@ plotFagan2 <- function(hscale=1.5, vscale=1.5, wait=FALSE) {
                  command=function(...) tkrreplot(img,
                    hscale=as.numeric(tclvalue(hsc)),
                    vscale=as.numeric(tclvalue(vsc)) ),
-                 from=0, to=1, resolution=.01), side='right') 
+                 from=0, to=1, resolution=.01), side='right')
 
   tkpack(fr <- tkframe(tt), side='top')
   tkpack(tkcheckbutton(fr, text='Positive Test Result', variable=tr,
@@ -276,7 +280,7 @@ plotFagan2 <- function(hscale=1.5, vscale=1.5, wait=FALSE) {
     return(invisible(NULL))
   }
 }
-  
-  
 
-  
+
+
+

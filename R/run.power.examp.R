@@ -11,6 +11,8 @@ function(){
 
 run.power.examp <- function(hscale=1.5, vscale=1.5, wait=FALSE) {
 
+    if( !require(tkrplot) ) stop('This function depends on the tkrplot package being available')
+
     n <- tclVar()
     stdev <- tclVar()
     diff <- tclVar()

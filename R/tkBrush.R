@@ -1,5 +1,6 @@
 tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
 
+  if( !require(tkrplot) ) stop('This function depends on the tkrplot package being available')
 
   first <- TRUE
   bp <- FALSE

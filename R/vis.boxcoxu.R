@@ -1,5 +1,9 @@
 vis.boxcoxu.old <-
 function(lambda = sample( c(-1, -0.5, 0, 1/3, 1/2, 1, 2), 1)) {
+
+  if( !require(tkrplot) ) stop('This function depends on the tkrplot package being available')
+
+
   y <- rnorm(1000, 7, 2)
   if( min(y) <= 0 ) y <- y - min(y)+0.05
   if (lambda==0) {

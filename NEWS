@@ -1,3 +1,16 @@
+New in TeachingDemos version 2.3
+
+* etxt* functions updated to use rawToChar(as.raw(0)) rather than '\000'
+
+* new function TkListView for interactively looking at list structures.
+
+* Removed strict dependence on the Tk packages, will only be loaded for functions that use them.
+
+* new function updateusr to update usr coordinate system.
+
+* new function pairs2 that works like the pairs function, but with 2
+  matricies and plots the pairwise scatterplots between the matricies.
+
 New in TeachingDemos version 2.2
 
 * tkprogress was removed, use tkProgressBar in utils package (by

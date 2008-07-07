@@ -3,6 +3,8 @@ TkApprox <- function(x, y, type='b', snap.to.x=FALSE, digits=4,
                      xlab=deparse(substitute(x)), ylab=deparse(substitute(y)),
                      hscale=1.5, vscale=1.5, wait=TRUE,
                      ...) {
+  if( !require(tkrplot) ) stop('This function depends on the tkrplot package being available')
+
   snap.x <- tclVar()
   tclvalue(snap.x) <- ifelse(snap.to.x,"T","F")
 

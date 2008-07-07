@@ -140,12 +140,15 @@ Do not use these functions in combination with R2HTML or \code{sink}.
 \dontrun{
 etxtStart()
 etxtComment('This is todays transcript')
+date()
 x <- rnorm(25)
 summary(x)
 stem(x)
 etxtSkip{?hist}
 hist(x)
 etxtPlot()
+Sys.Date()
+Sys.time()
 my.file <- etxtStop()
 
 # assumes enscript and ps2pdf are on your path

@@ -1,10 +1,14 @@
-pairs2 <- function (x, y, labels, panel = points, ...,
+pairs2 <- function (x, y, xlabels, ylabels, panel = points, ...,
                     row1attop = TRUE, gap = 1) {
     localAxis <- function(side, x, y, xpd, bg, col = NULL, main,
-                          oma, .. ) {
-        if (side%%2 == 1)
+                          oma, xlab, ylab, ... ) {
+        if (side%%2 == 1){
             Axis(x, side = side, xpd = NA, ...)
-        else Axis(y, side = side, xpd = NA, ...)
+            mtext(xlab,side=side, line=3)
+        } else {
+            Axis(y, side = side, xpd = NA, ...)
+            mtext(ylab,side=side, line=3)
+        }
     }
     localPlot <- function(..., main, oma, font.main, cex.main) plot(...)
     localPanel <- function(..., main, oma, font.main, cex.main) panel(...)
@@ -30,25 +34,26 @@ pairs2 <- function (x, y, labels, panel = points, ...,
             if (!is.numeric(unclass(y[[i]])))
                 stop("non-numeric argument to 'pairs'")
         }
-    } else if (!is.numeric(x))
+    } else if (!is.numeric(y))
         stop("non-numeric argument to 'pairs'")
 
     panel <- match.fun(panel)
 
     nc.x <- ncol(x)
     nc.y <- ncol(y)
-    if (nc.x < 2)
-        stop("only one column in the 'x' argument to 'pairs'")
-    if (nc.y < 2)
-        stop("only one column in the 'y' argument to 'pairs'")
-    has.labs <- TRUE
-    if (missing(labels)) {
-        labels <- colnames(x)
-        if (is.null(labels))
-            labels <- paste("var", 1:nc)
+    has.xlabs <- has.ylabs <- TRUE
+    if (missing(xlabels)) {
+        xlabels <- colnames(x)
+        if (is.null(xlabels))
+            xlabels <- paste("xvar", 1:nc.x)
+    } else if (is.null(xlabels)) has.xlabs <- FALSE
+    if (missing(ylabels)) {
+        ylabels <- colnames(y)
+        if (is.null(ylabels))
+            ylabels <- paste("yvar", 1:nc.x)
     }
-    else if (is.null(labels))
-        has.labs <- FALSE
+    else if (is.null(ylabels))
+        has.ylabs <- FALSE
     oma <- if ("oma" %in% nmdots)
         dots$oma
     else NULL
@@ -60,44 +65,34 @@ pairs2 <- function (x, y, labels, panel = points, ...,
         if (!is.null(main))
             oma[3] <- 6
     }
-    opar <- par(mfrow = c(nc, nc), mar = rep.int(gap/2, 4), oma = oma)
+    opar <- par(mfrow = c(nc.y, nc.x), mar = rep.int(gap/2, 4), oma = oma)
     on.exit(par(opar))
     for (i in if (row1attop)
-        1:nc
-    else nc:1) for (j in 1:nc) {
-        localPlot(x[, j], x[, i], xlab = "", ylab = "", axes = FALSE,
+        1:nc.y
+    else nc.y:1) for (j in 1:nc.x) {
+        localPlot(x[, j], y[, i], xlab = "", ylab = "", axes = FALSE,
             type = "n", ...)
-        if (i == j || (i < j && has.lower) || (i > j && has.upper)) {
+        if (i == j || i < j || i > j ) {
             box()
-            if (i == 1 && (!(j%%2) || !has.upper || !has.lower))
-                localAxis(1 + 2 * row1attop, x[, j], x[, i],
+            if (i == 1 && (!(j%%2)))
+                localAxis(1 + 2 * row1attop, x[, j], y[, i],
+                          xlab=xlabels[j], ylab=ylabels[i],
                   ...)
-            if (i == nc && (j%%2 || !has.upper || !has.lower))
-                localAxis(3 - 2 * row1attop, x[, j], x[, i],
+            if (i == nc.y && (j%%2))
+                localAxis(3 - 2 * row1attop, x[, j], y[, i],
+                          xlab=xlabels[j], ylab=ylabels[i],
                   ...)
-            if (j == 1 && (!(i%%2) || !has.upper || !has.lower))
-                localAxis(2, x[, j], x[, i], ...)
-            if (j == nc && (i%%2 || !has.upper || !has.lower))
-                localAxis(4, x[, j], x[, i], ...)
+            if (j == 1 && (!(i%%2) ))
+                localAxis(2, x[, j], y[, i],
+                          xlab=xlabels[j], ylab=ylabels[i],
+                          ...)
+            if (j == nc.x && (i%%2))
+                localAxis(4, x[, j], y[, i],
+                          xlab=xlabels[j], ylab=ylabels[i],
+                          ...)
             mfg <- par("mfg")
-            if (i == j) {
-                if (has.diag)
-                  localDiagPanel(as.vector(x[, i]), ...)
-                if (has.labs) {
-                  par(usr = c(0, 1, 0, 1))
-                  if (is.null(cex.labels)) {
-                    l.wid <- strwidth(labels, "user")
-                    cex.labels <- max(0.8, min(2, 0.9/max(l.wid)))
-                  }
-                  text.panel(0.5, label.pos, labels[i], cex = cex.labels,
-                    font = font.labels)
-                }
-            }
-            else if (i < j)
-                localLowerPanel(as.vector(x[, j]), as.vector(x[,
-                  i]), ...)
-            else localUpperPanel(as.vector(x[, j]), as.vector(x[,
-                i]), ...)
+
+            localPanel(as.vector(x[, j]), as.vector(y[,i]), ...)
             if (any(par("mfg") != mfg))
                 stop("the 'panel' function made a new plot")
         }
