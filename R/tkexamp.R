@@ -1,17 +1,31 @@
 tkexamp <- function(FUN, param.list, vscale=1.5, hscale=1.5, wait=FALSE,
-                    plotloc='top',...) {
+                    plotloc='top', print=FALSE,...) {
 
     if(!require("tkrplot")) {
         stop('The tkrplot package is needed')
     }
-    require(tcltk2)
+
 
     ocl <- cl <- substitute(FUN)
     exargs <- as.list(quote(list()))
 
-    replot <- function() {
-        eval(cl)
+    PlotYet <- FALSE
+
+    replot <- if(print){
+        function() {
+            if(PlotYet){
+                print(eval(cl))
+            }
+        }
+    } else {
+        function() {
+            if(PlotYet){
+                eval(cl)
+            }
+        }
     }
+
+
 
     tt <- tktoplevel()
     tkwm.title(tt,'Tk Example')
@@ -268,6 +282,7 @@ tkexamp <- function(FUN, param.list, vscale=1.5, hscale=1.5, wait=FALSE,
 
 
     fillframe(tt, param.list, plotloc, 'tkv')
+    PlotYet <- TRUE
     tkrreplot(img, hscale=as.numeric(tclvalue(hsc)),
               vscale=as.numeric(tclvalue(vsc)))
 
@@ -284,39 +299,39 @@ tkexamp <- function(FUN, param.list, vscale=1.5, hscale=1.5, wait=FALSE,
 
 
 
-tke.test <- list(Parameters=list(
-                 pch=list('spinbox',init=1,values=c(0:25,32:255),width=5),
-                 cex=list('slider',init=1.5,from=0.1,to=5,resolution=0.1),
-                 type=list('radiobuttons',init='b',
-                   values=c('p','l','b','o','c','h','s','S','n'),
-                        width=5),
-                 lwd=list('spinbox',init=1,from=0,to=5,increment=1,width=5),
-                 lty=list('spinbox',init=1,from=0,to=6,increment=1,width=5),
-                 xpd=list('checkbox')
-                 ))
-
-
-tke.test3 <- list(Parameters=list(
-                 pch=list('spinbox',init=1,from=0,to=255,width=5),
-                 cex=list('slider',init=1.5,from=0.1,to=5,resolution=0.1),
-                 type=list('combobox',init='b',
-                   values=c('p','l','b','o','c','h','s','S','n'),
-                        width=5),
-                 lwd=list('spinbox',init=1,from=0,to=5,increment=1,width=5),
-                 lty=list('spinbox',init=1,from=0,to=6,increment=1,width=5)
-                 ))
-
-
-
-tke.test2 <- list(pch=list('numentry',init=1,width=3),
-                 cex=list('slider',init=1,from=0.2,to=2.5,resolution=0.1),
-                 type=list('entry',init='p', width=5))
-
-
-
-tke.test1 <- list(pch=list('numentry',init=1,width=3),
-                 cex=list('numentry',init=1),
-                 type=list('entry',init='p', width=5))
-
-
-
+#  tke.test <- list(Parameters=list(
+#                   pch=list('spinbox',init=1,values=c(0:25,32:255),width=5),
+#                   cex=list('slider',init=1.5,from=0.1,to=5,resolution=0.1),
+#                   type=list('radiobuttons',init='b',
+#                     values=c('p','l','b','o','c','h','s','S','n'),
+#                          width=5),
+#                   lwd=list('spinbox',init=1,from=0,to=5,increment=1,width=5),
+#                   lty=list('spinbox',init=1,from=0,to=6,increment=1,width=5),
+#                   xpd=list('checkbox')
+#                   ))
+#
+#
+#  tke.test3 <- list(Parameters=list(
+#                   pch=list('spinbox',init=1,from=0,to=255,width=5),
+#                   cex=list('slider',init=1.5,from=0.1,to=5,resolution=0.1),
+#                   type=list('combobox',init='b',
+#                     values=c('p','l','b','o','c','h','s','S','n'),
+#                          width=5),
+#                   lwd=list('spinbox',init=1,from=0,to=5,increment=1,width=5),
+#                   lty=list('spinbox',init=1,from=0,to=6,increment=1,width=5)
+#                   ))
+#
+#
+#
+#  tke.test2 <- list(pch=list('numentry',init=1,width=3),
+#                   cex=list('slider',init=1,from=0.2,to=2.5,resolution=0.1),
+#                   type=list('entry',init='p', width=5))
+#
+#
+#
+#  tke.test1 <- list(pch=list('numentry',init=1,width=3),
+#                   cex=list('numentry',init=1),
+#                   type=list('entry',init='p', width=5))
+#
+#
+#

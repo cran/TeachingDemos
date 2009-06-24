@@ -1,6 +1,8 @@
 vis.boxcox.old <-
 function(lambda = sample( c(-1,-0.5,0,1/3,1/2,1,2), 1) ) {
 
+    if( !require(tcltk) ) stop('This function depends on the tcltk package')
+
 
   x <- runif(100, 1, 10)
   y <- 3+2*x + rnorm(100)
@@ -12,7 +14,6 @@ function(lambda = sample( c(-1,-0.5,0,1/3,1/2,1,2), 1) ) {
   }
 
   if(!exists('slider.env')) slider.env <<-new.env()
-  #library(tcltk)
 
   lam <- 1 ; assign('lam',tclVar(lam), env=slider.env)
 

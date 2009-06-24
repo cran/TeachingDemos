@@ -1,8 +1,10 @@
 "vis.binom" <-
 function(){
 
+    if( !require(tcltk) ) stop('This function depends on the tcltk package')
+
   if(!exists('slider.env')) slider.env<<-new.env()
-  #library(tcltk)
+
 
   n <- 10  ; assign('n',tclVar(n),env=slider.env)
   p <-  0.5; assign('p',tclVar(p),env=slider.env)

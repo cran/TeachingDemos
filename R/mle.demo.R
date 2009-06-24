@@ -2,6 +2,8 @@
 function(x=rnorm(10, 10, 2), start.mean = mean(x)-start.sd,
                      start.sd = 1.2* sqrt(var(x)) ){
 
+    if( !require(tcltk) ) stop('This function depends on the tcltk package.')
+
   if(!exists('slider.env')) slider.env <<- new.env()
   #library(tcltk)
 

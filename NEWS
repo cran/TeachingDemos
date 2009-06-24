@@ -1,3 +1,43 @@
+New in TeachingDemos version 2.4
+
+* The squishplot function now calls plot.new before doing the
+  calculations, fixs a bug when things have not been reset or if fig
+  regions are not all the same size.  There is an argument that will
+  turn this off if needed.
+
+* New functions Pvalue.norm.sim, Pvalue.binom.sim,
+  run.Pvalue.norm.sim, and run.Pvalue.binom.sim to simulate p-values.
+
+* The subplot function can now accept strings such as "topleft" or
+  "bottom" as the x argument (and does the appropriate thing).
+
+* New function gp.splot to send surface plot info to gnuplot
+
+* Changed the write char commands in the etxtStart family to remove
+  warnings in 2.8.0
+
+* Changed par settings in my.symbols.  Old way reset all pars which
+  could cause some plotting in the wrong areas.  Now it only resets
+  the pars that it changes.
+
+* updated plot2script to use dput rather than deparse which does
+  better line wrapping.  Also fixed the problem with the "box" command
+  (though other functions could still have the same problem).
+
+* Removed strip.shingle function as it no longer works and its
+  intended purpose has been available in lattice for a while.
+
+* tkexamp now has a 'print' option (defaults to FALSE) that will
+  automatically print the results of the function evaluation.  This is
+  useful for ggplot2 or lattice graphics that must be printed to be seen.
+
+* Function TkPredict for visualizing predicted values from a
+  regression model adjusting for other terms in the model.
+
+* New datasets 'evap' and 'stork'
+
+* state.vbm updated to spatial polygon data frame.
+
 New in TeachingDemos version 2.3
 
 * etxt* functions updated to use rawToChar(as.raw(0)) rather than '\000'

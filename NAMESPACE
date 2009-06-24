@@ -1,6 +1,8 @@
 export(bct,char2seed,chisq.detail,ci.examp,clipplot,clt.examp,cnvrt.coords,
        dice,dots,dots2,emp.hpd,faces,faces2,fagan.plot,
-       flip.rgl.coin,gp.close,gp.open,gp.plot,gp.send,hpd,identify.Map,
+       flip.rgl.coin,gp.close,gp.open,gp.plot,gp.splot,gp.send,hpd,
+       identify.Map,Pvalue.norm.sim,Pvalue.binom.sim,
+       run.Pvalue.norm.sim,run.Pvalue.binom.sim,
        identify.polylist,lattice.demo,limits.g,loess.demo,mle.demo,
        ms.arrows,ms.female,ms.filled.polygon,ms.male,ms.polygon,ms.polygram,
        ms.sunflowers,my.symbols,panel.dice,plot.dice,plot.rgl.coin,
@@ -12,12 +14,13 @@ export(bct,char2seed,chisq.detail,ci.examp,clipplot,clt.examp,cnvrt.coords,
        run.cor2.examp,run.old.cor.examp,run.old.cor2.examp,
        run.hist.demo,run.power.examp,run.power.examp.old,sd.g,slider,
        sliderv,squishplot,SensSpec.demo,spread.labs,
-       stats.g,strip.shingle,subplot,TkListView,
+       stats.g,subplot,TkListView,
        tkBrush,tree.demo,triplot,vis.binom,vis.boxcox,vis.boxcoxu,
        vis.boxcox.old, vis.boxcoxu.old,
        vis.gamma,vis.normal,vis.t,z.test,zoomplot,tkexamp,col2grey,col2gray,
        TkApprox,TkSpline,txtStart,txtStop,txtComment,txtSkip,etxtStart,
-       etxtStop,etxtComment,etxtSkip,etxtPlot,dynIdentify,TkIdentify)
+       etxtStop,etxtComment,etxtSkip,etxtPlot,dynIdentify,TkIdentify,
+       Predict.Plot, TkPredict, "%<%", "%<=%", panel.my.symbols)
 
 
 

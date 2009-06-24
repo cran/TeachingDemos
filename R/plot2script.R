@@ -2,14 +2,19 @@ plot2script <- function(file='clipboard'){
 	con <- file(file)
 	open(con, open='a')
 	tmp <- recordPlot()[[1]]
-	for (i in seq(along=tmp)){
+	for (i in seq(along.with=tmp)){
 		fn <- tmp[[i]][[1]]
 		args <- tmp[[i]][[2]]
 		fns <- deparse(fn)
 		m <- sub('^.*"(.*)".*$', '\\1', fns, perl=TRUE)
 		c2 <- as.list(c(m,args))
 		tmp2 <- do.call('call',c2)
-		cat(deparse(match.call(get(m), call=tmp2)),"\n", file=con)
+                tmp3 <- match.call(get(m), call=tmp2)
+                if(tmp3[[1]] == 'box'){
+                    tmp3$which <- c("plot", "figure", "inner",
+                                    "outer")[ tmp3$which ]
+                }
+		dput(tmp3, file=con)
 	}
 	close(con)
 }
@@ -32,11 +37,11 @@ zoomplot <- function( xlim, ylim=NULL ){
 			alst[[1]] <- xlim
 			alst[[2]] <- ylim
 		}
-	
+
 		do.call(fn, alst)
 	}
 }
- 
+
 
 
 

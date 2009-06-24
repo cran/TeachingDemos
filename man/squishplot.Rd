@@ -8,13 +8,15 @@
   space in the margins rather than inside the plotting region.
 }
 \usage{
-squishplot(xlim, ylim, asp = 1)
+squishplot(xlim, ylim, asp = 1, newplot=TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{xlim}{ The x limits of the plot, or the entire x vector.}
   \item{ylim}{ The y limits of the plot, or the entire y vector.}
   \item{asp}{ The y/x aspect ratio.}
+  \item{newplot}{ Should plot.new() be called before making the
+    calculations.}
 }
 \details{
   This function sets the plot area of the current graph device so that
@@ -42,7 +44,7 @@ squishplot(xlim, ylim, asp = 1)
   reset the graphical parameters after plotting is finished.
 }
 \author{ Greg Snow \email{greg.snow@imail.org} }
-\note{ 
+\note{
   Remember to set other graphical parameters, then call
   \code{squishplot}, then call the plotting function(s), then reset the
   parameters.

@@ -1,6 +1,9 @@
 "vis.normal" <-
 function(){
 
+    if( !require(tcltk) ) stop('This function depends on the tcltk package')
+
+
   if(!exists('slider.env')) slider.env<<-new.env()
   #library(tcltk)
 

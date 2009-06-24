@@ -10,7 +10,7 @@ parameters on a graph.}
 }
 \usage{
  tkexamp(FUN, param.list, vscale=1.5, hscale=1.5, wait=FALSE,
-plotloc='top', ...)
+plotloc='top', print=FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,6 +22,7 @@ plotloc='top', ...)
   \item{wait}{Should R wait for the demo to end}
   \item{plotloc}{Character with "top", "left", or "right" indicating
     where the plot should be placed relative to the controls}
+  \item{print}{Automatically print the result (useful for ggplot2/lattice)}
   \item{...}{Extra arguments, currently ignored}
 }
 \details{
@@ -125,7 +126,8 @@ plotloc='top', ...)
   jump to the location you clicked at.
     }
 
-\seealso{ \code{tkrplot}, the fgui package, the playwith package }
+\seealso{ \code{tkrplot}, the fgui package, the playwith package, and
+  the rpanel package }
 
 \examples{
 if(interactive()){
@@ -222,6 +224,27 @@ tempfun <- function(x,y,alpha,cex,col,pch,fill) {
 require(lattice)
 
 tkexamp( tempfun(x,y), list(tke.test4), plotloc='left')
+
+
+# Two example using ggplot2
+
+if( require(ggplot2) ) {
+
+##  1
+  tkexamp( qplot(cty,data=mpg, geom='histogram'),
+      list(binwidth=list('slider',from=1,to=25)),
+      print=TRUE)
+
+##  2
+  tmpfun <- function(bw=2){
+	print(ggplot(mpg, aes(cty)) +
+  		geom_histogram(binwidth = bw))
+  }
+
+  tkexamp( tmpfun, list(bw=list('slider',from=1, to=5)))
+
+
+}
 
 }
 }

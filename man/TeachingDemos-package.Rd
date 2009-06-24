@@ -13,8 +13,8 @@
   \tabular{ll}{
     Package: \tab TeachingDemos\cr
     Type: \tab Package\cr
-    Version \tab 2.0\cr
-    Date: \tab 2007-12-24\cr
+    Version \tab 2.4\cr
+    Date: \tab 2008-11-13\cr
     License: \tab Artistic-2.0\cr
   }
   Demonstration functions in this package include:
@@ -53,6 +53,11 @@
     Transforms.\cr
     z.test \tab Z-test similar to t.test for students who have not
     learned t tests yet.\cr
+    Pvalue.norm.sim \tab \cr
+    Pvalue.binom.sim \tab Simulate P-values to see how they are
+    distributed.\cr
+    run.Pvalue.norm.sim \tab GUI for above. \cr
+    run.Pvalue.binom.sim \tab \cr
   }
 
   Utility functions include:
@@ -68,9 +73,10 @@
     to a new position \cr
     TkIdentify \tab Scatterplot with lables that can be dragged to new
     positions \cr
-    gp.plot \tab send commonds to gnuplot\cr
+    gp.plot gp.splot \tab send commonds to gnuplot\cr
     hpd \tab Highest Posterior Density intervals\cr
     my.symbols \tab Create plots using user defined symbols.\cr
+    panel.my.symbols \tab Create lattice plots using user defined symbols.\cr
     plot2script \tab Create a script file that recreates the current
     plot.\cr
     squishplot \tab Set the margins so that a plot has a specific aspect
@@ -83,7 +89,8 @@
     txtStart/etxtStart \tab Save commands and output to a text file
   (possibly for post processing with enscript).\cr
     zoomplot \tab recreate the current plot with different x/y limits
-  (zoom in out).\cr
+    (zoom in out).\cr
+    %<% %<=% \tab Transtitive inequalities.\cr
   }
 
 }
