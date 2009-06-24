@@ -29,7 +29,7 @@ bct(y, lambda)
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{\code{\link{vis.boxcox}}, \code{\link{vis.boxcoxu}},
-  \code{boxcox} in package MASS, other implementations in various
+  \code{\link[MASS]{boxcox}} in package MASS, other implementations in various
   packages}
 \examples{
 y <- rlnorm(500, 3, 2)

@@ -3,6 +3,9 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ Recenter a Map object from the maptools package. }
 \description{
+  This function is deprecated, you should be able to do the same thing
+  using the \code{project} function from the \code{rgdal} package.
+  
   Most maps are centered at a longitude of 0 with points of east
   longitude plotted on the right side of the map and points with west
   longitude plotted to the left.  This function transforms the points to
@@ -40,7 +43,7 @@ to convert).}
 
 \seealso{ \code{plot.polylist} }
 \examples{
-if(interactive()){
+\dontrun{
 ## this assumes that the time zone shape files have been downloaded
 ## from: http://openmap.bbn.com/data/shape/timezone/
 ## and the US states map (st99_d00) files have been downloaded from

@@ -82,6 +82,9 @@ my.symbols(x, y=NULL, symb, inches=1, add=TRUE,
   Plotting coordinates and sizes are based on the size of the device at
   the time the function is called.  If you resize the device after
   plotting, all bets are off.
+
+  Currently missing values in \code{x} or \code{y} are not handled
+  well.  It is best if remove all missing values first.
 }
 \seealso{\code{\link{symbols}}, \code{\link{subplot}},
   \code{\link{mapply}}, \code{\link{ms.polygram}}, \code{\link{lines}}}

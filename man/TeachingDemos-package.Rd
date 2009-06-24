@@ -58,6 +58,8 @@
     distributed.\cr
     run.Pvalue.norm.sim \tab GUI for above. \cr
     run.Pvalue.binom.sim \tab \cr
+    HWidentify \tab \cr
+    HTKidentify \tab Identify the point Hovered over with the mouse. \cr
   }
 
   Utility functions include:
@@ -79,6 +81,8 @@
     panel.my.symbols \tab Create lattice plots using user defined symbols.\cr
     plot2script \tab Create a script file that recreates the current
     plot.\cr
+    shadowtext \tab plot text with contrasting shadow for better
+  readability. \cr
     squishplot \tab Set the margins so that a plot has a specific aspect
     ratio without large whitespace inside.\cr
     spread.labs \tab Spread out coordinates so that labels do not overlap.\cr

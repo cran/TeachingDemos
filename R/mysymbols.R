@@ -39,16 +39,18 @@ my.symbols <- function(x, y=NULL, symb, inches=1, add=TRUE,
   plotfun <- if( is.function(symb) ) {
     if(symb.plots) {
       function(xlow,xhigh,ylow,yhigh,symb, ...) {
-        op <- par(c('plt','usr'))
+        op <- par(c('plt','usr','xpd'))
         on.exit(par(op))
+        par(xpd=TRUE)
         par(plt=c(xlow,xhigh,ylow,yhigh), new=TRUE)
         par(usr=c(-1,1,-1,1))
         symb(...)
       }
     } else {
       function(xlow,xhigh,ylow,yhigh,symb, ...) {
-        op <- par(c('plt','usr'))
+        op <- par(c('plt','usr','xpd'))
         on.exit(par(op))
+        par(xpd=TRUE)
         par(plt=c(xlow,xhigh,ylow,yhigh))
         par(usr=c(-1,1,-1,1))
         suppressWarnings(
@@ -58,8 +60,9 @@ my.symbols <- function(x, y=NULL, symb, inches=1, add=TRUE,
     }
   } else {
     function(xlow,xhigh,ylow,yhigh,symb, ...) {
-      op <- par(c('plt','usr'))
+      op <- par(c('plt','usr','xpd'))
       on.exit(par(op))
+      par(xpd=TRUE)
       par(plt=c(xlow,xhigh,ylow,yhigh))
       par(usr=c(-1,1,-1,1))
       lines(symb, ...)

@@ -4,8 +4,14 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ Identify polygons within a plotted map from the maptools packages. }
 \description{
+  These functions are depricated because the object types are no longer
+  used in the maptools and sp packages and the general functionality is
+  available using \code{overlay} in the \code{sp} package.
+
   This function allows you to click in a polygon in a map plotted using
   the maptools package and labels the polygon.
+  
+  
 }
 \usage{
 identify.Map(x, labels = as.character(Map$att.data$NAME), n = Inf, ...)

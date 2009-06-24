@@ -26,7 +26,8 @@ rgl.Map(Map, which, ...)
 %\references{ ~put references to the literature/web site here ~ }
 \author{ Greg Snow \email{greg.snow@imail.org} }
 \note{ This function is still beta level software (some extra lines show
-up).}
+up).  This needs to be updated to use the new spatial objects, you can
+use it as an idea, but probably won't work directly.}
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
@@ -37,7 +38,7 @@ if(interactive()){
 # assumes that the time zone shape files have been downloaded
 # from: http://openmap.bbn.com/data/shape/timezone/
 
-tz <- read.shape('WRLDTZA')
+tz <- maptools:::read.shape('WRLDTZA')
 rgl.Map(tz)
 rgl.spheres(0,0,0,.999, col='darkblue')
 }

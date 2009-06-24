@@ -7,7 +7,6 @@
 \description{
   These are GPS information from 3 trips.
 }
-\usage{}
 \format{
   Data frames with the following variables.
   \describe{
