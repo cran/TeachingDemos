@@ -34,14 +34,14 @@ slider(sl.functions, sl.names, sl.mins, sl.maxs, sl.deltas, sl.defaults, but.fun
 }
 \details{
   With slider you can:
-  a) define (multiple) sliders and buttons,
-  b) request or set slider values, and
-  c) request or set variables in the environment \code{slider.env}.
+  a. define (multiple) sliders and buttons,
+  b. request or set slider values, and
+  c. request or set variables in the environment \code{slider.env}.
   Slider function management takes place in the
   environment \code{slider.env}. If \code{slider.env}
   is not found it is generated.
 
-  \item{Definition}{... of sliders: First of all you have to define sliders, buttons and the attributes of them.
+  Definition: ... of sliders: First of all you have to define sliders, buttons and the attributes of them.
   Sliders are established by six arguments:
   \code{sl.functions, sl.names, sl.minima, sl.maxima,sl.deltas}, and \code{sl.defaults}.
   The first argument,
@@ -49,23 +49,23 @@ slider(sl.functions, sl.names, sl.mins, sl.maxs, sl.deltas, sl.defaults, but.fun
   entails the commands for the sliders.
   If there are three sliders and slider 2 is moved with the mouse the function stored in
   \code{sl.functions[[2]]} (or in case of one function for all sliders the function \code{sl.functions})
-  is called.}
+  is called.
 
-  \item{Definition}{... of buttons: Buttons are defined by a vector of labels \code{but.names} and a list of functions:
-  \code{but.functions}. If button \code{i} is pressed the function stored in \code{but.functions[[i]]} is called.}
+  Definition:  ... of buttons: Buttons are defined by a vector of labels \code{but.names} and a list of functions:
+  \code{but.functions}. If button \code{i} is pressed the function stored in \code{but.functions[[i]]} is called.
 
-  \item{Requesting}{... a slider:
+  Requesting: ... a slider:
   \code{slider(no=1)} returns the actual value of slider 1,
   \code{slider(no=2)} returns the value of slider 2, etc.
   You are allowed to include expressions of the type
   \code{slider(no=i)} in functions describing the effect of
-  sliders or buttons.}
+  sliders or buttons.
 
-  \item{Setting}{... a slider: \code{slider(set.no.value=c(2,333))} sets slider \code{2} to value 333.
+  Setting: ... a slider: \code{slider(set.no.value=c(2,333))} sets slider \code{2} to value 333.
   \code{slider(set.no.value=c(i,value))} can be included in the functions
-  defining the effects of moving sliders or pushing buttons.}
+  defining the effects of moving sliders or pushing buttons.
 
-  \item{Variables}{... of the environment \code{slider.env}: Sometimes information
+  Variables: ... of the environment \code{slider.env}: Sometimes information
   has to be trransferred back and forth between functions defining the effects of sliders and buttons.
   Imagine for example two sliders: one to control \code{p} and another one to control \code{q},
   but they should satisfy: \code{p+q=1}. Consequently, you have to correct the value of the first slider
@@ -73,7 +73,7 @@ slider(sl.functions, sl.names, sl.mins, sl.maxs, sl.deltas, sl.defaults, but.fun
   variables store them in the environment \code{slider.env}.
   Use \code{slider(obj.name="p.save",obj.value=1-slider(no=2))}
   to assign value  \code{1-slider(no=2)} to the variable \code{p.save} .
-  \code{slider(obj.name=p.save)} returns the value of variable \code{p.save}.}
+  \code{slider(obj.name=p.save)} returns the value of variable \code{p.save}.
 }
 \value{
  Using \code{slider} in definition mode \code{slider} returns the value of new created the top level widget.
@@ -182,55 +182,7 @@ R.veil.in.the.wind()
 }
 
 
-## The function is currently defined as
-function(sl.functions,sl.names,sl.mins,sl.maxs,sl.deltas,sl.defaults,
-                  but.functions,but.names,
-                  no,set.no.value,obj.name,obj.value,
-                  reset.function,title){
-  # slider, version2, pw 040107
-  if(!missing(no)) return(as.numeric(tclvalue(get(paste("slider",no,sep=""),env=slider.env))))
-  if(!missing(set.no.value)){ try(eval(parse(text=paste("tclvalue(slider",set.no.value[1],")<-",
-                            set.no.value[2],sep="")),env=slider.env)); return(set.no.value[2]) }
-  if(!exists("slider.env")) slider.env<<-new.env()
-  if(!missing(obj.name)){
-    if(!missing(obj.value)) assign(obj.name,obj.value,env=slider.env) else
-      obj.value<-get(obj.name,env=slider.env)
-    return(obj.value)
-  }
-  if(missing(title)) title<-"slider control widget"
-  require(tcltk); nt<-tktoplevel(); tkwm.title(nt,title); tkwm.geometry(nt,"+0+0")
-  if(missing(sl.names)) sl.names<-NULL
-  if(missing(sl.functions)) sl.functions<-function(...){}
-  for(i in seq(sl.names)){
-    eval(parse(text=paste("assign('slider",i,"',tclVar(sl.defaults[i]),env=slider.env)",sep="")))
-    tkpack(fr<-tkframe(nt));  lab<-tklabel(fr, text=sl.names[i], width="25")
-    sc<-tkscale(fr,from=sl.mins[i],to=sl.maxs[i],showvalue=T,resolution=sl.deltas[i],orient="horiz")
-    tkpack(lab,sc,side="right"); assign("sc",sc,env=slider.env)
-    eval(parse(text=paste("tkconfigure(sc,variable=slider",i,")",sep="")),env=slider.env)
-    sl.fun<-if(length(sl.functions)>1) sl.functions[[i]] else sl.functions
-    if(!is.function(sl.fun)) sl.fun<-eval(parse(text=paste("function(...){",sl.fun,"}")))
-    tkconfigure(sc,command=sl.fun)
-  }
-  assign("slider.values.old",sl.defaults,env=slider.env)
-  tkpack(f.but<-tkframe(nt),fill="x")
-  tkpack(tkbutton(f.but, text="Exit", command=function()tkdestroy(nt)),side="right")
-  if(missing(reset.function)) reset.function<-function(...) print("relax")
-  if(!is.function(reset.function))
-    reset.function<-eval(parse(text=paste("function(...){",reset.function,"}")))
-  tkpack(tkbutton(f.but, text="Reset", command=function(){
-         for(i in seq(sl.names))
-            eval(parse(text=paste("tclvalue(slider",i,")<-",sl.defaults[i],sep="")),env=slider.env)
-         reset.function()  }  ),side="right")
-  if(missing(but.names)) but.names<-NULL
-  for(i in seq(but.names)){
-    but.fun<-if(length(but.functions)>1) but.functions[[i]] else but.functions
-    if(!is.function(but.fun))but.fun<-
-       eval(parse(text=paste("function(...){",but.fun,"}")))
-    tkpack(tkbutton(f.but, text=but.names[i], command=but.fun),side="left")
-    cat("button",i,"eingerichtet")
-  }
-  invisible(nt)
-}
+
 }
 \keyword{dynamic}% at least one, from doc/KEYWORDS
 \keyword{iplot}% __ONLY ONE__ keyword per line

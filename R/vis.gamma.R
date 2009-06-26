@@ -2,7 +2,9 @@
 function(){
 
   if(!exists('slider.env')) slider.env<<-new.env()
-  #library(tcltk)
+  if(!require(tcltk)) {
+      stop('This function needs the tcltk package')
+  }
 
   shape <- 1; assign('shape',tclVar(shape),env=slider.env)
   rate  <- 1; assign('rate',tclVar(rate),env=slider.env)

@@ -166,9 +166,9 @@ R2etxt <- function(cmd,res,s,vis) {
           cmdline <- deparse(cmd)
           cmdline <- gsub('    ', "\n", cmdline)
           cmdline <- gsub('}', "\n}", cmdline)
-          writeChar(rawToChar(as.raw(0)),R2txt.vars$con)
+          writeChar("",R2txt.vars$con)
           cat(R2txt.vars$cmdbg,file=R2txt.vars$con)
-          writeChar(rawToChar(as.raw(0)),R2txt.vars$con)
+          writeChar("",R2txt.vars$con)
           cat(R2txt.vars$cmdcol,file=R2txt.vars$con)
           cat(R2txt.vars$prompt, cmdline, "\n", sep='',
               file=R2txt.vars$con)
@@ -182,9 +182,9 @@ R2etxt <- function(cmd,res,s,vis) {
       if( R2txt.vars$res ) {
           tmp <- textConnectionValue(R2txt.vars$outcon)
           if(length(tmp)) {
-              writeChar(rawToChar(as.raw(0)),R2txt.vars$con)
+              writeChar("",R2txt.vars$con)
               cat(R2txt.vars$resbg, file=R2txt.vars$con)
-              writeChar(rawToChar(as.raw(0)),R2txt.vars$con)
+              writeChar("",R2txt.vars$con)
               cat(R2txt.vars$rescol,file=R2txt.vars$con)
               cat(tmp,sep='\n',file=R2txt.vars$con)
               sink()
@@ -318,9 +318,9 @@ etxtStop <- function() {
 etxtComment <- function(txt,cmdtxt) {
     R2txt.vars$first <<- TRUE
     if(!missing(txt)) {
-        writeChar(rawToChar(as.raw(0)),R2txt.vars$con)
+        writeChar("",R2txt.vars$con)
         cat(R2txt.vars$combg,file=R2txt.vars$con)
-        writeChar(rawToChar(as.raw(0)),R2txt.vars$con)
+        writeChar("",R2txt.vars$con)
         cat(R2txt.vars$comcol,file=R2txt.vars$con)
         cat("\n",txt,"\n\n", file=R2txt.vars$con)
     }
@@ -337,7 +337,7 @@ etxtSkip <- function(expr) {
 etxtPlot <- function(file=paste(tempfile('plot',R2txt.vars$dir),'.eps',sep=''),
                      width=4, height=4) {
     dev.copy2eps(file=file, height=height, width=width)
-    writeChar(rawToChar(as.raw(0)),R2txt.vars$con)
+    writeChar("",R2txt.vars$con)
     cat('epsf{',file,'}\n', sep='', file=R2txt.vars$con)
     R2txt.vars$first <<- TRUE
     invisible(NULL)

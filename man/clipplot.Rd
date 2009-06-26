@@ -36,6 +36,11 @@ clipplot(fun, xlim = par("usr")[1:2], ylim = par("usr")[3:4])
   \code{clip} with the intended purpose of doing this in a more proper
   manner (however as of my last test it is not working perfectly either,
   so \code{clipplot} will remain undepricated for now).
+
+  It uses some hacks to make sure that the clipping region is set, but
+  it does this by plotting some tranparent boxes, therefore you should
+  not use this on devices where tranparency is not supported (or you may
+  see extra boxes).
 }
 \seealso{ \code{\link{par}}, \code{\link{lines}}, \code{clip} in R2.7.0
   and later }

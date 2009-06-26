@@ -1,6 +1,8 @@
-squishplot <- function(xlim,ylim,asp=1){
+squishplot <- function(xlim,ylim,asp=1, newplot=TRUE){
   if(length(xlim) < 2) stop('xlim must be a vector of length 2')
   if(length(ylim) < 2) stop('ylim must be a vector of length 2')
+
+  if(newplot) plot.new()
 
   tmp <- par(c('plt','pin','xaxs','yaxs'))
 

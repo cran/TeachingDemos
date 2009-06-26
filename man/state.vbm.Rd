@@ -10,7 +10,8 @@
 data(state.vbm)
 }
 \details{
-  A polylist object (for use with the maptools package) to plot a map of the
+  A SpatialPolygonsDataFrame object
+  (for use with the maptools package) to plot a map of the
   US states where the sizes of the states have been adjusted to be more
   equal.
 
@@ -29,7 +30,7 @@ data(state.vbm)
   has not received permission from the author (no attempt made, not that
   it was refused), most of my uses I feel fall under fair use and do not
   violate copyright, but you will need to decide for yourself and your
-  applications. 
+  applications.
 }
 \references{
   \url{http://www.markmonmonier.com/index.htm},
@@ -38,11 +39,11 @@ data(state.vbm)
 \examples{
 library(maptools)
 data('state.vbm',package='TeachingDemos')
-plot(state.vbm,axes=FALSE)
+plot(state.vbm)
 
 tmp <- state.x77[,'HS Grad']
 tmp2 <- cut(tmp, seq(min(tmp),max(tmp), length.out=11),
   include.lowest=TRUE)
-plot(state.vbm,col=cm.colors(10)[tmp2],axes=FALSE)
+plot(state.vbm,col=cm.colors(10)[tmp2])
 }
 \keyword{datasets}

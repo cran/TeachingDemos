@@ -1,8 +1,9 @@
 "vis.t" <-
 function(){
 
-  if(!exists('slider.env')) slider.env<<-new.env()
-  #library(tcltk)
+    if( !require(tcltk) ) stop('This function depends on the tcltk package')
+
+    if(!exists('slider.env')) slider.env<<-new.env()
 
   df <- 1; assign('df',tclVar(df),env=slider.env)
   sn <- 0; assign('sn',tclVar(sn),env=slider.env)

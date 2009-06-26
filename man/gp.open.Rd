@@ -3,6 +3,7 @@
 \alias{gp.close}
 \alias{gp.send}
 \alias{gp.plot}
+\alias{gp.splot}
 \title{Alpha version functions to send plotting commands to GnuPlot}
 \description{These functions allow you to open a connection to a gnuplot
   process, send data and possibly other information to gnuplot for it to
@@ -13,6 +14,7 @@ gp.open(where='c:/progra~1/GnuPlot/bin/pgnuplot.exe')
 gp.close(pipe=.gp)
 gp.send(cmd='replot',pipe=.gp)
 gp.plot(x,y,type='p',add=FALSE, title=deparse(substitute(y)),pipe=.gp)
+gp.splot(x,y,z, add=FALSE, title=deparse(substitute(z)), pipe=.gp, datafile=tempfile())
 }
 \arguments{
   \item{where}{Path to GnuPlot Executable}
@@ -23,10 +25,12 @@ gp.plot(x,y,type='p',add=FALSE, title=deparse(substitute(y)),pipe=.gp)
     process}
   \item{x}{The \code{x} coordinates to plot}
   \item{y}{the \code{y} coordinates to plot}
+  \item{z}{the \code{z} coordinates to splot}
   \item{type}{Either 'p' or 'l' for plotting points or lines}
   \item{add}{Logical, should the data be added to the existing plot or
     start a new plot}
   \item{title}{The title or legend entry}
+  \item{datafile}{The file to store the data in for transfer to gnuplot}
 }
 \details{
   These functions provide a basic interface to the GnuPlot program (you
@@ -66,6 +70,11 @@ y <- 3-2*x+x*x+rnorm(10)
 gp.open()
 gp.plot(x,y)
 gp.send('replot 3-2*x+x**2')
+
+tmp <- expand.grid(x=1:10, y=1:10)
+tmp <- transform(tmp, z=(x-5)*(y-3))
+gp.splot(tmp$x, tmp$y, tmp$z)
+
 gp.close()
  }
 }

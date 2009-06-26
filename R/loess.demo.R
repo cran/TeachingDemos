@@ -1,11 +1,11 @@
 "loess.demo" <-
-function(x, y, span = 2/3, degree = 1, nearest = F, xlim = 
+function(x, y, span = 2/3, degree = 1, nearest = F, xlim =
 	numeric(0), ylim = numeric(0), verbose = F)
 {
 	# function to demonstrate the locally weighted regression function loess
-	# written by Dr. Greg Snow 
+	# written by Dr. Greg Snow
 	# Brigham Young University, Department of Statistics
-	# gls@byu.edu
+	# gls@byu.edu now greg.snow@imail.org
 	# Modified by Henrik Aa. Nielsen, IMM, DTU (han@imm.dtu.dk)
 	miss.xy <- is.na(x) | is.na(y)
 	x <- x[!miss.xy]
@@ -33,7 +33,7 @@ function(x, y, span = 2/3, degree = 1, nearest = F, xlim =
 		lines(est, col = 'blue')
 		mtext("Estimate obtained using the default interpolation scheme",
 			col = 'blue', adj = 0.5, line = 2)
-		
+
 		NULL
 	}
 	fitPlot(x, y, est, fit.d, xl, yl)
