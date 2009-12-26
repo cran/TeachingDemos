@@ -1,3 +1,13 @@
+New in TeachingDemos version 2.5
+
+* New functions HWidentify and HTKidentify to label points being hovered over.
+
+* Turned off clipping (par(xpd=TRUE)) inside of my.symbols so that
+  subsequent points are plotted
+
+* New function sigma.test for testing a single variance.
+
+
 New in TeachingDemos version 2.4
 
 * The squishplot function now calls plot.new before doing the

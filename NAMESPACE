@@ -8,19 +8,21 @@ export(bct,char2seed,chisq.detail,ci.examp,clipplot,clt.examp,cnvrt.coords,
        ms.sunflowers,my.symbols,panel.dice,plot.dice,plot.rgl.coin,
        plot.rgl.die,plot2script,plotFagan,plotFagan2,plotFagan.old,
        plotFagan2.old,power.examp,updateusr,pairs2,
-       prepanel.dice,project.Map,put.points.demo,
+       prepanel.dice,project.Map,put.points.demo,shadowtext,
        recenter.Map,rgl.Map,roc.demo,roll.rgl.die,rotate.cloud,
        rotate.persp,rotate.wireframe,run.ci.examp,run.cor.examp,
        run.cor2.examp,run.old.cor.examp,run.old.cor2.examp,
        run.hist.demo,run.power.examp,run.power.examp.old,sd.g,slider,
        sliderv,squishplot,SensSpec.demo,spread.labs,
-       stats.g,subplot,TkListView,
+       stats.g,subplot,TkListView,HWidentify,HTKidentify,
        tkBrush,tree.demo,triplot,vis.binom,vis.boxcox,vis.boxcoxu,
-       vis.boxcox.old, vis.boxcoxu.old,
+       vis.boxcox.old, vis.boxcoxu.old, sigma.test,
        vis.gamma,vis.normal,vis.t,z.test,zoomplot,tkexamp,col2grey,col2gray,
        TkApprox,TkSpline,txtStart,txtStop,txtComment,txtSkip,etxtStart,
        etxtStop,etxtComment,etxtSkip,etxtPlot,dynIdentify,TkIdentify,
-       Predict.Plot, TkPredict, "%<%", "%<=%", panel.my.symbols)
+       Predict.Plot, TkPredict, "%<%", "%<=%", panel.my.symbols,
+       SnowsPenultimateNormalityTest,
+       SnowsCorrectlySizedButOtherwiseUselessTestOfAnything)
 
 
 

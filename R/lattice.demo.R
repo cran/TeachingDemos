@@ -4,6 +4,8 @@ function(x,y,z, show3d=TRUE){
   if(!exists('slider.env')) slider.env <<- new.env()
   #library(tcltk)
 
+  if(!require(lattice)) stop('The lattice package is needed')
+
   center <- mean(z); assign('center',tclVar(center), env=slider.env)
   width <- diff(range(z))/20*3; assign('width',tclVar(width), env=slider.env)
 
