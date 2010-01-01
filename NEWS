@@ -1,3 +1,11 @@
+New in TeachingDemos version 2.6
+
+* function vis.test and friends made available
+
+* Fixed bug in tkexamp with checkboxes.
+
+* Added 'outliers' dataset
+
 New in TeachingDemos version 2.5
 
 * New functions HWidentify and HTKidentify to label points being hovered over.

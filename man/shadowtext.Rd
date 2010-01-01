@@ -18,7 +18,7 @@ shadowtext(x, y = NULL, labels, col = "white", bg = "black", theta = seq(pi/4, 2
   \item{labels}{The text labels to plot}
   \item{col}{Color of the text}
   \item{bg}{Color of the background shadow}
-  \item{theta}{Angels for plotting the background}
+  \item{theta}{Angles for plotting the background}
   \item{r}{Thickness of the shadow relative to plotting size}
   \item{\dots}{Additional arguments passed on to \code{text}}
 }
