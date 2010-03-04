@@ -60,6 +60,7 @@
     run.Pvalue.binom.sim \tab \cr
     HWidentify \tab \cr
     HTKidentify \tab Identify the point Hovered over with the mouse. \cr
+    vis.test \tab test a null hypothesis by comparing graphs. \cr
   }
 
   Utility functions include:

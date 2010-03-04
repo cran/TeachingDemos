@@ -21,7 +21,8 @@ export(bct,char2seed,chisq.detail,ci.examp,clipplot,clt.examp,cnvrt.coords,
        TkApprox,TkSpline,txtStart,txtStop,txtComment,txtSkip,etxtStart,
        etxtStop,etxtComment,etxtSkip,etxtPlot,dynIdentify,TkIdentify,
        Predict.Plot, TkPredict, "%<%", "%<=%", panel.my.symbols,
-       SnowsPenultimateNormalityTest,
+       SnowsPenultimateNormalityTest,vis.test,vt.qqnorm,vt.normhist,
+       vt.scatterpermute,vt.tspermute,vt.residpermute,
        SnowsCorrectlySizedButOtherwiseUselessTestOfAnything)
 
 

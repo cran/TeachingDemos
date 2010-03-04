@@ -173,7 +173,7 @@ tkexamp <- function(FUN, param.list, vscale=1.5, hscale=1.5, wait=FALSE,
                 tclvalue(tmp) <- if('init' %in% names(el)) {
                     el$init
                 }  else { "F" }
-                alist <- list(fr, variable=tmp,text=eln, onvalue="T",
+                alist <- list(frame, variable=tmp,text=eln, onvalue="T",
                               offvalue="F",
                               command=function(...)tkrreplot(img,
                                hscale=as.numeric(tclvalue(hsc)),

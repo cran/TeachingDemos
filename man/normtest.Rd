@@ -49,7 +49,7 @@ An object of class "htest" with components:
 \item{data.name}{a string describing the name of the data}
 }
 \references{
-\code{fortune(234)} (Currently need version on R-Forge)
+\code{fortune(234)}
 }
 \author{
 Greg Snow \email{greg.snow@imail.org}
