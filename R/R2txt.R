@@ -343,3 +343,149 @@ etxtPlot <- function(file=paste(tempfile('plot',R2txt.vars$dir),'.eps',sep=''),
     invisible(NULL)
 }
 
+#### version for sending output to MSword
+
+R2wdtxt <- function(cmd,res,s,vis) {
+    TDenv <- environment(txtStart)
+
+  if(TDenv$R2txt.vars$first) {
+      TDenv$R2txt.vars$first <- FALSE
+      if( TDenv$R2txt.vars$res ) {
+          sink()
+          close(TDenv$R2txt.vars$outcon)
+          TDenv$R2txt.vars$outcon <- textConnection(NULL, open='w')
+          sink(TDenv$R2txt.vars$outcon, split=TRUE)
+      }
+  } else {
+
+      if( TDenv$R2txt.vars$cmd ){
+          cmdline <- deparse(cmd)
+          cmdline <- gsub('    ', paste("\n",TDenv$R2txt.vars$continue, sep=''),
+                          cmdline)
+          cmdline <- gsub('}', paste("\n",TDenv$R2txt.vars$continue,"}", sep=''),
+                          cmdline)
+          R2wd::wdVerbatim( paste(TDenv$R2txt.vars$prompt, cmdline, sep=''),
+                       fontsize=TDenv$R2txt.vars$fontsize )
+      }
+      if( TDenv$R2txt.vars$cmdfile ) {
+          cmdline <- deparse(cmd)
+          cmdline <- gsub('    ', "\n ", cmdline)
+          cmdline <- gsub('}', "\n}", cmdline)
+          cat(cmdline,"\n", file=TDenv$R2txt.vars$con2)
+      }
+
+      if( TDenv$R2txt.vars$res ) {
+          tmp <- textConnectionValue(TDenv$R2txt.vars$outcon)
+          if(length(tmp)) {
+              R2wd::wdVerbatim(paste(tmp,sep='\n'), fontsize=TDenv$R2txt.vars$fontsize)
+              sink()
+              close(TDenv$R2txt.vars$outcon)
+              TDenv$R2txt.vars$outcon <- textConnection(NULL, open='w')
+              sink(TDenv$R2txt.vars$outcon, split=TRUE)
+          }
+      }
+  }
+
+  TRUE
+}
+
+wdtxtStart <- function(commands=TRUE, results=TRUE, fontsize=9,
+                     cmdfile, visible.only=TRUE) {
+  unlockBinding('R2txt.vars', environment(txtStart))
+  TDenv <- environment(txtStart)
+
+  if( !require(R2wd) ) stop('the R2wd package is required')
+
+  R2wd::wdGet()
+
+  TDenv$R2txt.vars$vis <- visible.only
+  TDenv$R2txt.vars$cmd <- commands
+  TDenv$R2txt.vars$res <- results
+  TDenv$R2txt.vars$first <- TRUE
+  TDenv$R2txt.vars$fontsize <- fontsize
+
+  if(results) {
+      TDenv$R2txt.vars$outcon <- textConnection(NULL, open='w')
+      sink(TDenv$R2txt.vars$outcon, split=TRUE)
+  }
+
+  if( !missing(cmdfile) ) {
+    tmp <- TRUE
+    if(is.character(cmdfile)) {
+      con2 <- file(cmdfile, open='w')
+      tmp <- FALSE
+    } else if( any( class(cmdfile) == 'connection' ) ) {
+      con2 <- cmdfile
+    }
+    if( tmp && isOpen(con2) ) {
+      TDenv$R2txt.vars$closecon2 <- FALSE
+    } else {
+      TDenv$R2txt.vars$closecon2 <- TRUE
+      if(tmp) {
+          open(con2, open='w')
+      }
+    }
+    TDenv$R2txt.vars$con2 <- con2
+    TDenv$R2txt.vars$cmdfile <- TRUE
+  } else {
+    TDenv$R2txt.vars$cmdfile <- FALSE
+  }
+
+  TDenv$R2txt.vars$prompt <- unlist(options('prompt'))
+  TDenv$R2txt.vars$continue <- unlist(options('continue'))
+
+  options(prompt= paste('wdTxt',TDenv$R2txt.vars$prompt,sep=''),
+          continue= paste('wdTxt',TDenv$R2txt.vars$continue,sep='') )
+
+  cat('Output being copied to text file,\nuse wdtxtStop to end\n')
+  addTaskCallback(R2wdtxt, name='r2wdtxt')
+  invisible(NULL)
+}
+
+wdtxtStop <- function() {
+  removeTaskCallback('r2wdtxt')
+  TDenv <- environment(txtStart)
+
+  if( TDenv$R2txt.vars$cmdfile && TDenv$R2txt.vars$closecon2 ) {
+    close( TDenv$R2txt.vars$con2 )
+  }
+  options( prompt=TDenv$R2txt.vars$prompt,
+           continue=TDenv$R2txt.vars$continue )
+  if(TDenv$R2txt.vars$res) {
+      sink()
+      close(TDenv$R2txt.vars$outcon)
+  }
+  TDenv$R2txt.vars <- list()
+  invisible(NULL)
+}
+
+wdtxtComment <- function(txt,cmdtxt) {
+    TDenv <- environment(txtStart)
+
+    TDenv$R2txt.vars$first <- TRUE
+    if(!missing(txt)) {
+        R2wd::wdParagraph()
+        R2wd::wdBody(txt)
+        R2wd::wdParagraph()
+    }
+    if(!missing(cmdtxt)) {
+        cat("# ",cmdtxt,"\n", file=TDenv$R2txt.vars$con2)
+    }
+}
+
+wdtxtSkip <- function(expr) {
+    TDenv <- environment(txtStart)
+
+    TDenv$R2txt.vars$first <- TRUE
+    expr
+}
+
+wdtxtPlot <- function(height=5, width=5, pointsize=10) {
+    TDenv <- environment(txtStart)
+
+    TDenv$R2txt.vars$first <- TRUE
+
+    tmp <- recordPlot()
+    R2wd::wdPlot(tmp, plotfun=replayPlot, height=height, width=width,
+           pointsize=pointsize)
+}

@@ -6,6 +6,7 @@
 \alias{vt.scatterpermute}
 \alias{vt.tspermute}
 \alias{vt.residpermute}
+\alias{vt.residsim}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Do a Visual test of a null hypothesis by choosing the graph that does
@@ -23,6 +24,7 @@ vt.normhist(x, ..., orig=TRUE)
 vt.scatterpermute(x, y, ..., orig=TRUE)
 vt.tspermute(x, type='l', ..., orig=TRUE)
 vt.residpermute(model, ..., orig=TRUE)
+vt.residsim(model, ..., orig=TRUE)
 }
 
 \arguments{
@@ -119,6 +121,14 @@ vt.residpermute(model, ..., orig=TRUE)
   at 0 are included.  When \code{orig} is \code{FALSE} the residuals are
   randomly permuted before being plotted.
 
+  The \code{vt.residsim} function takes a regression object (class lm,
+  or any model type object for which \code{fitted} and \code{resid}
+  return vectors) and does a residual plot of the fitted values on the x
+  axis and residuals on the y axis.  The loess smooth curve
+  (\code{scatter.smooth} is the plotting function) and a reference line
+  at 0 are included.  When \code{orig} is \code{FALSE} the residuals are
+  simulate from a normal distribution with mean 0 and standard deviation
+  the same as the residuals.
 
 }
 \value{

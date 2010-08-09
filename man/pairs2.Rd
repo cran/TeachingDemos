@@ -42,7 +42,8 @@ pairs2(x, y, xlabels, ylabels, panel = points, ..., row1attop = TRUE, gap = 1)
   Large amounts of the code for this function were blatently
   borrowed/stolen from the \code{pairs} function, the credit for the
   useful parts should go to the original authors, blame for any problems
-  should go to me.
+  should go to me.  This function is also released under GPL since much
+  of it comes from GPL code.
 }
 \seealso{\code{\link{pairs}}, \code{splom} in the lattice package}
 \examples{

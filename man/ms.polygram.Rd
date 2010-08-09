@@ -6,6 +6,7 @@
 \alias{ms.female}
 \alias{ms.arrows}
 \alias{ms.sunflowers}
+\alias{ms.image}
 \title{Symbol functions/data to be passed as symb argument to
   my.symbols}
 \description{
@@ -22,6 +23,7 @@ ms.male
 ms.female
 ms.arrows(angle, r=1, adj=0.5, length=0.1, ...)
 ms.sunflowers(n,r=0.3,adj=pi/2, ...)
+ms.image(img, transpose=TRUE, ...)
 }
 \arguments{
   \item{n}{The number of sides for polygons and polygrams, the number of
@@ -43,9 +45,14 @@ ms.sunflowers(n,r=0.3,adj=pi/2, ...)
   of the line around the polygon and \code{bg} is the fill color, see
   \code{\link{polygon}}.}
   \item{angle}{The angle in radians that the arrow will point.}
-  \item{length}{The length of the arrow head (see \code{\link{arrows}}).}
+  \item{length}{The length of the arrow head (see
+    \code{\link{arrows}}).}
+  \item{img}{ A 3 dimensional array representing an image such as
+    produced by the png or EBImage packages.}
+  \item{transpose}{Should the image be tranposed, use TRUE for images
+    imported using package png and FALSE for images imported using EBImage.}
   \item{...}{additional parameters that will be passed to plotting
-  functions or be ignored.}
+    functions or be ignored.}
 }
 \details{
   These functions/matricies can be passed as the \code{symb} argument to
@@ -79,6 +86,13 @@ my.symbols(1:10, 1:10, ms.arrows, angle=runif(10)*2*pi, inches=0.5,
 adj=seq(0,1,length.out=10), symb.plots=TRUE)
 
 my.symbols(1:10, 1:10, ms.sunflowers, n=1:10, inches=0.3, add=FALSE)
+
+if( require(png) ) {
+  img <- readPNG(system.file("img", "Rlogo.png", package="png"))
+
+  my.symbols( runif(10), runif(10), ms.image, MoreArgs=list(img=img),
+                 inches=0.5, symb.plots=TRUE, add=FALSE)
+}
 
 }
 \keyword{dplot}

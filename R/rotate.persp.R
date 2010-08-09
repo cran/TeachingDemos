@@ -1,9 +1,11 @@
 "rotate.persp" <-
 function(x,y,z){
 
+  if(!require(tcltk)){stop('The tcltk package is needed')}
+
   persp.refresh <- function(...){
     persp(x,y,z, theta=slider(no=1), phi=slider(no=2),
-          r=slider(no=3), d=slider(no=4), 
+          r=slider(no=3), d=slider(no=4),
           ltheta=slider(no=5), lphi=slider(no=6),
           shade=slider(no=7),col='lightblue'
           )

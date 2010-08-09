@@ -8,6 +8,11 @@
 \alias{etxtComment}
 \alias{etxtSkip}
 \alias{etxtPlot}
+\alias{wdtxtStart}
+\alias{wdtxtStop}
+\alias{wdtxtComment}
+\alias{wdtxtSkip}
+\alias{wdtxtPlot}
 \title{Save a transcript of commands and/or output to a text file. }
 \description{
   These functions save a transcript of your commands and their output to
@@ -41,6 +46,17 @@ etxtSkip(expr)
 
 etxtPlot(file=paste(tempfile('plot',R2txt.vars$dir),'.eps',sep=''),
          width=4, height=4)
+
+wdtxtStart(commands=TRUE, results=TRUE, fontsize=9, cmdfile,
+          visible.only=TRUE)
+
+wdtxtStop()
+
+wdtxtComment(txt,cmdtxt)
+
+wdtxtSkip(expr)
+
+wdtxtPlot(height=5, width=5, pointsize=10)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -65,18 +81,25 @@ etxtPlot(file=paste(tempfile('plot',R2txt.vars$dir),'.eps',sep=''),
   \item{cmdtxt}{Text of a comment to be inserted into \code{cmdfile} }
   \item{expr}{An expression to be executed without being included in
          \code{file} or \code{cmdfile} }
-  \item{width}{Width of plot, passed to \code{dev.copy2eps}}
-  \item{height}{Height of plot, passed to \code{dev.copy2eps}}
+  \item{width}{Width of plot, passed to \code{dev.copy2eps} or \code{wdPlot}}
+  \item{height}{Height of plot, passed to \code{dev.copy2eps} or
+    \code{wdPlot}}
+  \item{fontsize}{Size of font to use in MSWord}
+  \item{pointsize}{ passed to \code{wdPlot} }
 }
 \details{
 These functions are used to create transcript/command files of your R
-         session.  There are 2 sets of functions, those starting with
-         "txt" and those starting with "etxt".  The "txt" functions
+         session.  There are 3 sets of functions, those starting with
+         "txt",those starting with "etxt", and those starting with
+	 wdtxt.  The "txt" functions
          create a plain text transcript while the "etxt" functions
          create a text file with extra escapes and commands so that it
          can be post processed with enscript (an external program) to
          create a postscript file and can include graphics as well.  The
          postscript file can be converted to pdf or other format file.
+
+	 The "wdtxt" functions will insert the commands and results into
+	 a Microsoft Word document.
 
 	 If \code{results} is TRUE and \code{commands} is FALSE then the result
 	 is similar to the results of \code{sink}.  If \code{commands}
@@ -93,20 +116,25 @@ These functions are used to create transcript/command files of your R
 	 pasted to the terminal.
 
 	 The Start functions specify the file/directory to create and
-	 start the transcript.  The prompts are changed to remind you
+	 start the transcript, \code{wdtxtStart} will open Word if it is
+	 not already open or create a connection to an open word window.
+	 The prompts are changed to remind you
 	 that the commands/results are being copied to the transcript.
 	 The Stop functions stop the recording and reset the prompts.
 
 	 The R parser strips comments and does some reformating so the
 	 transcript file may not match exactly with the terminal
-	 output.  Use the \code{txtComment} or \code{etxtComment}
+	 output.  Use the \code{txtComment}, \code{etxtComment}, or
+	 \code{wdtxtComment}
 	 functions to add a comment.  This will show up as a line offset
-	 by whitespace in the transcript file and highlighted in the
-	 etxt version.  If \code{cmdtxt} is specified then that line
+	 by whitespace in the transcript file, highlighted in the
+	 etxt version, and the default font in Word.
+	 If \code{cmdtxt} is specified then that line
 	 will be inserted into \code{cmdfile} preceeded by a \# so it
 	 will be skipped if sourced or copied.
 
-	 The \code{tktSkip} and \code{etxtSkip} functions will run the
+	 The \code{tktSkip}, \code{etxtSkip}, and \code{wdtxtSkip}
+	 functions will run the
 	 code in \code{expr} but will not include the commands or
 	 results in the transcript file (this can be used for side
 	 computations, or requests for help, etc.).
@@ -115,6 +143,9 @@ These functions are used to create transcript/command files of your R
 	 create a copy of the current plot and iserts the proper command
 	 into the transcript file so that the eps file will be included
 	 in the final postscript file after processing.
+
+	 The \code{wdtxtPlot} function calls \code{wdPlot} to send a
+	 copy of the current graph to MS Word.
 }
 \value{
   Most of these commands do not return anything of use.  The exceptions
@@ -132,10 +163,19 @@ These commands do not do any fancy formatting of output, just what you
 see in the regular terminal window.  If you want more formatted output
 then you should look into \code{Sweave} or the R2HTML package.
 
+The MS word functions will insert into the current word document at the
+location of the cursor.  This means that if you look at the document and
+move the current location to somewhere in the middle (or have another
+word document open with the location in the middle), when you go back to
+R, the new transcript will be inserted into the middle of the document.
+So be careful to position the cursor at the end of the correct document
+before going back to R.
+
 Do not use these functions in combination with R2HTML or \code{sink}.
 }
 \seealso{\code{\link{sink}}, \code{\link{history}},
-  \code{\link{Sweave}}, the odfWeave package, the R2HTML package }
+  \code{\link{Sweave}}, the odfWeave package, the R2HTML package, the
+  R2wd package }
 \examples{
 \dontrun{
 etxtStart()

@@ -1,5 +1,6 @@
 run.power.examp.old <-
 function(){
+  if(!require(tcltk)){stop('The tcltk package is needed')}
   slider( power.refresh,
          c('Sample Size','Standard Deviation','True Difference',
            'Alpha level'),

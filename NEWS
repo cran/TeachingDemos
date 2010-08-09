@@ -1,6 +1,22 @@
+New in TeachingDemos version 2.7
+
+* new function ms.image for plotting images using my.symbols.
+
+* new functions wdtxtStart and friends to insert transcript into MS Word.
+
+* function vt.residsim to work with vis.test.
+
+* fixed several functions that depend on tcltk but did not load it.
+
+* Updated HWidentify and HTKidentify to give more control and clean up after.
+
+* Removed exaple in subplot using rimage package since it is not
+  current and potentially causes problems.
+
 New in TeachingDemos version 2.6
 
-* function vis.test and friends made available
+* function vis.test and friends made available (was present before,
+  but not in the Namespace).
 
 * Fixed bug in tkexamp with checkboxes.
 

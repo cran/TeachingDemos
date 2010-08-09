@@ -9,14 +9,25 @@
   over a point in the plot and it will show an id label for that point.
 }
 \usage{
-HWidentify(x, y, label = seq_along(x), xlab = deparse(substitute(x)), ylab = deparse(substitute(y)), ...)
-HTKidentify(x, y, label = seq_along(x), xlab = deparse(substitute(x)), ylab = deparse(substitute(y)), ...)
+HWidentify(x, y, label = seq_along(x), lab.col="darkgreen",
+pt.col="red", adj=c(0,0), clean=TRUE, xlab = deparse(substitute(x)),
+ylab = deparse(substitute(y)), ...)
+HTKidentify(x, y, label = seq_along(x), lab.col="darkgreen",
+pt.col="red", adj=c(0,0), xlab = deparse(substitute(x)), ylab = deparse(substitute(y)), ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{ x-coordinates to plot }
   \item{y}{ y-coordinates to plot}
   \item{label}{ Labels to show for each point }
+  \item{lab.col}{The color to plot the labels}
+  \item{pt.col}{The color of the highlighting point}
+  \item{adj}{The adjustment of the labels relative to the cursor point.
+    The default places the label so that its bottom left corner is at
+    the curser, values below 0 or greater than 1 will move the label to
+    not touch the cursor.}
+  \item{clean}{Logical value, should any labels on the plot be removed
+    at the end of the plotting.}
   \item{xlab}{ Label for x-axis }
   \item{ylab}{ Label for y-axis}
   \item{\dots}{additional arguments passed through to plot}

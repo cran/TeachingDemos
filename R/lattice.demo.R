@@ -1,8 +1,8 @@
 "lattice.demo" <-
 function(x,y,z, show3d=TRUE){
 
+  if(!require(tcltk)){stop('The tcltk package is needed')}
   if(!exists('slider.env')) slider.env <<- new.env()
-  #library(tcltk)
 
   if(!require(lattice)) stop('The lattice package is needed')
 

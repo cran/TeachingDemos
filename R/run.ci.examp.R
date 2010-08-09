@@ -1,6 +1,8 @@
 "run.ci.examp" <-
 function(reps=100,seed, method='z',n=25) {
-  if (!missing(seed)){ set.seed(seed) }
+
+  if(!require(tcltk)){stop('The tcltk package is needed')}
+    if (!missing(seed)){ set.seed(seed) }
   data <- matrix( rnorm( n*reps, 100, 10), ncol=n)
   rmeans <- rowMeans(data)
 
@@ -14,28 +16,28 @@ function(reps=100,seed, method='z',n=25) {
              cv.l <- qt((1-conf.level)/2, n-1)
              cv.u <- qt(1-(1-conf.level)/2, n-1)
              rsds <- sqrt(apply(data,1,var))/sqrt(n)
-           
+
              lower <- rmeans+cv.l*rsds
              upper <- rmeans+cv.u*rsds
            },
            BOTH=, Both=, both={
              lz <- qnorm( (1-conf.level)/2, rmeans, 10/sqrt(n))
              uz <- qnorm( 1-(1-conf.level)/2, rmeans, 10/sqrt(n))
-             
+
              cv.l <- qt((1-conf.level)/2, n-1)
              cv.u <- qt(1-(1-conf.level)/2, n-1)
              rsds <- sqrt(apply(data,1,var))/sqrt(n)
-             
+
              lt <- rmeans+cv.l*rsds
              ut <- rmeans+cv.u*rsds
-             
+
              lower <- c(rbind(lt,lz,100))
              upper <- c(rbind(ut,uz,100))
-             
+
              reps <- reps*3
              rmeans <- rep(rmeans, each=3)
              rmeans[c(F,F,T)] <- NA
-           
+
            },
            stop("method must be z, t, or both") )
 
@@ -66,6 +68,6 @@ function(reps=100,seed, method='z',n=25) {
 
   slider( ci.refresh, 'Confidence Level', 0.5, 0.995, 0.005, 0.95,
          title="Confidence Interval Demo")
-  
+
 }
 
