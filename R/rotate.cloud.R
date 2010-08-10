@@ -1,8 +1,8 @@
 "rotate.cloud" <-
 function(x, ...){
 
+  if(!require(tcltk)){stop('The tcltk package is needed')}
   if(!exists('slider.env')) slider.env <<-new.env()
-  #library(tcltk)
 
   lab1 <- 'z'; assign('lab1', tclVar(lab1), env=slider.env)
   lab2 <- 'y'; assign('lab2', tclVar(lab2), env=slider.env)

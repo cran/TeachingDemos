@@ -245,6 +245,28 @@ ms.sunflowers <- function(n,r=0.3,adj=pi/2, ...) {
 }
 
 
+ms.image <- function(img, transpose=TRUE, ...) {
+    d <- dim(img)
+
+    cols <- if(d[3] == 3) {
+        rgb(img[,,1], img[,,2], img[,,3])
+    } else if(d[3] == 4) {
+        rgb(img[,,1], img[,,2], img[,,3], img[,,4])
+    } else {
+        stop('image must be array with 3rd dimension equal to 3 or 4')
+    }
+
+    if(transpose) {
+        tmp <- matrix( seq(length=d[1]*d[2]), ncol=d[1], byrow=TRUE)
+        tmp <- tmp[ , rev(seq(length=d[1])) ]
+    } else {
+        tmp <- matrix( seq(length=d[1]*d[2]), ncol=d[2] )
+        tmp <- tmp[ , rev(seq(length=d[2])) ]
+    }
+
+    image(tmp, col=cols, axes=FALSE, xlab='', ylab='')
+}
+
 
 
 

@@ -1,6 +1,7 @@
 "run.old.cor2.examp" <-
 function(n=100,seed) {
   if (!missing(seed)){ set.seed(seed) }
+  if(!require(tcltk)){stop('The tcltk package is needed')}
 
   x <- scale(matrix(rnorm(2*n,0,1), ncol=2))
   x <- x %*% solve( chol( cor(x) ) )

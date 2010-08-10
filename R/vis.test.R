@@ -127,4 +127,16 @@ vt.residpermute <- function(model, ..., orig=TRUE) {
     }
 }
 
-
+vt.residsim <- function(model, ..., orig=TRUE) {
+    par(mar=c(2.5,2.5,1,1)+0.1)
+    if(orig) {
+        scatter.smooth( fitted(model), resid(model), xlab='', ylab='',
+                       col='blue' )
+        abline(h=0, col='green')
+    } else {
+        scatter.smooth( fitted(model), rnorm( length(resid(model)), 0,
+                                             sd(resid(model)) ),
+                       xlab='', ylab='', col='blue')
+        abline(h=0, col='green')
+    }
+}

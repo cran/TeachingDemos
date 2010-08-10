@@ -84,7 +84,8 @@ subplot(fun, x, y, size=c(1,1), vadj=0.5, hadj=0.5,
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{\code{\link{cnvrt.coords}}, \code{\link{par}}, \code{\link{symbols}}}
+\seealso{\code{\link{cnvrt.coords}}, \code{\link{par}},
+  \code{\link{symbols}}, \code{\link{my.symbols}}}
 \examples{
 # make an original plot
 plot( 11:20, sample(51:60) )
@@ -123,17 +124,26 @@ par(op)
 
 
 # scatter-plot using images
-if(require(rimage)){
-	data(logo)
+if(require(EBImage)) {
 
-	x <- runif(10)
-	y <- runif(10)
+  image.EBImage <- function(x,...) {
+    tmp <- imageData(flip(x))
+    cols <- rgb( tmp[,,1], tmp[,,2], tmp[,,3] )
+    z <- 1:length(cols)
+    dim(z) <- dim(tmp[,,1])
+    image(z, col=cols, axes=FALSE, ...)
+  }
 
-	plot(x,y,type='n')
-	for(i in 1:10){
-		subplot(plot(logo),x[i],y[i],size=c(.3,.3))
-	}
+  logo <- readImage( paste( R.home('doc'), '/html/logo.jpg', sep='' ) )
+
+  x <- runif(10)
+  y <- runif(10)
+  plot(x,y, type='n')
+  for(i in 1:10) {
+    subplot(image.EBImage(logo), x[i], y[i], size=c(0.3,0.3))
+  }
 }
+
 }
 \keyword{aplot}% at least one, from doc/KEYWORDS
 \keyword{dplot}

@@ -5,7 +5,7 @@ function(x, mu=0, stdev,
                    conf.level = 0.95, ... ){
 
   if(missing(stdev) && missing(sd)) stop("You must specify a Standard Deviation of the population")
-  
+
   alternative <- match.arg(alternative)
 
   n <- length(x)
@@ -16,12 +16,12 @@ function(x, mu=0, stdev,
 
   out$parameter <- c(n=n,"Std. Dev." = sd,
                      "Std. Dev. of the sample mean" = sd/sqrt(n))
-  
+
   out$p.value <- switch(alternative,
                     two.sided = 2*pnorm(abs(z),lower.tail=FALSE),
                     less = pnorm(z),
-                    greater = 1-pnorm(z) )
-  
+                    greater = pnorm(z, lower.tail=FALSE) )
+
   out$conf.int <- switch(alternative,
                          two.sided = mean(x) +
                            c(-1,1)*qnorm(1-(1-conf.level)/2)*sd/sqrt(n),
@@ -36,7 +36,7 @@ function(x, mu=0, stdev,
   out$method <- "One Sample z-test"
   out$data.name <- deparse(substitute(x))
   names(out$estimate) <- paste("mean of", out$data.name)
-  
+
   return(out)
 }
 

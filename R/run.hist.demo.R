@@ -1,6 +1,8 @@
 "run.hist.demo" <-
 function(x) {
 
+  if(!require(tcltk)){stop('The tcltk package is needed')}
+
   pr <- pretty(x)
   xr <- range(pr)
   xr[1] <- 4*xr[1] - 3*min(x)
@@ -10,7 +12,7 @@ function(x) {
 
     hist(x,seq( slider(no=2), slider(no=3), length=slider(no=1)+1),
          xlim=xr)
-    
+
   }
 
   slider(hist.refresh, c('Number of bins','Minimum','Maximum'),

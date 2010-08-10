@@ -1,5 +1,7 @@
-HWidentify <- function(x,y,label=seq_along(x), xlab=deparse(substitute(x)),
-				ylab=deparse(substitute(y)), ...) {
+HWidentify <- function(x,y,label=seq_along(x), lab.col='darkgreen',
+                           pt.col='red', adj=c(0,0), clean=TRUE,
+                           xlab=deparse(substitute(x)),
+			   ylab=deparse(substitute(y)),  ...) {
 
 	plot(x,y,xlab=xlab, ylab=ylab,...)
 
@@ -14,9 +16,9 @@ HWidentify <- function(x,y,label=seq_along(x), xlab=deparse(substitute(x)),
 		}
 		w <- which.min(d)
 		plot(x,y,xlab=xlab,ylab=ylab,...)
-		points(x[w],y[w], cex=2, col='red')
+		points(x[w],y[w], cex=2, col=pt.col)
 		text(grconvertX(xx,from='ndc'),grconvertY(yy,from='ndc'),
-			label[w], col='green', adj=c(0,0))
+			label[w], col=lab.col, adj=adj)
 		return()
 	}
 
@@ -26,6 +28,7 @@ HWidentify <- function(x,y,label=seq_along(x), xlab=deparse(substitute(x)),
 	}
 
 	getGraphicsEvent('Right Click to exit', onMouseMove = mm, onMouseDown=md)
+        if(clean) mm( , Inf, Inf )
 	invisible()
 }
 
@@ -36,8 +39,10 @@ HWidentify <- function(x,y,label=seq_along(x), xlab=deparse(substitute(x)),
 
 
 
-HTKidentify <- function(x,y,label=seq_along(x), xlab=deparse(substitute(x)),
-				ylab=deparse(substitute(y)), ...) {
+HTKidentify <- function(x,y,label=seq_along(x), lab.col='darkgreen',
+                            pt.col='red', adj=c(0,0),
+                            xlab=deparse(substitute(x)),
+			    ylab=deparse(substitute(y)), ...) {
 
     if( !require(tkrplot) ) stop ('tkrplot package is required')
 
@@ -48,7 +53,7 @@ HTKidentify <- function(x,y,label=seq_along(x), xlab=deparse(substitute(x)),
 
 	replot <- function() {
 		d <- (xx-dx)^2 + (yy-dy)^2
-		if ( all( d > .01 ) ){
+		if ( all( d > .01 ) ) {
 			plot(x,y,xlab=xlab,ylab=ylab,...)
 			if( length(dx)==0 ) {
 				dx <<- grconvertX(x, to='ndc')
@@ -58,9 +63,9 @@ HTKidentify <- function(x,y,label=seq_along(x), xlab=deparse(substitute(x)),
 		}
 		w <- which.min(d)
 		plot(x,y,xlab=xlab,ylab=ylab,...)
-		points(x[w],y[w], cex=2, col='red')
+		points(x[w],y[w], cex=2, col=pt.col)
 		text(grconvertX(xx,from='ndc'),grconvertY(yy,from='ndc'),
-			label[w], col='green', adj=c(0,0))
+			label[w], col=lab.col, adj=adj)
 	}
 
 	tt <- tktoplevel()

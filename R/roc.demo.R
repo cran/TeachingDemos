@@ -1,8 +1,8 @@
 "roc.demo" <-
 function(x=rnorm(25,10,1), y=rnorm(25,11,1.5) ){
 
-  if(!exists('slider.env')) slider.env <<- new.env()
-  #library(tcltk)
+    if(!require(tcltk)){stop('The tcltk package is needed')}
+    if(!exists('slider.env')) slider.env <<- new.env()
 
   range.min <- min(x,y) - 0.1 * diff(range(x,y))
   range.max <- max(x,y) + 0.1 * diff(range(x,y))

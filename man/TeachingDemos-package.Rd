@@ -91,7 +91,7 @@
     tkexamp \tab create plots that can have parameters adjusted
     interactively.\cr
     triplot \tab Trilinear plot for 3 proportions.\cr
-    txtStart/etxtStart \tab Save commands and output to a text file
+    txtStart/etxtStart/wdtxtStart \tab Save commands and output to a text file
   (possibly for post processing with enscript).\cr
     zoomplot \tab recreate the current plot with different x/y limits
     (zoom in out).\cr
