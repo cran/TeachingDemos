@@ -1,15 +1,15 @@
 export(bct,char2seed,chisq.detail,ci.examp,clipplot,clt.examp,cnvrt.coords,
        dice,dots,dots2,emp.hpd,faces,faces2,fagan.plot,
        flip.rgl.coin,gp.close,gp.open,gp.plot,gp.splot,gp.send,hpd,
-       identify.Map,Pvalue.norm.sim,Pvalue.binom.sim,
+       Pvalue.norm.sim,Pvalue.binom.sim,
        run.Pvalue.norm.sim,run.Pvalue.binom.sim,
-       identify.polylist,lattice.demo,limits.g,loess.demo,mle.demo,
+       lattice.demo,limits.g,loess.demo,mle.demo,
        ms.arrows,ms.female,ms.filled.polygon,ms.male,ms.polygon,ms.polygram,
        ms.sunflowers,ms.image,my.symbols,panel.dice,plot.dice,plot.rgl.coin,
-       plot.rgl.die,plot2script,plotFagan,plotFagan2,plotFagan.old,
+       plot.rgl.die,plot2script,plotFagan,plotFagan2,plotFagan.old,ms.face,
        plotFagan2.old,power.examp,updateusr,pairs2,
-       prepanel.dice,project.Map,put.points.demo,shadowtext,
-       recenter.Map,rgl.Map,roc.demo,roll.rgl.die,rotate.cloud,
+       prepanel.dice,put.points.demo,shadowtext,
+       rgl.Map,roc.demo,roll.rgl.die,rotate.cloud,
        rotate.persp,rotate.wireframe,run.ci.examp,run.cor.examp,
        run.cor2.examp,run.old.cor.examp,run.old.cor2.examp,
        run.hist.demo,run.power.examp,run.power.examp.old,sd.g,slider,
@@ -24,14 +24,13 @@ export(bct,char2seed,chisq.detail,ci.examp,clipplot,clt.examp,cnvrt.coords,
        Predict.Plot, TkPredict, "%<%", "%<=%", panel.my.symbols,
        SnowsPenultimateNormalityTest,vis.test,vt.qqnorm,vt.normhist,
        vt.scatterpermute,vt.tspermute,vt.residpermute,vt.residsim,
-       SnowsCorrectlySizedButOtherwiseUselessTestOfAnything)
+       SnowsCorrectlySizedButOtherwiseUselessTestOfAnything,petals,cal,
+       TkBuildDist,TkBuildDist2)
 
 
 
 
 
-S3method(identify, Map)
-S3method(identify, polylist)
 S3method(plot, dice)
 
 

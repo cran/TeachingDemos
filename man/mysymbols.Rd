@@ -6,7 +6,8 @@
   symbols defined by the user rather than a prespecified set of
   symbols.}
 \usage{
-my.symbols(x, y=NULL, symb, inches=1, add=TRUE,
+my.symbols(x, y=NULL, symb, inches=1, xsize, ysize,
+                       add=TRUE,
                        vadj=0.5, hadj=0.5,
                        symb.plots=FALSE,
                        xlab=deparse(substitute(x)),
@@ -25,7 +26,14 @@ my.symbols(x, y=NULL, symb, inches=1, add=TRUE,
   (points on the range/domain of -1 to 1), or it can do the plotting
   itself.}
   \item{inches}{The size of the square containing the symbol in inches
-  (note: unlike \code{symbols} this cannot be \code{FALSE}).}
+  (note: unlike \code{symbols} this cannot be \code{FALSE}).  This is
+  ignored if \code{xsize} or \code{ysize} is specified.}
+  \item{xsize}{The width of the bounding box(s) of the symbols in the same
+    units as the \code{x} variable.  Computed from \code{ysize} or
+    \code{inches} if not specified.  Can be a single value or a vector.}
+  \item{ysize}{The height of the bounding box(s) of the symbols in the
+    same units as the \code{y} variable.  Computed from \code{xsize} or
+    \code{inches} if not specified.  Can be a single value or a vector.}
   \item{add}{if 'add' is 'TRUE' then the symbols are added to the
   existing plot, otherwise a new plot is created.}
   \item{vadj,hadj}{Numbers between 0 and 1 indicating how 'x' and 'y'
@@ -66,6 +74,15 @@ my.symbols(x, y=NULL, symb, inches=1, add=TRUE,
   functions), or low level plotting functions (\code{lines},
   \code{points}, etc) can be used; in this case they should add things
   to a plot with 'x' and 'y' limits of -1 to 1.
+
+  The size of the symbols can be specified by using \code{inches} in
+  which case the symbol will be set inside of squares whose sizes are
+  \code{inches} size based on the plotting device.  The size can also be
+  set using \code{xsize} and/or \code{ysize} which use the same units as
+  the \code{x} and/or \code{y} variables.  If only one is specified then
+  the box will be square.  If both are specified and they do not match
+  the aspect ratio of the plot then the bounding box will not be square
+  and the symbol will be distorted.
 }
 \value{
   This function is run for its side effect of plotting, it returns an
@@ -121,13 +138,22 @@ tmpfun <- function(w,data,ylim,...){
   tmp <- data[[w]]
   plot(seq(along=tmp),tmp, type='l', xlab='',ylab='',
        axes=FALSE, ylim=ylim)
-  abline(h=0, col='grey')
+  lines(par('usr')[1:2], c(0,0), col='grey')
 }
 
 my.symbols(x,y, symb=tmpfun, inches=0.4, add=FALSE, symb.plots=TRUE,
   xlab='Month',ylab='Adjusted CO2', xlim=c(0.5,12.5),
   ylim=c(-0.012,0.012),
   w=1:12, MoreArgs=list(data=tmp.r,ylim=yl) )
+
+# using xsize and ysize
+plot( 1:10, (1:10)*100, type='n', xlab='', ylab='' )
+my.symbols( 5, 500, ms.polygon, n=250, inches=1.5 )
+my.symbols( 5, 500, ms.polygon, n=250, xsize=2, col='blue' )
+my.symbols( 5, 500, ms.polygon, n=250, ysize=200, col='green' )
+my.symbols( 5, 500, ms.polygon, n=250, xsize=2, ysize=200, col='red' )
+abline( v=c(4,6), col='grey' )
+abline( h=c(400, 600), col='grey' )
 
 
 # hand crafted hexagonal grid

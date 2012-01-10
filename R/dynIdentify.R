@@ -19,9 +19,9 @@ dynIdentify <- function(x,y,labels=seq_along(x),
 
     replot()
 
-    tmp <- cnvrt.coords(x,y, input='usr')$dev
-    dx <- tmp$x
-    dy <- tmp$y  # device coordinates of points
+#    tmp <- cnvrt.coords(x,y, input='usr')$dev
+    dx <- grconvertX(x, to='ndc')
+    dy <- grconvertY(y, to='ndc')  # device coordinates of points
 
     widths <- strwidth(labels)/2
     heights <- strheight(labels)/2
@@ -35,22 +35,22 @@ dynIdentify <- function(x,y,labels=seq_along(x),
                          lineends=list(x=llx, y=lly) )
             return(out)
         }
-        tmp <- cnvrt.coords(lx,ly, input='usr')$dev
-        i <- which.min( (tmp$x-x)^2 + (tmp$y-y)^2 )
+#        tmp <- cnvrt.coords(lx,ly, input='usr')$dev
+        i <- which.min( (grconvertX(lx,to='ndc')-x)^2 + (grconvertY(ly,to='ndc')-y)^2 )
         ci <<- i
         NULL
     }
 
     mouse.up <- function(buttons, x, y){
-        tmp <- cnvrt.coords(x,y, input='dev')$usr
-        cx <- tmp$x
-        cy <- tmp$y
+#        tmp <- cnvrt.coords(x,y, input='dev')$usr
+        cx <- grconvertX(x, from='ndc')
+        cy <- grconvertY(y, from='ndc')
 
         tmpx <- cx + corners[,1]*widths[ci]
         tmpy <- cy + corners[,2]*heights[ci]
-        tmp <- cnvrt.coords(tmpx,tmpy, input='usr')$dev
-        i <- which.min( (dx[ci] - tmp$x)^2 +
-                       (dy[ci] - tmp$y)^2 )
+#        tmp <- cnvrt.coords(tmpx,tmpy, input='usr')$dev
+        i <- which.min( (dx[ci] - grconvertX(tmpx,to='ndc'))^2 +
+                       (dy[ci] - grconvertY(tmpy, to='ndc'))^2 )
 #        tmp <- lx; tmp[ci] <- cx; lx <<- tmp
 #        tmp <- ly; tmp[ci] <- cy; ly <<- tmp
 #        tmp <- llx; tmp[ci] <- tmpx[i]; llx <<- tmp
@@ -100,20 +100,20 @@ TkIdentify <- function(x,y,labels=seq_along(x), hscale=1.75, vscale=1.75,
         text(lx,ly,labels)
         if(first) {
             first <<- FALSE
-            tmp <- cnvrt.coords(x,y, input='usr')$dev
-            dx <<- tmp$x
-            dy <<- tmp$y
+#            tmp <- cnvrt.coords(x,y, input='usr')$dev
+            dx <<- grconvertX(x, to='ndc')
+            dy <<- grconvertY(y, to='ndc')
             widths <<- strwidth(labels)/2
             heights <<- strheight(labels)/2
-            tmp <- cnvrt.coords(c(0,1),c(0,1), input='dev')$usr
-            ul <<- tmp$x[1]
-            ur <<- tmp$x[2]
-            ub <<- tmp$y[1]
-            ut <<- tmp$y[2]
+#            tmp <- cnvrt.coords(c(0,1),c(0,1), input='dev')$usr
+            ul <<- grconvertX(0, from='ndc')
+            ur <<- grconvertX(1, from='ndc')
+            ub <<- grconvertY(0, from='ndc')
+            ut <<- grconvertY(1, from='ndc')
         }
-        tmp <- cnvrt.coords(lx,ly, input='usr')$dev
-        dlx <<- tmp$x
-        dly <<- tmp$y
+#        tmp <- cnvrt.coords(lx,ly, input='usr')$dev
+        dlx <<- grconvertX(lx, to='ndc')
+        dly <<- grconvertY(ly, to='ndc')
     }
 
     tt <- tktoplevel()

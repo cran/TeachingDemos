@@ -1,10 +1,13 @@
+
+
 tkexamp <- function(FUN, param.list, vscale=1.5, hscale=1.5, wait=FALSE,
-                    plotloc='top', print=FALSE,...) {
+                    plotloc='top', an.play=TRUE, print=FALSE,...) {
 
     if(!require("tkrplot")) {
         stop('The tkrplot package is needed')
     }
 
+    tke.tmp.env <- environment()
 
     ocl <- cl <- substitute(FUN)
     exargs <- as.list(quote(list()))
@@ -254,6 +257,138 @@ tkexamp <- function(FUN, param.list, vscale=1.5, hscale=1.5, wait=FALSE,
                 exargs <<- c(exargs, tmpl)
                 next
             }
+            if( tolower(el[[1]])=='animate' ) {
+                if(an.play && require('tcltk2')) {
+                    tkpack(fr <- tkframe(frame), side=pkdir)
+                    tkpack(tklabel(fr,text=eln),side='left',anchor='s',pady=4)
+                    tmp <- tclVar()
+                    tclvalue(tmp) <- if('init' %in% names(el)) {
+                        el$init
+                    } else if( 'from' %in% names(el) ) {
+                        el$from
+                    } else { 1 }
+                    alist <- list(fr, variable=tmp, orient='horizontal',
+                                  command=function(...)tkrreplot(img,
+                                   hscale=as.numeric(tclvalue(hsc)),
+                                   vscale=as.numeric(tclvalue(vsc))) )
+                    el2 <- el[-1]
+                    tke.tmp.env$an.delay <- if('delay' %in% names(el) ) {
+                        el$delay
+                    } else {100}
+                    el2$delay <- NULL
+                    el2$init <- NULL
+                    alist <- c(alist,el2)
+                    tkpack( do.call('tkscale',alist), side='left')
+                    tke.tmp.env$an.inc <- an.inc <- if('resolution' %in% names(el)) {
+                        el$resolution
+                    } else { 1 }
+                    tke.tmp.env$tke.tmp <- tmp
+                    tke.tmp.env$an.to <- an.to <- el$to
+                    tke.tmp.env$img <- img
+                    tke.tmp.env$hsc <- hsc
+                    tke.tmp.env$vsc <- vsc
+                    #tmpc <- as.character(tmp)
+
+                  #  fname <- paste('tmp.tke.an.',eln, sep='')
+ #                   tmp.expr <- bquote( {
+ #                       tcl("set", .(as.character(tmp)), as.numeric(tclvalue(.(as.character(tmp)))) + an.inc)
+ #                           tkrreplot( img,
+ #                                     hscale=as.numeric(tclvalue(hsc)),
+ #                                     vscale=as.numeric(tclvalue(vsc)))
+ #                       })
+
+
+#                    tke.tmp.env$tmp.tke.an <- function() {
+#                        print(sys.frames())
+#                        print(sys.calls())
+#                        n <- ( an.to - as.numeric(tclvalue(tke.tmp)) )/an.inc
+#                        tclTaskSchedule(an.delay, tmp.expr, redo=n)
+#                            tclvalue(tke.tmp) <- as.numeric(tclvalue(tke.tmp)) + an.inc
+#                            tkrreplot( img,
+#                                      hscale=as.numeric(tclvalue(hsc)),
+#                                      vscale=as.numeric(tclvalue(vsc)))
+#                        }, redo=n)
+#                    }
+
+                    tmpc <- as.character(tmp)
+                    tmp.tke.an <- function() {
+                        n <- (an.to - as.numeric(tclvalue(tmp)))/an.inc
+                        seq.val <- seq( as.numeric(tclvalue(tmp)), an.to,
+                                             by=an.inc )
+                        seq.wait <- seq( an.delay, by=an.delay, length=n+1)
+                        for( i in seq_len(n+1) ) {
+                            tmpfun <- eval(bquote(function(){
+                                tcl("set", .(tmpc), .(seq.val[i]))
+                                tkrreplot(img,
+                                          hscale=as.numeric(tclvalue(hsc)),
+                                          vscale=as.numeric(tclvalue(vsc)))
+                            }))
+                            tclAfter(seq.wait[i], tmpfun)
+                        }
+                    }
+
+
+
+                    tkpack( tkbutton(fr, text="Play", command=tmp.tke.an),
+                           side='left')
+                    tmpcl <- as.list(cl)
+                    tmpl <- list(substitute(as.numeric(tclvalue(VNAME)),
+                                            list(VNAME=as.character(tmp))))
+                    names(tmpl) <- eln
+                    cl <<- as.call(c(tmpcl,tmpl))
+                    exargs <<- c(exargs,tmpl)
+                } else {   # using button hold
+                    tkpack(fr <- tkframe(frame), side=pkdir)
+                    tkpack(tklabel(fr,text=eln),side='left',anchor='s',pady=4)
+                    tmp <- tclVar()
+                    tclvalue(tmp) <- if('init' %in% names(el)) {
+                        el$init
+                    } else if( 'from' %in% names(el) ) {
+                        el$from
+                    } else { 1 }
+                    alist <- list(fr, variable=tmp, orient='horizontal',
+                                  command=function(...)tkrreplot(img,
+                                   hscale=as.numeric(tclvalue(hsc)),
+                                   vscale=as.numeric(tclvalue(vsc))) )
+                    el2 <- el[-1]
+
+                    tke.tmp.env$an.delay <- an.delay <- if('delay' %in% names(el) ) {
+                        el$delay
+                    } else {100}
+                    el2$delay <- NULL
+                    el2$init <- NULL
+                    alist <- c(alist,el2)
+                    tkpack( do.call('tkscale',alist), side='left')
+                    tke.tmp.env$an.inc <- an.inc <- if('resolution' %in% names(el)) {
+                        el$resolution
+                    } else { 1 }
+                    tke.tmp.env$an.to <- an.to <- el$to
+                    tke.tmp.env$tke.tmp <- tmp
+                    tke.tmp.env$img <- img
+                    tke.tmp.env$hsc <- hsc
+                    tke.tmp.env$vsc <- vsc
+
+                    tke.tmp.env$tmp.tke.an <- function() {
+                        if( as.numeric(tclvalue(tke.tmp)) < an.to ) {
+                            tclvalue(tke.tmp) <- as.numeric(tclvalue(tke.tmp)) + an.inc
+                            tkrreplot(img,
+                                      hscale=as.numeric(tclvalue(hsc)),
+                                      vscale=as.numeric(tclvalue(vsc)))
+                        }
+                    }
+
+                    tkpack( tkbutton(fr, text='Inc', command=tmp.tke.an,
+                                     repeatdelay=1, repeatinterval=an.delay
+                    ), side='left')
+                    tmpcl <- as.list(cl)
+                    tmpl <- list(substitute(as.numeric(tclvalue(VNAME)),
+                                            list(VNAME=as.character(tmp))))
+                    names(tmpl) <- eln
+                    cl <<- as.call(c(tmpcl,tmpl))
+                    exargs <<- c(exargs,tmpl)
+                }
+                next
+            }
         }
     }
 
@@ -280,13 +415,10 @@ tkexamp <- function(FUN, param.list, vscale=1.5, hscale=1.5, wait=FALSE,
     tkpack(tklabel(tfr,text="      Vscale: "), side='left')
     tkpack(tkentry(tfr,textvariable=vsc,width=6), side='left')
 
-
     fillframe(tt, param.list, plotloc, 'tkv')
     PlotYet <- TRUE
     tkrreplot(img, hscale=as.numeric(tclvalue(hsc)),
               vscale=as.numeric(tclvalue(vsc)))
-
-
 
     if(wait){
         tkwait.window(tt)

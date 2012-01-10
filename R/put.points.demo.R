@@ -5,12 +5,12 @@ function( x=NULL, y=NULL, lsline=TRUE) {
   on.exit(par(old.par))
 
   options(locatorBell=FALSE)
-  
-  mode='add'
-  
-  layout( matrix( c(2,1), nrow=1), width=c(3,1) )
 
-  
+  mode='add'
+
+  layout( matrix( c(2,1), nrow=1), widths=c(3,1) )
+
+
   repeat {
 
     ## right panel
@@ -54,8 +54,10 @@ function( x=NULL, y=NULL, lsline=TRUE) {
 
     if (pnt$x > par('usr')[2]) { ## clicked in left panel
 
-      pnt2 <- cnvrt.coords(pnt)$fig
-      
+#      pnt2 <- cnvrt.coords(pnt)$fig
+      pnt2 <- list()
+      pnt2$y <- grconvertY(pnt$y, to='nfc')
+
       if( pnt2$y > .8 ){
         break
       }
@@ -73,7 +75,7 @@ function( x=NULL, y=NULL, lsline=TRUE) {
       }
       mode <- 'mov'
       next
-      
+
     } else { ## clicked in right panel
       if( mode=='add' ) {
         x <- c(x,pnt$x)
@@ -95,7 +97,7 @@ function( x=NULL, y=NULL, lsline=TRUE) {
         next
       }
     }
-    
+
   } ## end repeat
 
 }

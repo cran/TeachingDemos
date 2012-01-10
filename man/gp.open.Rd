@@ -11,10 +11,10 @@
   These functions are alpha level at best, use at your own risk.}
 \usage{
 gp.open(where='c:/progra~1/GnuPlot/bin/pgnuplot.exe')
-gp.close(pipe=.gp)
-gp.send(cmd='replot',pipe=.gp)
-gp.plot(x,y,type='p',add=FALSE, title=deparse(substitute(y)),pipe=.gp)
-gp.splot(x,y,z, add=FALSE, title=deparse(substitute(z)), pipe=.gp, datafile=tempfile())
+gp.close(pipe=gpenv$gp)
+gp.send(cmd='replot',pipe=gpenv$gp)
+gp.plot(x,y,type='p',add=FALSE, title=deparse(substitute(y)),pipe=gpenv$gp)
+gp.splot(x,y,z, add=FALSE, title=deparse(substitute(z)), pipe=gpenv$gp, datafile=tempfile())
 }
 \arguments{
   \item{where}{Path to GnuPlot Executable}

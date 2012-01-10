@@ -59,7 +59,7 @@ function(x, y, span = 2/3, degree = 1, nearest = F, xlim =
 		s <- abs(x - x0) <= d
 		w[s] <- (1 - (abs(x[s] - x0)/d)^3)^3
 		fitPlot(x, y, est, fit.d, xl, yl)
-		symbols(x, y, circle = sqrt(w), inches = 0.3,
+		symbols(x, y, circles = sqrt(w), inches = 0.3,
 			add = T, col = 'lightgrey')
 		if(degree > 0)
 			lines(x, fitted(lm(y ~ poly(x, degree

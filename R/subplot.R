@@ -1,10 +1,11 @@
 subplot <- function(fun, x, y=NULL, size=c(1,1), vadj=0.5, hadj=0.5,
                     inset=c(0,0), type=c('plt','fig'), pars=NULL){
 
-  old.par <- par(no.readonly=TRUE)
-  on.exit(par(old.par))
+#  old.par <- par(no.readonly=TRUE)
 
-  type <- match.arg(type)
+    type <- match.arg(type)
+    old.par <- par( c(type, 'usr', names(pars) ) )
+    on.exit(par(old.par))
 
   if(missing(x)) x <- locator(2)
 
@@ -37,23 +38,29 @@ subplot <- function(fun, x, y=NULL, size=c(1,1), vadj=0.5, hadj=0.5,
 
   if(length(xy$x) != 2){
     pin <- par('pin')
-    tmp <- cnvrt.coords(xy$x[1],xy$y[1],'usr')$plt
+ #   tmp <- cnvrt.coords(xy$x[1],xy$y[1],'usr')$plt
+    tmpx <- grconvertX( xy$x[1], to='npc' )
+    tmpy <- grconvertY( xy$y[1], to='npc' )
 
-    x <- c( tmp$x - hadj*size[1]/pin[1],
-            tmp$x + (1-hadj)*size[1]/pin[1] )
-    y <- c( tmp$y - vadj*size[2]/pin[2],
-            tmp$y + (1-vadj)*size[2]/pin[2] )
+    x <- c( tmpx - hadj*size[1]/pin[1],
+            tmpx + (1-hadj)*size[1]/pin[1] )
+    y <- c( tmpy - vadj*size[2]/pin[2],
+            tmpy + (1-vadj)*size[2]/pin[2] )
 
-    xy <- cnvrt.coords(x,y,'plt')$fig
+ #   xy <- cnvrt.coords(x,y,'plt')$fig
+    xyx <- grconvertX(x, from='npc', to='nfc')
+    xyy <- grconvertY(y, from='npc', to='nfc')
   } else {
-    xy <- cnvrt.coords(xy,,'usr')$fig
+#    xy <- cnvrt.coords(xy,,'usr')$fig
+      xyx <- grconvertX(x, to='nfc')
+      xyy <- grconvertY(y, to='nfc')
   }
 
   par(pars)
   if(type=='fig'){
-      par(fig=c(xy$x,xy$y), new=TRUE)
+      par(fig=c(xyx,xyy), new=TRUE)
   } else {
-      par(plt=c(xy$x,xy$y), new=TRUE)
+      par(plt=c(xyx,xyy), new=TRUE)
   }
   fun
   tmp.par <- par(no.readonly=TRUE)

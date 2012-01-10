@@ -10,7 +10,7 @@
 }
 \usage{
 dice(rolls = 1, ndice = 2, sides = 6, plot.it = FALSE, load = rep(1, sides))
-plot.dice(x, ...)
+\method{plot}{dice}(x, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -62,7 +62,7 @@ plot(tmp)
 
 # a loaded die
 table(tmp <- dice(100,1,plot.it=TRUE, load=6:1 ) )
-mean(tmp)
+colMeans(tmp)
 
 # Efron's dice
 ed <- list( rep( c(4,0), c(4,2) ),

@@ -1,3 +1,41 @@
+New in TeachingDemos version 2.8
+
+* Changed many functions to no longer use partial match of arguments,
+  this makes the newer versions happy and results in better code.
+
+* Internal changes to R2txt.R and gnuplot.R to use an environment
+  rather than a list for storing package local variables, this
+  eliminated the need for "<<-" and unlocking of bindings and makes
+  the code cleaner.
+
+* arguments xsize and ysize added to my.symbols to allow setting the
+  size of the symbols using the scale of the x or y variable.
+
+* new functions TkBuildDist and TkBuildDist2 to interactively create a
+  (prior) distrbution.
+
+* new function cal to plot calendars
+
+* new 'animate' option for tkexamp
+
+* new function 'petals' to play the petals around the rose game (and
+  demonstrate a simple code obscuration).
+
+* fixed bug in subplot when subplotting inside mfrow/mfcol figures.
+
+* Added ldsgrowth dataset
+
+* Modified subplot and other functions to no longer need cnvrt.coords.
+
+* cnvert.coords is now depricated, use grconvertX and grconvertY from
+  the graphics package instead.
+
+* Functions identify.Map, identify.polylist, recenter.Map, and
+  project.Map have been removed as there is now better functionality
+  in the sp package.
+
+* The state.vbm object has been moved to the maptools package.
+
 New in TeachingDemos version 2.7
 
 * new function ms.image for plotting images using my.symbols.

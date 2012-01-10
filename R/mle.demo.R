@@ -7,14 +7,14 @@ function(x=rnorm(10, 10, 2), start.mean = mean(x)-start.sd,
   if(!exists('slider.env')) slider.env <<- new.env()
   #library(tcltk)
 
-  mu <- start.mean; assign('mu',tclVar(mu),env=slider.env)
-  sig <- start.sd;  assign('sig',tclVar(sig),env=slider.env)
+  mu <- start.mean; assign('mu',tclVar(mu),envir=slider.env)
+  sig <- start.sd;  assign('sig',tclVar(sig),envir=slider.env)
 
   .mu <- .sig <- .ll <- numeric(0)
 
   mle.refresh <- function(...){
-    mu <- as.numeric(evalq(tclvalue(mu), env=slider.env))
-    sig <- as.numeric(evalq(tclvalue(sig), env=slider.env))
+    mu <- as.numeric(evalq(tclvalue(mu), envir=slider.env))
+    sig <- as.numeric(evalq(tclvalue(sig), envir=slider.env))
 
     old.par <- par(no.readonly=T)
     on.exit(par(old.par))
@@ -64,8 +64,8 @@ function(x=rnorm(10, 10, 2), start.mean = mean(x)-start.sd,
                        orient='horiz',
                        resolution=tmp[2] - tmp[1],showvalue=T),
          side='left')
-  assign('sc',sc, env=slider.env)
-  evalq(tkconfigure(sc, variable=mu), env=slider.env)
+  assign('sc',sc, envir=slider.env)
+  evalq(tkconfigure(sc, variable=mu), envir=slider.env)
 
   # sigma
   tkpack(fr <- tkframe(m), side='top')
@@ -78,8 +78,8 @@ function(x=rnorm(10, 10, 2), start.mean = mean(x)-start.sd,
                        orient='horiz',
                        resolution=tmp[2]-tmp[1], showvalue=T),
          side='left')
-  assign('sc',sc,env=slider.env)
-  evalq(tkconfigure(sc, variable=sig), env=slider.env)
+  assign('sc',sc,envir=slider.env)
+  evalq(tkconfigure(sc, variable=sig), envir=slider.env)
 
 
 

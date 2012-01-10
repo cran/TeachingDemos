@@ -5,6 +5,10 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ Functions to plot Shewhart g chart }
 \description{
+  These functions are now in the qcc package so you don't need to load
+  TeachingDemos to use them.  They will eventually dissapear from this
+  package.
+
   These functions are used to compute statistics required by the g chart
   (geometric distribution) for use with the qcc package.
 }
@@ -36,7 +40,7 @@ limits.g(center, std.dev, sizes, conf)
 
   These functions work with the qcc package and may someday be moved
   into the qcc package.
-  
+
   The g chart plots the number of non-events between events.  np charts
   do not work well when the probability of an event is rare (see example
   below).  Instead of plotting the number of events, the g chart plots

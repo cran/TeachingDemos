@@ -28,11 +28,11 @@ zoomplot <- function( xlim, ylim=NULL ){
 	for(i in seq(along=tmp)){
 		fn <- tmp[[i]][[1]]
 		alst <- as.list(tmp[[i]][[2]])
-		tmp2 <- all.equal( .Primitive("locator"), fn)
+		tmp2 <- all.equal( '.Primitive("locator")', deparse(fn) )
 		if(is.logical(tmp2) && tmp2){
 			next
 		}
-		tmp2 <- all.equal( .Primitive("plot.window"), fn )
+		tmp2 <- all.equal( '.Primitive("plot.window")', deparse(fn) )
 		if(is.logical(tmp2) && tmp2) {
 			alst[[1]] <- xlim
 			alst[[2]] <- ylim

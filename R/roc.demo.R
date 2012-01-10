@@ -7,7 +7,7 @@ function(x=rnorm(25,10,1), y=rnorm(25,11,1.5) ){
   range.min <- min(x,y) - 0.1 * diff(range(x,y))
   range.max <- max(x,y) + 0.1 * diff(range(x,y))
 
-  cutoff <- range.max; assign('cutoff',tclVar(cutoff), env=slider.env)
+  cutoff <- range.max; assign('cutoff',tclVar(cutoff), envir=slider.env)
 
   .sens <-c(0,1)
   .spec <-c(0,1)
@@ -16,7 +16,7 @@ function(x=rnorm(25,10,1), y=rnorm(25,11,1.5) ){
   dy <- density(y)
 
   roc.refresh <- function(...){
-    cutoff <- as.numeric(evalq(tclvalue(cutoff), env=slider.env))
+    cutoff <- as.numeric(evalq(tclvalue(cutoff), envir=slider.env))
 
     old.par <- par(no.readonly=T)
     on.exit(par(old.par))
@@ -83,8 +83,8 @@ function(x=rnorm(25,10,1), y=rnorm(25,11,1.5) ){
                        showvalue=T),
          side='left')
 
-  assign('sc',sc, env=slider.env)
-  evalq(tkconfigure(sc, variable=cutoff), env=slider.env)
+  assign('sc',sc, envir=slider.env)
+  evalq(tkconfigure(sc, variable=cutoff), envir=slider.env)
 
 
 

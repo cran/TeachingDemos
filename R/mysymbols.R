@@ -1,4 +1,5 @@
-my.symbols <- function(x, y=NULL, symb, inches=1, add=TRUE,
+my.symbols <- function(x, y=NULL, symb, inches=1, xsize, ysize,
+                       add=TRUE,
                        vadj=0.5, hadj=0.5,
                        symb.plots=FALSE,
                        xlab=deparse(substitute(x)),
@@ -13,7 +14,14 @@ my.symbols <- function(x, y=NULL, symb, inches=1, add=TRUE,
   xy <- xy.coords(x,y,recycle=TRUE)
 
   pin <- par('pin')
-  tmp <- cnvrt.coords(xy,input='usr')$plt
+  usr <- par('usr')
+  usr.x <- usr[2] - usr[1]
+  usr.y <- usr[4] - usr[3]
+
+#  tmp <- cnvrt.coords(xy,input='usr')$plt
+  tmp <- list()
+  tmp$x <- grconvertX(xy$x, to='npc')
+  tmp$y <- grconvertY(xy$y, to='npc')
 
   tmp.xlen <- length(tmp$x)
 
@@ -27,14 +35,44 @@ my.symbols <- function(x, y=NULL, symb, inches=1, add=TRUE,
     vadj <- rep(vadj, length.out=tmp.xlen)
   }
 
+  if( missing(xsize) ) {
+      if( missing(ysize) ) { # use inches
+          x.low  <- tmp$x -    hadj *inches/pin[1]
+          x.high <- tmp$x + (1-hadj)*inches/pin[1]
+          y.low  <- tmp$y -    vadj *inches/pin[2]
+          y.high <- tmp$y + (1-vadj)*inches/pin[2]
+      } else { # ysize only
+          y.low  <- tmp$y - vadj*ysize/usr.y
+          y.high <- tmp$y + (1-vadj)*ysize/usr.y
+          x.low  <- tmp$x - hadj/pin[1]*pin[2]/usr.y*ysize
+          x.high <- tmp$x + (1-hadj)/pin[1]*pin[2]/usr.y*ysize
+      }
+  } else {
+      if( missing(ysize) ) { # xsize only
+          x.low  <- tmp$x - hadj*xsize/usr.x
+          x.high <- tmp$x + (1-hadj)*xsize/usr.x
+          y.low  <- tmp$y - vadj/pin[2]*pin[1]/usr.x*xsize
+          y.high <- tmp$y + (1-vadj)/pin[2]*pin[1]/usr.x*xsize
+      } else {  # both xsize and ysize
+          x.low  <- tmp$x - hadj*xsize/usr.x
+          x.high <- tmp$x + (1-hadj)*xsize/usr.x
+          y.low  <- tmp$y - vadj*ysize/usr.y
+          y.high <- tmp$y + (1-vadj)*ysize/usr.y
+      }
+  }
 
-  x.low  <- tmp$x -    hadj *inches/pin[1]
-  x.high <- tmp$x + (1-hadj)*inches/pin[1]
-  y.low  <- tmp$y -    vadj *inches/pin[2]
-  y.high <- tmp$y + (1-vadj)*inches/pin[2]
 
-  xy.low  <- cnvrt.coords(x.low,  y.low,  'plt')$fig
-  xy.high <- cnvrt.coords(x.high, y.high, 'plt')$fig
+#  xy.low  <- cnvrt.coords(x.low,  y.low,  'plt')$fig
+#  xy.high <- cnvrt.coords(x.high, y.high, 'plt')$fig
+
+  xy.low <- list()
+  xy.low$x <- grconvertX(x.low, from='npc', to='nfc')
+  xy.low$y <- grconvertY(y.low, from='npc', to='nfc')
+
+  xy.high <- list()
+  xy.high$x <- grconvertX(x.high, from='npc', to='nfc')
+  xy.high$y <- grconvertY(y.high, from='npc', to='nfc')
+
 
   plotfun <- if( is.function(symb) ) {
     if(symb.plots) {
