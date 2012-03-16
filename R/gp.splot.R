@@ -1,8 +1,8 @@
 gp.splot <- function(x, y, z, add= FALSE, title=deparse(substitute(z)),
-	pipe=.gp, datafile=tempfile()) {
+	pipe=gpenv$gp, datafile=tempfile()) {
 
 	tmp <- datafile
-	.gp.tempfiles <<- c(.gp.tempfiles, tmp)
+	gpenv$gp.tempfiles <- c(gpenv$gp.tempfiles, tmp)
 	tmp2 <- data.frame(x=x, y=y, z=z)
 	tmp2 <- tmp2[ order(x,y), ]
 	tmp3 <- split(tmp2, tmp2$x)

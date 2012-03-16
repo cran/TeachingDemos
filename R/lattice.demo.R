@@ -6,16 +6,16 @@ function(x,y,z, show3d=TRUE){
 
   if(!require(lattice)) stop('The lattice package is needed')
 
-  center <- mean(z); assign('center',tclVar(center), env=slider.env)
-  width <- diff(range(z))/20*3; assign('width',tclVar(width), env=slider.env)
+  center <- mean(z); assign('center',tclVar(center), envir=slider.env)
+  width <- diff(range(z))/20*3; assign('width',tclVar(width), envir=slider.env)
 
-  s3d <- 1; assign('s3d', tclVar(s3d), env=slider.env)
+  s3d <- 1; assign('s3d', tclVar(s3d), envir=slider.env)
 
   lattice.refresh <- function(...){
-    center <- as.numeric(evalq(tclvalue(center), env=slider.env))
-    width <- as.numeric(evalq(tclvalue(width), env=slider.env))
+    center <- as.numeric(evalq(tclvalue(center), envir=slider.env))
+    width <- as.numeric(evalq(tclvalue(width), envir=slider.env))
 
-    s3d <- as.numeric(evalq(tclvalue(s3d), env=slider.env))
+    s3d <- as.numeric(evalq(tclvalue(s3d), envir=slider.env))
 
     shingle.min <- max(min(z), center-width/2)
     shingle.max <- min(max(z), center+width/2)
@@ -63,8 +63,8 @@ function(x,y,z, show3d=TRUE){
                        resolution=diff(range(z))/25, showvalue=T),
          side='left')
 
-  assign('sc',sc,env=slider.env)
-  evalq(tkconfigure(sc, variable=center),env=slider.env)
+  assign('sc',sc,envir=slider.env)
+  evalq(tkconfigure(sc, variable=center),envir=slider.env)
 
   # width
   tkpack(fr <- tkframe(m), side='top')
@@ -73,8 +73,8 @@ function(x,y,z, show3d=TRUE){
                        to=diff(range(z)),orient='horiz',
                        resolution=diff(range(z))/20, showvalue=T),
          side='left')
-  assign('sc',sc,env=slider.env)
-  evalq(tkconfigure(sc, variable=width), env=slider.env)
+  assign('sc',sc,envir=slider.env)
+  evalq(tkconfigure(sc, variable=width), envir=slider.env)
 
   # show 3d
   tkpack(fr <- tkframe(m), side='top')
@@ -82,8 +82,8 @@ function(x,y,z, show3d=TRUE){
          side='left')
   tkpack(tklabel(fr, text='Show 3-D plot', width='25'),
          side='left')
-  assign('sc',sc,env=slider.env)
-  evalq(tkconfigure(sc, variable=s3d), env=slider.env)
+  assign('sc',sc,envir=slider.env)
+  evalq(tkconfigure(sc, variable=s3d), envir=slider.env)
 
   tkpack(tkbutton(m, text="Refresh", command=lattice.refresh),side='left')
 

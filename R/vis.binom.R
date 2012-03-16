@@ -6,19 +6,19 @@ function(){
   if(!exists('slider.env')) slider.env<<-new.env()
 
 
-  n <- 10  ; assign('n',tclVar(n),env=slider.env)
-  p <-  0.5; assign('p',tclVar(p),env=slider.env)
+  n <- 10  ; assign('n',tclVar(n),envir=slider.env)
+  p <-  0.5; assign('p',tclVar(p),envir=slider.env)
 
-  sn <- 0  ; assign('sn',tclVar(sn), env=slider.env)
-  sp <- 0  ; assign('sp',tclVar(sp), env=slider.env)
+  sn <- 0  ; assign('sn',tclVar(sn), envir=slider.env)
+  sp <- 0  ; assign('sp',tclVar(sp), envir=slider.env)
 
 
   binom.refresh <- function(...){
-    n <- as.numeric(evalq(tclvalue(n), env=slider.env))
-    p <- as.numeric(evalq(tclvalue(p), env=slider.env))
+    n <- as.numeric(evalq(tclvalue(n), envir=slider.env))
+    p <- as.numeric(evalq(tclvalue(p), envir=slider.env))
 
-    sn <- as.numeric(evalq(tclvalue(sn), env=slider.env))
-    sp <- as.numeric(evalq(tclvalue(sp), env=slider.env))
+    sn <- as.numeric(evalq(tclvalue(sn), envir=slider.env))
+    sp <- as.numeric(evalq(tclvalue(sp), envir=slider.env))
 
     mu <- p*n
     sd <- sqrt(n*p*(1-p))
@@ -67,8 +67,8 @@ function(){
                        orient='horiz',
                        resolution=1, showvalue=T),
          side='left')
-  assign('sc',sc,env=slider.env)
-  evalq(tkconfigure(sc, variable=n), env=slider.env)
+  assign('sc',sc,envir=slider.env)
+  evalq(tkconfigure(sc, variable=n), envir=slider.env)
 
   # p
   tkpack(fr <- tkframe(m), side='top')
@@ -77,8 +77,8 @@ function(){
                        orient='horiz',
                        resolution=0.01, showvalue=T),
          side='left')
-  assign('sc',sc,env=slider.env)
-  evalq(tkconfigure(sc, variable=p), env=slider.env)
+  assign('sc',sc,envir=slider.env)
+  evalq(tkconfigure(sc, variable=p), envir=slider.env)
 
   # show normal
   tkpack(fr <- tkframe(m), side='top')
@@ -86,8 +86,8 @@ function(){
          side='left')
   tkpack(tklabel(fr, text='Show Normal Approximation',width='25'),
          side='left')
-  assign('sc',sc,env=slider.env)
-  evalq(tkconfigure(sc, variable=sn), env=slider.env)
+  assign('sc',sc,envir=slider.env)
+  evalq(tkconfigure(sc, variable=sn), envir=slider.env)
 
   # show poisson
   tkpack(fr <- tkframe(m), side='top')
@@ -95,8 +95,8 @@ function(){
          side='left')
   tkpack(tklabel(fr, text='Show Poisson Approximation',width='25'),
          side='left')
-  assign('sc',sc,env=slider.env)
-  evalq(tkconfigure(sc, variable=sp), env=slider.env)
+  assign('sc',sc,envir=slider.env)
+  evalq(tkconfigure(sc, variable=sp), envir=slider.env)
 
   tkpack(tkbutton(m, text="Refresh", command=binom.refresh), side='left')
   tkpack(tkbutton(m, text="Exit", command=function()tkdestroy(m)),

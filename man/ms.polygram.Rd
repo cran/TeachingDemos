@@ -7,6 +7,7 @@
 \alias{ms.arrows}
 \alias{ms.sunflowers}
 \alias{ms.image}
+\alias{ms.face}
 \title{Symbol functions/data to be passed as symb argument to
   my.symbols}
 \description{
@@ -24,6 +25,7 @@ ms.female
 ms.arrows(angle, r=1, adj=0.5, length=0.1, ...)
 ms.sunflowers(n,r=0.3,adj=pi/2, ...)
 ms.image(img, transpose=TRUE, ...)
+ms.face(features, ...)
 }
 \arguments{
   \item{n}{The number of sides for polygons and polygrams, the number of
@@ -50,7 +52,12 @@ ms.image(img, transpose=TRUE, ...)
   \item{img}{ A 3 dimensional array representing an image such as
     produced by the png or EBImage packages.}
   \item{transpose}{Should the image be tranposed, use TRUE for images
-    imported using package png and FALSE for images imported using EBImage.}
+    imported using package png and FALSE for images imported using
+    EBImage.}
+  \item{features}{A list of data representing the features of
+    the faces, each element represents 1 face and the values need to be
+    scaled between 0 and 1, see \code{\link{faces}} for details on which
+    elements match which features.}
   \item{...}{additional parameters that will be passed to plotting
     functions or be ignored.}
 }
@@ -65,7 +72,8 @@ ms.image(img, transpose=TRUE, ...)
 }
 \author{Greg Snow \email{greg.snow@imail.org}}
 \seealso{\code{\link{my.symbols}}, \code{\link{polygon}},
-  \code{\link{arrows}}, \code{\link{lines}}
+  \code{\link{arrows}}, \code{\link{lines}}, \code{\link{faces}}, also see
+  \code{\link{rasterImage}} for an alternative to ms.image
 }
 \examples{
 
@@ -93,6 +101,13 @@ if( require(png) ) {
   my.symbols( runif(10), runif(10), ms.image, MoreArgs=list(img=img),
                  inches=0.5, symb.plots=TRUE, add=FALSE)
 }
+
+tmp.mtcars <- scale(mtcars, center=sapply(mtcars,min),
+	scale=sapply(mtcars,function(x) diff(range(x))) )
+tmp2.mtcars <- lapply( seq_len(nrow(tmp.mtcars)), function(i) tmp.mtcars[i,] )
+my.symbols(mtcars$wt, mtcars$mpg, ms.face, inches=0.3, features=tmp2.mtcars,
+	add=FALSE)
+
 
 }
 \keyword{dplot}

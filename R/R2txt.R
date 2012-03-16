@@ -1,12 +1,12 @@
-R2txt.vars <- list(a='test',b=letters,c=1:10)
+R2txt.vars <- new.env()
 
 R2txt <- function(cmd,res,s,vis) {
   if(R2txt.vars$first) {
-      R2txt.vars$first <<- FALSE
+      R2txt.vars$first <- FALSE
       if( R2txt.vars$res ) {
           sink()
           close(R2txt.vars$outcon)
-          R2txt.vars$outcon <<- textConnection(NULL, open='w')
+          R2txt.vars$outcon <- textConnection(NULL, open='w')
           sink(R2txt.vars$outcon, split=TRUE)
       }
   } else {
@@ -33,7 +33,7 @@ R2txt <- function(cmd,res,s,vis) {
               cat(tmp,sep='\n',file=R2txt.vars$con)
               sink()
               close(R2txt.vars$outcon)
-              R2txt.vars$outcon <<- textConnection(NULL, open='w')
+              R2txt.vars$outcon <- textConnection(NULL, open='w')
               sink(R2txt.vars$outcon, split=TRUE)
           }
       }
@@ -44,7 +44,6 @@ R2txt <- function(cmd,res,s,vis) {
 
 txtStart <- function(file, commands=TRUE, results=TRUE, append=FALSE,
                      cmdfile, visible.only=TRUE) {
-  unlockBinding('R2txt.vars', environment(R2txt))
 
   tmp <- TRUE
   if(is.character(file)){
@@ -60,9 +59,9 @@ txtStart <- function(file, commands=TRUE, results=TRUE, append=FALSE,
     stop('file must be a character string or connection')
   }
   if( tmp && isOpen(con) ) {
-    R2txt.vars$closecon <<- FALSE
+    R2txt.vars$closecon <- FALSE
   } else {
-    R2txt.vars$closecon <<- TRUE
+    R2txt.vars$closecon <- TRUE
     if(tmp){
         if(append) {
             open(con, open='a')
@@ -71,14 +70,14 @@ txtStart <- function(file, commands=TRUE, results=TRUE, append=FALSE,
         }
     }
   }
-  R2txt.vars$vis <<- visible.only
-  R2txt.vars$cmd <<- commands
-  R2txt.vars$res <<- results
-  R2txt.vars$con <<- con
-  R2txt.vars$first <<- TRUE
+  R2txt.vars$vis <- visible.only
+  R2txt.vars$cmd <- commands
+  R2txt.vars$res <- results
+  R2txt.vars$con <- con
+  R2txt.vars$first <- TRUE
 
   if(results) {
-      R2txt.vars$outcon <<- textConnection(NULL, open='w')
+      R2txt.vars$outcon <- textConnection(NULL, open='w')
       sink(R2txt.vars$outcon, split=TRUE)
   }
 
@@ -91,21 +90,21 @@ txtStart <- function(file, commands=TRUE, results=TRUE, append=FALSE,
       con2 <- cmdfile
     }
     if( tmp && isOpen(con2) ) {
-      R2txt.vars$closecon2 <<- FALSE
+      R2txt.vars$closecon2 <- FALSE
     } else {
-      R2txt.vars$closecon2 <<- TRUE
+      R2txt.vars$closecon2 <- TRUE
       if(tmp) {
           open(con2, open='w')
       }
     }
-    R2txt.vars$con2 <<- con2
-    R2txt.vars$cmdfile <<- TRUE
+    R2txt.vars$con2 <- con2
+    R2txt.vars$cmdfile <- TRUE
   } else {
-    R2txt.vars$cmdfile <<- FALSE
+    R2txt.vars$cmdfile <- FALSE
   }
 
-  R2txt.vars$prompt <<- unlist(options('prompt'))
-  R2txt.vars$continue <<- unlist(options('continue'))
+  R2txt.vars$prompt <- unlist(options('prompt'))
+  R2txt.vars$continue <- unlist(options('continue'))
 
   options(prompt= paste('txt',R2txt.vars$prompt,sep=''),
           continue= paste('txt',R2txt.vars$continue,sep='') )
@@ -129,12 +128,12 @@ txtStop <- function() {
       sink()
       close(R2txt.vars$outcon)
   }
-  R2txt.vars <<- list()
+  evalq( rm(list=ls()), envir=R2txt.vars )
   invisible(NULL)
 }
 
 txtComment <- function(txt,cmdtxt) {
-    R2txt.vars$first <<- TRUE
+    R2txt.vars$first <- TRUE
     if(!missing(txt)) {
         cat("\n",txt,"\n\n", file=R2txt.vars$con)
     }
@@ -144,7 +143,7 @@ txtComment <- function(txt,cmdtxt) {
 }
 
 txtSkip <- function(expr) {
-    R2txt.vars$first <<- TRUE
+    R2txt.vars$first <- TRUE
     expr
 }
 
@@ -153,11 +152,11 @@ txtSkip <- function(expr) {
 
 R2etxt <- function(cmd,res,s,vis) {
   if(R2txt.vars$first) {
-      R2txt.vars$first <<- FALSE
+      R2txt.vars$first <- FALSE
       if( R2txt.vars$res ) {
           sink()
           close(R2txt.vars$outcon)
-          R2txt.vars$outcon <<- textConnection(NULL, open='w')
+          R2txt.vars$outcon <- textConnection(NULL, open='w')
           sink(R2txt.vars$outcon, split=TRUE)
       }
   } else {
@@ -189,7 +188,7 @@ R2etxt <- function(cmd,res,s,vis) {
               cat(tmp,sep='\n',file=R2txt.vars$con)
               sink()
               close(R2txt.vars$outcon)
-              R2txt.vars$outcon <<- textConnection(NULL, open='w')
+              R2txt.vars$outcon <- textConnection(NULL, open='w')
               sink(R2txt.vars$outcon, split=TRUE)
           }
       }
@@ -203,7 +202,7 @@ etxtStart <- function(dir=tempfile('etxt'), file='transcript.txt',
                       cmdbg='white',cmdcol='red', resbg='white',
                       rescol='navy',combg='cyan',comcol='black',
                       cmdfile, visible.only=TRUE) {
-  unlockBinding("R2txt.vars", env=environment(R2txt))
+
   if( !file_test("-d", dir) ) {
       dir.create(dir)
   }
@@ -216,16 +215,16 @@ etxtStart <- function(dir=tempfile('etxt'), file='transcript.txt',
       con <- file(file2,open='w')
     }
     tmp <- FALSE
-    R2txt.vars$file2 <<- file2
+    R2txt.vars$file2 <- file2
   } else if( any( class(file) == 'connection' ) ) {
     con <- file
   } else {
     stop('file must be a character string or connection')
   }
   if(tmp && isOpen(con)) {
-    R2txt.vars$closecon <<- FALSE
+    R2txt.vars$closecon <- FALSE
   } else {
-    R2txt.vars$closecon <<- TRUE
+    R2txt.vars$closecon <- TRUE
     if(tmp) {
         if(append) {
             open(con, open='a')
@@ -234,12 +233,12 @@ etxtStart <- function(dir=tempfile('etxt'), file='transcript.txt',
         }
     }
   }
-  R2txt.vars$dir <<- dir
-  R2txt.vars$vis <<- visible.only
-  R2txt.vars$cmd <<- commands
-  R2txt.vars$res <<- results
-  R2txt.vars$con <<- con
-  R2txt.vars$first <<- TRUE
+  R2txt.vars$dir <- dir
+  R2txt.vars$vis <- visible.only
+  R2txt.vars$cmd <- commands
+  R2txt.vars$res <- results
+  R2txt.vars$con <- con
+  R2txt.vars$first <- TRUE
 
   tmp <- round( col2rgb( c(cmdbg,cmdcol,resbg,rescol,combg,comcol) )/255,
                3)
@@ -247,15 +246,15 @@ etxtStart <- function(dir=tempfile('etxt'), file='transcript.txt',
                  tmp[1,], ' ', tmp[2,], ' ', tmp[3,], '}',
                  sep='' )
 
-  R2txt.vars$cmdbg  <<- tmp2[1]
-  R2txt.vars$cmdcol <<- tmp2[2]
-  R2txt.vars$resbg  <<- tmp2[3]
-  R2txt.vars$rescol <<- tmp2[4]
-  R2txt.vars$combg  <<- tmp2[5]
-  R2txt.vars$comcol <<- tmp2[6]
+  R2txt.vars$cmdbg  <- tmp2[1]
+  R2txt.vars$cmdcol <- tmp2[2]
+  R2txt.vars$resbg  <- tmp2[3]
+  R2txt.vars$rescol <- tmp2[4]
+  R2txt.vars$combg  <- tmp2[5]
+  R2txt.vars$comcol <- tmp2[6]
 
   if(results) {
-      R2txt.vars$outcon <<- textConnection(NULL, open='w')
+      R2txt.vars$outcon <- textConnection(NULL, open='w')
       sink(R2txt.vars$outcon, split=TRUE)
   }
   tmp3 <- TRUE
@@ -267,21 +266,21 @@ etxtStart <- function(dir=tempfile('etxt'), file='transcript.txt',
       con2 <- cmdfile
     }
     if( tmp3 && isOpen(con2) ) {
-      R2txt.vars$closecon2 <<- FALSE
+      R2txt.vars$closecon2 <- FALSE
     } else {
-      R2txt.vars$closecon2 <<- TRUE
+      R2txt.vars$closecon2 <- TRUE
       if(tmp3) {
           open(con2, open='w')
       }
     }
-    R2txt.vars$con2 <<- con2
-    R2txt.vars$cmdfile <<- TRUE
+    R2txt.vars$con2 <- con2
+    R2txt.vars$cmdfile <- TRUE
   } else {
-    R2txt.vars$cmdfile <<- FALSE
+    R2txt.vars$cmdfile <- FALSE
   }
 
-  R2txt.vars$prompt <<- unlist(options('prompt'))
-  R2txt.vars$continue <<- unlist(options('continue'))
+  R2txt.vars$prompt <- unlist(options('prompt'))
+  R2txt.vars$continue <- unlist(options('continue'))
 
   options(prompt= paste('etxt',R2txt.vars$prompt,sep=''),
           continue= paste('etxt',R2txt.vars$continue,sep='') )
@@ -311,12 +310,12 @@ etxtStop <- function() {
   } else {
       out <- invisible(NULL)
   }
-  R2txt.vars <<- list()
+  evalq( rm(list=ls()), envir=R2txt.vars )
   out
 }
 
 etxtComment <- function(txt,cmdtxt) {
-    R2txt.vars$first <<- TRUE
+    R2txt.vars$first <- TRUE
     if(!missing(txt)) {
         writeChar("",R2txt.vars$con)
         cat(R2txt.vars$combg,file=R2txt.vars$con)
@@ -330,7 +329,7 @@ etxtComment <- function(txt,cmdtxt) {
 }
 
 etxtSkip <- function(expr) {
-    R2txt.vars$first <<- TRUE
+    R2txt.vars$first <- TRUE
     expr
 }
 
@@ -339,49 +338,48 @@ etxtPlot <- function(file=paste(tempfile('plot',R2txt.vars$dir),'.eps',sep=''),
     dev.copy2eps(file=file, height=height, width=width)
     writeChar("",R2txt.vars$con)
     cat('epsf{',file,'}\n', sep='', file=R2txt.vars$con)
-    R2txt.vars$first <<- TRUE
+    R2txt.vars$first <- TRUE
     invisible(NULL)
 }
 
 #### version for sending output to MSword
 
 R2wdtxt <- function(cmd,res,s,vis) {
-    TDenv <- environment(txtStart)
 
-  if(TDenv$R2txt.vars$first) {
-      TDenv$R2txt.vars$first <- FALSE
-      if( TDenv$R2txt.vars$res ) {
+  if(R2txt.vars$first) {
+      R2txt.vars$first <- FALSE
+      if( R2txt.vars$res ) {
           sink()
-          close(TDenv$R2txt.vars$outcon)
-          TDenv$R2txt.vars$outcon <- textConnection(NULL, open='w')
-          sink(TDenv$R2txt.vars$outcon, split=TRUE)
+          close(R2txt.vars$outcon)
+          R2txt.vars$outcon <- textConnection(NULL, open='w')
+          sink(R2txt.vars$outcon, split=TRUE)
       }
   } else {
 
-      if( TDenv$R2txt.vars$cmd ){
+      if( R2txt.vars$cmd ){
           cmdline <- deparse(cmd)
-          cmdline <- gsub('    ', paste("\n",TDenv$R2txt.vars$continue, sep=''),
+          cmdline <- gsub('    ', paste("\n",R2txt.vars$continue, sep=''),
                           cmdline)
-          cmdline <- gsub('}', paste("\n",TDenv$R2txt.vars$continue,"}", sep=''),
+          cmdline <- gsub('}', paste("\n",R2txt.vars$continue,"}", sep=''),
                           cmdline)
-          R2wd::wdVerbatim( paste(TDenv$R2txt.vars$prompt, cmdline, sep=''),
-                       fontsize=TDenv$R2txt.vars$fontsize )
+          R2wd::wdVerbatim( paste(R2txt.vars$prompt, cmdline, sep=''),
+                       fontsize=R2txt.vars$fontsize )
       }
-      if( TDenv$R2txt.vars$cmdfile ) {
+      if( R2txt.vars$cmdfile ) {
           cmdline <- deparse(cmd)
           cmdline <- gsub('    ', "\n ", cmdline)
           cmdline <- gsub('}', "\n}", cmdline)
-          cat(cmdline,"\n", file=TDenv$R2txt.vars$con2)
+          cat(cmdline,"\n", file=R2txt.vars$con2)
       }
 
-      if( TDenv$R2txt.vars$res ) {
-          tmp <- textConnectionValue(TDenv$R2txt.vars$outcon)
+      if( R2txt.vars$res ) {
+          tmp <- textConnectionValue(R2txt.vars$outcon)
           if(length(tmp)) {
-              R2wd::wdVerbatim(paste(tmp,sep='\n'), fontsize=TDenv$R2txt.vars$fontsize)
+              R2wd::wdVerbatim(paste(tmp,sep='\n'), fontsize=R2txt.vars$fontsize)
               sink()
-              close(TDenv$R2txt.vars$outcon)
-              TDenv$R2txt.vars$outcon <- textConnection(NULL, open='w')
-              sink(TDenv$R2txt.vars$outcon, split=TRUE)
+              close(R2txt.vars$outcon)
+              R2txt.vars$outcon <- textConnection(NULL, open='w')
+              sink(R2txt.vars$outcon, split=TRUE)
           }
       }
   }
@@ -391,22 +389,20 @@ R2wdtxt <- function(cmd,res,s,vis) {
 
 wdtxtStart <- function(commands=TRUE, results=TRUE, fontsize=9,
                      cmdfile, visible.only=TRUE) {
-  unlockBinding('R2txt.vars', environment(txtStart))
-  TDenv <- environment(txtStart)
 
   if( !require(R2wd) ) stop('the R2wd package is required')
 
   R2wd::wdGet()
 
-  TDenv$R2txt.vars$vis <- visible.only
-  TDenv$R2txt.vars$cmd <- commands
-  TDenv$R2txt.vars$res <- results
-  TDenv$R2txt.vars$first <- TRUE
-  TDenv$R2txt.vars$fontsize <- fontsize
+  R2txt.vars$vis <- visible.only
+  R2txt.vars$cmd <- commands
+  R2txt.vars$res <- results
+  R2txt.vars$first <- TRUE
+  R2txt.vars$fontsize <- fontsize
 
   if(results) {
-      TDenv$R2txt.vars$outcon <- textConnection(NULL, open='w')
-      sink(TDenv$R2txt.vars$outcon, split=TRUE)
+      R2txt.vars$outcon <- textConnection(NULL, open='w')
+      sink(R2txt.vars$outcon, split=TRUE)
   }
 
   if( !missing(cmdfile) ) {
@@ -418,24 +414,24 @@ wdtxtStart <- function(commands=TRUE, results=TRUE, fontsize=9,
       con2 <- cmdfile
     }
     if( tmp && isOpen(con2) ) {
-      TDenv$R2txt.vars$closecon2 <- FALSE
+      R2txt.vars$closecon2 <- FALSE
     } else {
-      TDenv$R2txt.vars$closecon2 <- TRUE
+      R2txt.vars$closecon2 <- TRUE
       if(tmp) {
           open(con2, open='w')
       }
     }
-    TDenv$R2txt.vars$con2 <- con2
-    TDenv$R2txt.vars$cmdfile <- TRUE
+    R2txt.vars$con2 <- con2
+    R2txt.vars$cmdfile <- TRUE
   } else {
-    TDenv$R2txt.vars$cmdfile <- FALSE
+    R2txt.vars$cmdfile <- FALSE
   }
 
-  TDenv$R2txt.vars$prompt <- unlist(options('prompt'))
-  TDenv$R2txt.vars$continue <- unlist(options('continue'))
+  R2txt.vars$prompt <- unlist(options('prompt'))
+  R2txt.vars$continue <- unlist(options('continue'))
 
-  options(prompt= paste('wdTxt',TDenv$R2txt.vars$prompt,sep=''),
-          continue= paste('wdTxt',TDenv$R2txt.vars$continue,sep='') )
+  options(prompt= paste('wdTxt',R2txt.vars$prompt,sep=''),
+          continue= paste('wdTxt',R2txt.vars$continue,sep='') )
 
   cat('Output being copied to text file,\nuse wdtxtStop to end\n')
   addTaskCallback(R2wdtxt, name='r2wdtxt')
@@ -444,46 +440,42 @@ wdtxtStart <- function(commands=TRUE, results=TRUE, fontsize=9,
 
 wdtxtStop <- function() {
   removeTaskCallback('r2wdtxt')
-  TDenv <- environment(txtStart)
 
-  if( TDenv$R2txt.vars$cmdfile && TDenv$R2txt.vars$closecon2 ) {
-    close( TDenv$R2txt.vars$con2 )
+  if( R2txt.vars$cmdfile && R2txt.vars$closecon2 ) {
+    close( R2txt.vars$con2 )
   }
-  options( prompt=TDenv$R2txt.vars$prompt,
-           continue=TDenv$R2txt.vars$continue )
-  if(TDenv$R2txt.vars$res) {
+  options( prompt=R2txt.vars$prompt,
+           continue=R2txt.vars$continue )
+  if(R2txt.vars$res) {
       sink()
-      close(TDenv$R2txt.vars$outcon)
+      close(R2txt.vars$outcon)
   }
-  TDenv$R2txt.vars <- list()
+  evalq( rm(list=ls()), envir=R2txt.vars )
   invisible(NULL)
 }
 
 wdtxtComment <- function(txt,cmdtxt) {
-    TDenv <- environment(txtStart)
 
-    TDenv$R2txt.vars$first <- TRUE
+    R2txt.vars$first <- TRUE
     if(!missing(txt)) {
         R2wd::wdParagraph()
         R2wd::wdBody(txt)
         R2wd::wdParagraph()
     }
     if(!missing(cmdtxt)) {
-        cat("# ",cmdtxt,"\n", file=TDenv$R2txt.vars$con2)
+        cat("# ",cmdtxt,"\n", file=R2txt.vars$con2)
     }
 }
 
 wdtxtSkip <- function(expr) {
-    TDenv <- environment(txtStart)
 
-    TDenv$R2txt.vars$first <- TRUE
+    R2txt.vars$first <- TRUE
     expr
 }
 
 wdtxtPlot <- function(height=5, width=5, pointsize=10) {
-    TDenv <- environment(txtStart)
 
-    TDenv$R2txt.vars$first <- TRUE
+    R2txt.vars$first <- TRUE
 
     tmp <- recordPlot()
     R2wd::wdPlot(tmp, plotfun=replayPlot, height=height, width=width,

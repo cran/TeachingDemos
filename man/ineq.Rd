@@ -41,7 +41,8 @@ Greg Snow, \email{greg.snow@imail.org}
 }
 \note{
   %%  ~~further notes~~
-This operator is not fully associative, so be careful with parentheses.
+This operator is not fully associative and has different precedence than
+\code{<} and \code{<=}, so be careful with parentheses.
 See the examples.
 }
 
@@ -72,6 +73,10 @@ cbind(x,y)[ (-1 \%<\% x) \%<\% (y \%<\% 1), ]
 cbind(x,y)[ ((-1 \%<\% x) \%<\% y) \%<\% 1, ]
 cbind(x,y)[ -1 \%<\% (x \%<\% (y \%<\% 1)), ]
 cbind(x,y)[ -1 \%<\% (x \%<\% y) \%<\% 1, ] # oops
+
+
+3 %<% 1:10 %<% 2*3 # oops
+3 %<% 1:10 %<% (2*3)  # meant this
 
 
 }

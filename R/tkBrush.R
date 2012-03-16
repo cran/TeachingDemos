@@ -21,7 +21,11 @@ tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
     rect(br[w], sy-my, br[w+1], sy, col=cols, border=NA)
     rect(br[-length(br)], 0, br[-1], tmp$counts*my)
     if(first){
-      tmp <- cnvrt.coords((br[w]+br[w+1])/2,sy-my/2,'usr')$tdev
+#      tmp <- cnvrt.coords((br[w]+br[w+1])/2,sy-my/2,'usr')$tdev
+      tmp <- list(
+                  x=grconvertX((br[w]+br[w+1])/2, to='ndc'),
+                  y=grconvertY( sy-my/2, to='ndc')
+                  )
       dx <<- c(dx,tmp$x)
       dy <<- c(dy,tmp$y)
       di <<- c(di,seq(along=tmp$x))
@@ -50,7 +54,10 @@ tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
       pairs(mat, #upper.panel=NULL,
             panel=function(x,y,...){
               points(x,y,...)
-              tmp <- cnvrt.coords(x,y,'usr')$tdev
+#              tmp <- cnvrt.coords(x,y,'usr')$tdev
+              tmp <- list(
+                          x=grconvertX(x,to='ndc'),
+                          y=grconvertY(y,to='ndc') )
               dx <<- c(dx,tmp$x)
               dy <<- c(dy,tmp$y)
               di <<- c(di,seq(tmp$x))

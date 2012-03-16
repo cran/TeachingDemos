@@ -10,7 +10,7 @@ parameters on a graph.}
 }
 \usage{
  tkexamp(FUN, param.list, vscale=1.5, hscale=1.5, wait=FALSE,
-plotloc='top', print=FALSE, ...)
+plotloc='top', an.play=TRUE, print=FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,6 +22,7 @@ plotloc='top', print=FALSE, ...)
   \item{wait}{Should R wait for the demo to end}
   \item{plotloc}{Character with "top", "left", or "right" indicating
     where the plot should be placed relative to the controls}
+  \item{an.play}{Should the scheduling in tcltk2 package be used for animations}
   \item{print}{Automatically print the result (useful for ggplot2/lattice)}
   \item{...}{Extra arguments, currently ignored}
 }
@@ -94,6 +95,20 @@ plotloc='top', print=FALSE, ...)
   one is selected the previous selection is cleared.  The important
   parameter to set is "values" wich is a vector of character strings to
   choose between.
+
+  "animate", is a combination of a slider and a button.  If the tcltk2
+  package is avaliable and \code{an.play=TRUE} then the button will say
+  "Play" and pressing the button will automatically increment the slider
+  (and update the graph) until it reaches the maximum value.  Otherwise
+  the button will say "Inc" and you must click and hold on the button to
+  run the animation (this might be prefered in that you can stop the
+  animation).  Either way you can set the delay option (all other
+  options match with the slider option) and move the slider when the
+  interaction is not happening.  The animation starts at the current
+  value on the slider and goes to the mamimum value.  You should only
+  have at most one animation control (muliple will confuse each other),
+  this includes not having multiple windows operating at the same time
+  with animation controls.
 
   Each nesting of lists will also change how the controls are placed
   (top to bottom vs. left to right).

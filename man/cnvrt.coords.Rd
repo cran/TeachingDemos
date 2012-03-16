@@ -63,7 +63,7 @@ cnvrt.coords(x, y = NULL, input = c("usr", "plt", "fig", "dev","tdev"))
 \author{Greg Snow \email{greg.snow@imail.org}}
 \note{ You must provide both x and y, but one of them may be \code{NA}.
 
-This function is becoming depricated with the new functions
+This function is now depricated with the new functions
 \code{grconvertX} and \code{grconvertY} in R version 2.7.0 and beyond.
 These new functions use the correct coordinate system names and have
 more coordinate systems available, you should start using them instead.

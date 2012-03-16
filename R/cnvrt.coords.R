@@ -1,6 +1,7 @@
 "cnvrt.coords" <-
 function(x,y=NULL,input=c('usr','plt','fig','dev','tdev')) {
 
+  warning('this function is now depricated, use grconvertX instead')
   input <- match.arg(input)
   xy <- xy.coords(x,y, recycle=TRUE)
 

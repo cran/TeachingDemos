@@ -14,7 +14,7 @@
     Package: \tab TeachingDemos\cr
     Type: \tab Package\cr
     Version \tab 2.4\cr
-    Date: \tab 2008-11-13\cr
+    Date: \tab 2011-04-10\cr
     License: \tab Artistic-2.0\cr
   }
   Demonstration functions in this package include:

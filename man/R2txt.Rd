@@ -133,7 +133,7 @@ These functions are used to create transcript/command files of your R
 	 will be inserted into \code{cmdfile} preceeded by a \# so it
 	 will be skipped if sourced or copied.
 
-	 The \code{tktSkip}, \code{etxtSkip}, and \code{wdtxtSkip}
+	 The \code{txtSkip}, \code{etxtSkip}, and \code{wdtxtSkip}
 	 functions will run the
 	 code in \code{expr} but will not include the commands or
 	 results in the transcript file (this can be used for side
@@ -184,7 +184,7 @@ date()
 x <- rnorm(25)
 summary(x)
 stem(x)
-etxtSkip{?hist}
+etxtSkip(?hist)
 hist(x)
 etxtPlot()
 Sys.Date()

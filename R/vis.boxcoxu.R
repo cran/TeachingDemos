@@ -15,10 +15,10 @@ function(lambda = sample( c(-1, -0.5, 0, 1/3, 1/2, 1, 2), 1)) {
     if(!exists('slider.env')) slider.env <<-new.env()
   #library(tcltk)
 
-  lam <- 1 ; assign('lam',tclVar(lam), env=slider.env)
+  lam <- 1 ; assign('lam',tclVar(lam), envir=slider.env)
 
   bc.refresh <- function(...){
-    lam <- as.numeric(evalq(tclvalue(lam), env=slider.env))
+    lam <- as.numeric(evalq(tclvalue(lam), envir=slider.env))
 
     old.par <- par(mfcol=c(2,2))
     on.exit(par(old.par))
@@ -47,8 +47,8 @@ function(lambda = sample( c(-1, -0.5, 0, 1/3, 1/2, 1, 2), 1)) {
   tkpack(sc <- tkscale(fr, command=bc.refresh, from=-2, to=3, orient='horiz',
                        resolution=0.1, showvalue=T),
          side='left')
-  assign('sc',sc,env=slider.env)
-  evalq(tkconfigure(sc, variable=lam), env=slider.env)
+  assign('sc',sc,envir=slider.env)
+  evalq(tkconfigure(sc, variable=lam), envir=slider.env)
 
   tkpack(tkbutton(m, text="Refresh", command=bc.refresh), side='left')
   tkpack(tkbutton(m, text="Exit", command=function()tkdestroy(m)),

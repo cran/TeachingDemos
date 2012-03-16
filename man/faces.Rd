@@ -60,6 +60,21 @@ faces(longley[1:9,])
 
 set.seed(17)
 faces(matrix(sample(1:1000,128,),16,8),main="random faces")
+
+if(interactive()){
+  tke1 <- rep( list(list('slider',from=0,to=1,init=0.5,resolution=0.1)), 15)
+  names(tke1) <- c('FaceHeight','FaceWidth','FaceShape','MouthHeight',
+	'MouthWidth','SmileCurve','EyesHeight','EyesWidth','HairHeight',
+	'HairWidth','HairStyle','NoseHeight','NoseWidth','EarWidth','EarHeight')
+  tkfun1 <- function(...){
+	tmpmat <- rbind(Min=0,Adjust=unlist(list(...)),Max=1)
+	faces(tmpmat, scale=FALSE)
+  }
+
+  tkexamp( tkfun1, list(tke1), plotloc='left', hscale=2, vscale=2 )
+}
+
+
 }
 %\keyword{  Chernoff faces}% at least one, from doc/KEYWORDS
 %\keyword{  Flury faces }% __ONLY ONE__ keyword per line
