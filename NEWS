@@ -1,3 +1,31 @@
+New in TeachingDemos version 2.9
+
+* Removed sd.g, limits.g, and stats.g functions that work with the qcc
+  package as they are now included in qcc and don't need to be here
+  any more.
+
+* Added functions mdtxtStart, mdtxtStop, mdtxtComment, mdtxtSkip, and
+  mdtxtPlot to create transcript files using MarkDown which can then
+  be converted to common formats (pdf, MS Word, html, etc.) using the
+  pandoc program.
+
+* Changed names of plot.rgl.coin and plot.rgl.die to rgl.coin and
+  rgl.die to prevent confusion with S3 methods for plot generic
+  function.
+
+* added function cor.rect.plot to demonstrate concept of correlation.
+
+* Added USCrimes dataset
+
+* Added linesfun argument to my.symbols so that the user can use
+  functions like polygon in place of lines.
+
+* Added function simfun to help with creating simulated data sets.
+
+* Modified squishplot function to remove missing values in case the
+  entire data is submitted as xlim and ylim.
+
+
 New in TeachingDemos version 2.8
 
 * Changed many functions to no longer use partial match of arguments,

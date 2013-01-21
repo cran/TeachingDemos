@@ -7,17 +7,17 @@ squishplot <- function(xlim,ylim,asp=1, newplot=TRUE){
   tmp <- par(c('plt','pin','xaxs','yaxs'))
 
   if( tmp$xaxs == 'i' ){ # not extended axis range
-	xlim <- range(xlim)
+	xlim <- range(xlim, na.rm=TRUE)
   } else { # extended range
-	tmp.r <- diff(range(xlim))
-	xlim <- range(xlim) + c(-1,1)*0.04*tmp.r
+	tmp.r <- diff(range(xlim, na.rm=TRUE))
+	xlim <- range(xlim, na.rm=TRUE) + c(-1,1)*0.04*tmp.r
   }
 
   if( tmp$yaxs == 'i' ){ # not extended axis range
-	ylim <- range(ylim)
+	ylim <- range(ylim, na.rm=TRUE)
   } else { # extended range
-	tmp.r <- diff(range(ylim))
-	ylim <- range(ylim) + c(-1,1)*0.04*tmp.r
+	tmp.r <- diff(range(ylim, na.rm=TRUE))
+	ylim <- range(ylim, na.rm=TRUE) + c(-1,1)*0.04*tmp.r
   }
 
 

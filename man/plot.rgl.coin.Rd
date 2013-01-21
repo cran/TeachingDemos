@@ -1,6 +1,6 @@
-\name{plot.rgl.coin}
-\alias{plot.rgl.coin}
-\alias{plot.rgl.die}
+\name{rgl.coin}
+\alias{rgl.coin}
+\alias{rgl.die}
 \alias{flip.rgl.coin}
 \alias{roll.rgl.die}
 %- Also NEED an '\alias' for EACH other topic documented here.
@@ -10,9 +10,9 @@
   then animate the flipping/rolling.
 }
 \usage{
-plot.rgl.coin(x, col = "black", heads = x[[1]], tails = x[[2]], ...)
+rgl.coin(x, col = "black", heads = x[[1]], tails = x[[2]], ...)
 
-plot.rgl.die(x=1:6, col.cube = "white", col.pip = "black", sides = x, ...)
+rgl.die(x=1:6, col.cube = "white", col.pip = "black", sides = x, ...)
 
 flip.rgl.coin(side = sample(2, 1), steps = 150)
 
@@ -22,7 +22,7 @@ roll.rgl.die(side = sample(6, 1), steps = 250)
   \item{x}{ for \code{plot.rgl.coin} a list with information for drawing
     the faces of the coin, defaults to \code{coin.faces}.  For
     \code{plot.rgl.die} a vector with the number of pips to put on the
-    sides of the die (alternative way of specifying \code{sides}). } 
+    sides of the die (alternative way of specifying \code{sides}). }
   \item{col}{ Color of lines on the coin faces. }
   \item{heads}{ Design to use as "heads" side of coin. }
   \item{tails}{ Design to use as "tails" side of coin. }
@@ -55,7 +55,7 @@ roll.rgl.die(side = sample(6, 1), steps = 250)
   The default rolling and flipping options ranomly choose which side
   will be face up following a uniform distribution.  You can specify the
   side yourself, or use the \code{sample} function to do a biased random
-  flip/roll. 
+  flip/roll.
 }
 \value{
   Which side ended up face up (1 or 2 for coin, 1 through 6 for die).
@@ -73,7 +73,7 @@ roll.rgl.die(side = sample(6, 1), steps = 250)
   \code{\link{coin.faces}}, \code{\link{sample}} }
 \examples{
 if(interactive()){
-plot.rgl.coin()
+rgl.coin()
 flip.rgl.coin()
 flip.rgl.coin(1)
 flip.rgl.coin(2)
@@ -81,19 +81,19 @@ flip.rgl.coin(2)
 rgl.clear()
 
 # two-headed coin
-plot.rgl.coin(tails=coin.faces$qh)
+rgl.coin(tails=coin.faces$qh)
 
 rgl.clear()
 
 # letters instead of pictures
-plot.rgl.coin(heads=coin.faces$H, tails=coin.faces$T)
+rgl.coin(heads=coin.faces$H, tails=coin.faces$T)
 
 # biased flip
 flip.rgl.coin( sample(2,1, prob=c(0.65, 0.35) ) )
 
 rgl.clear()
 
-plot.rgl.die()
+rgl.die()
 roll.rgl.die()
 roll.rgl.die(6)
 

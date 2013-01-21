@@ -79,7 +79,8 @@ Pressing enter without making a guess ends the game.
 \note{
   Casual viewing of the function source code is unlikely to reveal the
   secret (and therefore this could be used as an example of one way to
-  disguise portions of code from casual examination).
+  disguise portions of code from casual examination).  More on
+  disguising source code is at \url{https://stat.ethz.ch/pipermail/r-devel/2011-October/062236.html}.
 
   Some basic debugging can reveal the secret, but that would be cheating
   and an admission that such a simple game has defeated you, so don't do

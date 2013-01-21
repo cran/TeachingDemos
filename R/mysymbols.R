@@ -4,7 +4,8 @@ my.symbols <- function(x, y=NULL, symb, inches=1, xsize, ysize,
                        symb.plots=FALSE,
                        xlab=deparse(substitute(x)),
                        ylab=deparse(substitute(y)), main=NULL,
-                       xlim=NULL, ylim=NULL, ..., MoreArgs ) {
+                       xlim=NULL, ylim=NULL, linesfun=lines,
+                       ..., MoreArgs ) {
 
   if(!add){
 	plot(x,y, type='n', xlab=xlab,ylab=ylab,
@@ -92,7 +93,7 @@ my.symbols <- function(x, y=NULL, symb, inches=1, xsize, ysize,
         par(plt=c(xlow,xhigh,ylow,yhigh))
         par(usr=c(-1,1,-1,1))
         suppressWarnings(
-            lines( symb(...), ... )
+            linesfun( symb(...), ... )
                        )
       }
     }
@@ -103,7 +104,7 @@ my.symbols <- function(x, y=NULL, symb, inches=1, xsize, ysize,
       par(xpd=TRUE)
       par(plt=c(xlow,xhigh,ylow,yhigh))
       par(usr=c(-1,1,-1,1))
-      lines(symb, ...)
+      linesfun(symb, ...)
     }
   }
 

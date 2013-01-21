@@ -1,6 +1,6 @@
 "loess.demo" <-
-function(x, y, span = 2/3, degree = 1, nearest = F, xlim =
-	numeric(0), ylim = numeric(0), verbose = F)
+function(x, y, span = 2/3, degree = 1, nearest = FALSE, xlim =
+	numeric(0), ylim = numeric(0), verbose = FALSE)
 {
 	# function to demonstrate the locally weighted regression function loess
 	# written by Dr. Greg Snow

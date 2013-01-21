@@ -1,4 +1,4 @@
-plot.rgl.die <- function(x = 1:6, col.cube='white',col.pip='black',sides=x, ...) {
+rgl.die <- function(x = 1:6, col.cube='white',col.pip='black',sides=x, ...) {
 
   if(!require(rgl)) stop("This function depends on the 'rgl' package wich is not available")
 

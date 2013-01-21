@@ -51,7 +51,9 @@ SnowsCorrectlySizedButOtherwiseUselessTestOfAnything(x,
 }
 \references{
 The author is unlikely to be willing to publish in any "journal" that
-  would be willing to publish this test.
+would be willing to publish this test.
+
+fortune(264)
 }
 \author{
 Greg Snow \email{greg.snow@imail.org}

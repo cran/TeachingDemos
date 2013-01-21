@@ -59,7 +59,7 @@ Note: if you just use this function and report the p-value then the
 function has failed in its purpose.  If this function helps you to think
 about your analysis and what question(s) you are really interested in,
 create meaningful plots, and focus on the more meaningful parts of
-research, then it has succeeded.
+research, then it has succeeded.  See also Cochrane's Aphorism.
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
