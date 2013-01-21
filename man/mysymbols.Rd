@@ -12,7 +12,8 @@ my.symbols(x, y=NULL, symb, inches=1, xsize, ysize,
                        symb.plots=FALSE,
                        xlab=deparse(substitute(x)),
                        ylab=deparse(substitute(y)), main=NULL,
-                       xlim=NULL, ylim=NULL, ..., MoreArgs)
+                       xlim=NULL, ylim=NULL, linesfun=lines,
+                       ..., MoreArgs)
 }
 \arguments{
   \item{x, y}{The \code{x} and \code{y} coordinates for the position of
@@ -44,6 +45,7 @@ my.symbols(x, y=NULL, symb, inches=1, xsize, ysize,
   plotting, set this to TRUE, otherwise it should be FALSE.}
   \item{xlab, ylab, main, xlim, ylim}{If 'add' is 'FALSE' these are
   passed to the \code{plot} function when setting up the plot.}
+  \item{linesfun}{The function to draw the lines if the function does not do its own drawing.  The default is \code{lines} but could be replaced with \code{polygon} to draw filled polygons}
   \item{...}{Additional arguments will be replicated to the same length
   as \code{x} then passed to \code{symb} (if \code{symb} is a function)
   and/or the \code{lines} function (one value per symbol drawn).}

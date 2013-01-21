@@ -116,7 +116,8 @@ tmp <- rnorm(25)
 qqnorm(tmp)
 qqline(tmp)
 tmp2 <- subplot( hist(tmp,xlab='',ylab='',main=''),
-		cnvrt.coords(0.1,0.9,'plt')$usr, vadj=1, hadj=0 )
+		grconvertX(0.1,from='npc'), grconvertY(0.9,from='npc'), 
+		vadj=1, hadj=0 )
 abline(v=0, col='red') # wrong way to add a reference line to histogram
 
 # right way to add a reference line to histogram

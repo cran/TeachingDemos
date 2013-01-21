@@ -8,7 +8,7 @@
   of \code{x}.
 }
 \usage{
-loess.demo(x, y, span = 2/3, degree = 1, nearest = F, xlim = numeric(0), ylim = numeric(0), verbose = F)
+loess.demo(x, y, span = 2/3, degree = 1, nearest = FALSE, xlim = numeric(0), ylim = numeric(0), verbose = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

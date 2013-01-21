@@ -75,8 +75,8 @@ HTKidentify <- function(x,y,label=seq_along(x), lab.col='darkgreen',
 	ih <- as.numeric(tcl("image","height", tkcget(img, "-image")))
 
 	cc <- function(x,y) {
-		x <- (as.real(x) -1)/iw
-		y <- 1-(as.real(y)-1)/ih
+		x <- (as.double(x) -1)/iw
+		y <- 1-(as.double(y)-1)/ih
 		c(x,y)
 	}
 

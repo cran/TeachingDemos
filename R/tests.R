@@ -11,8 +11,9 @@ SnowsPenultimateNormalityTest <- function(x){
         tmp.p <- if( any(is.rational(x))) {
                 0
         } else {
-                # current implementation will not get here
-                # this part is reserved for the ultimate test
+                # current implementation will not get here if length
+                # of x is positive.  This part is reserved for the
+                # ultimate test
                 1
         }
 

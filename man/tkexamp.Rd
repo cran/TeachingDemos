@@ -82,7 +82,8 @@ plotloc='top', an.play=TRUE, print=FALSE, ...)
   \code{FUN} as a number.
 
   "checkbox", a box that can be checked, passed to \code{FUN} as a
-  logical (TRUE if checked, FALSE if not checked).
+  logical (TRUE if checked, FALSE if not checked).  To set the intial
+  value as TRUE (the default is FALSE) use \code{init='T'}.
 
   "combobox", an entry widget with an arrow on the right side that will
   bring up a list of values to choose from.  This value is passed to
@@ -105,8 +106,8 @@ plotloc='top', an.play=TRUE, print=FALSE, ...)
   animation).  Either way you can set the delay option (all other
   options match with the slider option) and move the slider when the
   interaction is not happening.  The animation starts at the current
-  value on the slider and goes to the mamimum value.  You should only
-  have at most one animation control (muliple will confuse each other),
+  value on the slider and goes to the maximum value.  You should only
+  have at most one animation control (multiple will confuse each other),
   this includes not having multiple windows operating at the same time
   with animation controls.
 
@@ -145,7 +146,7 @@ plotloc='top', an.play=TRUE, print=FALSE, ...)
   the rpanel package }
 
 \examples{
-if(interactive()){
+if(interactive()) {
 
 x <- sort( runif(25,1,10) )
 y <- rnorm(25, x)

@@ -91,21 +91,21 @@ Predict.Plot(fit.lm1, pred.var = "Petal.Width", Petal.Width = 1.22,
       type = "response")
 Predict.Plot(fit.lm1, pred.var = "Petal.Width", Petal.Width = 1.22,
       Petal.Length = 4.3, Species = "virginica",
-	plot.args = "list(col='red')",
+	plot.args = list(col='red'),
       type = "response", add=TRUE)
 Predict.Plot(fit.lm1, pred.var = "Petal.Width", Petal.Width = 1.22,
       Petal.Length = 4.4, Species = "virginica",
-	plot.args = "list(col='purple')",
+	plot.args = list(col='purple'),
       type = "response", add=TRUE)
 
 fit.glm1 <- glm( Species=='virginica' ~ Sepal.Width+Sepal.Length,
 	data=iris, family=binomial)
 
 Predict.Plot(fit.glm1, pred.var = "Sepal.Length", Sepal.Width = 1.99,
-      Sepal.Length = 6.34, plot.args = "list(ylim=c(0,1), col='blue')",
+      Sepal.Length = 6.34, plot.args = list(ylim=c(0,1), col='blue'),
  	type = "response")
 Predict.Plot(fit.glm1, pred.var = "Sepal.Length", Sepal.Width = 4.39,
-      Sepal.Length = 6.34, plot.args = "list(col='red')",
+      Sepal.Length = 6.34, plot.args = list(col='red'),
 	type = "response", add=TRUE)
 
 

@@ -5,7 +5,7 @@ TkListView <- function(list){
   if( !have.ttk() ) {
     stop('this function depends on having tcl 8.5 or higher')
   }
-  
+
     tt <- tktoplevel()
     tkwm.title(tt, deparse(substitute(list)))
 
@@ -13,26 +13,22 @@ TkListView <- function(list){
     tkpack(fr1, '-side', 'left', '-fill', 'both', '-expand', 0)
     tree <- tcltk::ttktreeview(fr1, '-selectmode','browse','-columns',1,height=21)
     scrtree1 <- tkscrollbar(fr1, command=function(...)tkyview(tree,...))
-#    scrtree2 <- tkscrollbar(fr1, command=function(...)tkxview(tree,...), orient='horizontal')
+
     tkconfigure(tree, yscrollcommand=function(...)tkset(scrtree1,...))
-#    tkconfigure(tree, xscrollcommand=function(...)tkset(scrtree2,...))
-#    tkpack(scrtree2, side='bottom', fill='x', anchor='n', expand=1)
+
     tkpack(scrtree1, side='right', fill='y',expand=1)
     tkpack(tree, side='right',fill='both',expand=1)
-#    tkgrid(tree,scrtree1, '-sticky','nsew')
-#    tkgrid(scrtree2, '-sticky','nsew')
+
 
     fr2 <- tkframe(tt)
     tkpack(fr2, '-side','top','-fill','both','-expand',1)
-#    tkgrid(fr1,fr2, sticky='nsew')
+
     txt <- tktext(fr2, bg="white", font="courier", wrap='none', width=40)
     scrtxt1 <- tkscrollbar(fr2, command=function(...)tkyview(txt,...))
     scrtxt2 <- tkscrollbar(fr2, command=function(...)tkxview(txt,...), orient='horizontal')
     tkconfigure(txt, yscrollcommand=function(...)tkset(scrtxt1,...),
                 xscrollcommand=function(...)tkset(scrtxt2,...))
-#    tkpack(scrtxt2, anchor='n', fill='x', expand=1, side='bottom')
-#    tkpack(scrtxt1, fill='y', expand=1, side='right')
-#    tkpack(txt, fill='both',expand=1)
+
     tkgrid(txt,scrtxt1, sticky='nsew')
     tkgrid(scrtxt2,sticky='nsew')
     tkgrid.columnconfigure(fr2, 0, weight=1)
@@ -42,6 +38,7 @@ TkListView <- function(list){
 	str.info <- capture.output( str(list, max.level=1, give.attr=FALSE,
                                         no.list=TRUE) )
 	str.info <- gsub(' ','\\\\ ',str.info)
+
 	n <- length(list)
 	nms <- names(list)
 	if( is.null(nms) ) nms <- rep('', n)
@@ -67,6 +64,7 @@ TkListView <- function(list){
     }
 
     buildtree(list, tree, '')
+
 
     getx <- function(list){
         tmp <- tclvalue(tkselect(tree))
