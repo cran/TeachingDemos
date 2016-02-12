@@ -100,7 +100,7 @@
 
 }
 \author{
-  Greg Snow \email{greg.snow@imail.org}
+  Greg Snow \email{538280@gmail.com}
 }
 \keyword{package}
 \keyword{aplot}

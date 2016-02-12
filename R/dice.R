@@ -20,7 +20,6 @@ function(rolls=1, ndice=2, sides=6, plot.it=FALSE, load=rep(1,sides))
 		plot.dice(temp)
 		return(invisible(temp))
 	}
-	
 	temp	
 }
 

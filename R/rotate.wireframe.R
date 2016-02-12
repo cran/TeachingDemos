@@ -1,28 +1,29 @@
 "rotate.wireframe" <-
 function(x, ...){
 
-  if(!require(tcltk)){stop('The tcltk package is needed')}
+  if(!requireNamespace('tcltk', quietly = TRUE)){stop('The tcltk package is needed')}
   if(!exists('slider.env')) slider.env <<-new.env()
+  if(!requireNamespace('lattice', quietly = TRUE)){stop('The lattice package is needed')}
 
-  lab1 <- 'z'; assign('lab1', tclVar(lab1), envir=slider.env)
-  lab2 <- 'y'; assign('lab2', tclVar(lab2), envir=slider.env)
-  lab3 <- 'x'; assign('lab3', tclVar(lab3), envir=slider.env)
+  lab1 <- 'z'; assign('lab1', tcltk::tclVar(lab1), envir=slider.env)
+  lab2 <- 'y'; assign('lab2', tcltk::tclVar(lab2), envir=slider.env)
+  lab3 <- 'x'; assign('lab3', tcltk::tclVar(lab3), envir=slider.env)
 
-  val1 <-  40; assign('val1', tclVar(val1), envir=slider.env)
-  val2 <-   0; assign('val2', tclVar(val2), envir=slider.env)
-  val3 <- -60; assign('val3', tclVar(val3), envir=slider.env)
+  val1 <-  40; assign('val1', tcltk::tclVar(val1), envir=slider.env)
+  val2 <-   0; assign('val2', tcltk::tclVar(val2), envir=slider.env)
+  val3 <- -60; assign('val3', tcltk::tclVar(val3), envir=slider.env)
 
   wire.options <- list(...)
 
   wire.refresh <- function(...){
 
-    lab1 <- evalq(tclvalue(lab1), envir=slider.env)
-    lab2 <- evalq(tclvalue(lab2), envir=slider.env)
-    lab3 <- evalq(tclvalue(lab3), envir=slider.env)
+    lab1 <- evalq(tcltk::tclvalue(lab1), envir=slider.env)
+    lab2 <- evalq(tcltk::tclvalue(lab2), envir=slider.env)
+    lab3 <- evalq(tcltk::tclvalue(lab3), envir=slider.env)
 
-    val1 <- as.numeric(evalq(tclvalue(val1), envir=slider.env))
-    val2 <- as.numeric(evalq(tclvalue(val2), envir=slider.env))
-    val3 <- as.numeric(evalq(tclvalue(val3), envir=slider.env))
+    val1 <- as.numeric(evalq(tcltk::tclvalue(val1), envir=slider.env))
+    val2 <- as.numeric(evalq(tcltk::tclvalue(val2), envir=slider.env))
+    val3 <- as.numeric(evalq(tcltk::tclvalue(val3), envir=slider.env))
 
 
     sl <- list(val1,val2,val3)
@@ -31,57 +32,57 @@ function(x, ...){
     wire.options$x <- x
     wire.options$screen <- sl
 
-    print( do.call('wireframe',wire.options) )
+    print( do.call(lattice::wireframe,wire.options) )
 
 
   }
 
-  m <- tktoplevel()
-  tkwm.title(m,'Rotate Wireframe plot')
-  tkwm.geometry(m,'+0+0')
+  m <- tcltk::tktoplevel()
+  tcltk::tkwm.title(m,'Rotate Wireframe plot')
+  tcltk::tkwm.geometry(m,'+0+0')
 
   # one
-  tkpack(fr <- tkframe(m), side='top')
-  tkpack(e <- tkentry(fr, width=2), side='left')
-  tkpack(sc <- tkscale(fr, command=wire.refresh, from=-180, to=180,
+  tcltk::tkpack(fr <- tcltk::tkframe(m), side='top')
+  tcltk::tkpack(e <- tcltk::tkentry(fr, width=2), side='left')
+  tcltk::tkpack(sc <- tcltk::tkscale(fr, command=wire.refresh, from=-180, to=180,
                        orient='horiz',
                        resolution=1, showvalue=T),
          side='left')
 
   assign('sc',sc,envir=slider.env)
-  evalq(tkconfigure(sc, variable=val1), envir=slider.env)
+  evalq(tcltk::tkconfigure(sc, variable=val1), envir=slider.env)
   assign('e',e,envir=slider.env)
-  evalq(tkconfigure(e,textvariable=lab1), envir=slider.env)
+  evalq(tcltk::tkconfigure(e,textvariable=lab1), envir=slider.env)
 
   # two
-  tkpack(fr <- tkframe(m), side='top')
-  tkpack(e <- tkentry(fr, width=2), side='left')
-  tkpack(sc <- tkscale(fr, command=wire.refresh, from=-180, to=180,
+  tcltk::tkpack(fr <- tcltk::tkframe(m), side='top')
+  tcltk::tkpack(e <- tcltk::tkentry(fr, width=2), side='left')
+  tcltk::tkpack(sc <- tcltk::tkscale(fr, command=wire.refresh, from=-180, to=180,
                        orient='horiz',
                        resolution=1, showvalue=T),
          side='left')
 
   assign('sc',sc,envir=slider.env)
-  evalq(tkconfigure(sc, variable=val2), envir=slider.env)
+  evalq(tcltk::tkconfigure(sc, variable=val2), envir=slider.env)
   assign('e',e,envir=slider.env)
-  evalq(tkconfigure(e,textvariable=lab2), envir=slider.env)
+  evalq(tcltk::tkconfigure(e,textvariable=lab2), envir=slider.env)
 
   # three
-  tkpack(fr <- tkframe(m), side='top')
-  tkpack(e <- tkentry(fr, width=2), side='left')
-  tkpack(sc <- tkscale(fr, command=wire.refresh, from=-180, to=180,
+  tcltk::tkpack(fr <- tcltk::tkframe(m), side='top')
+  tcltk::tkpack(e <- tcltk::tkentry(fr, width=2), side='left')
+  tcltk::tkpack(sc <- tcltk::tkscale(fr, command=wire.refresh, from=-180, to=180,
                        orient='horiz',
                        resolution=1, showvalue=T),
          side='left')
 
   assign('sc',sc,envir=slider.env)
-  evalq(tkconfigure(sc, variable=val3), envir=slider.env)
+  evalq(tcltk::tkconfigure(sc, variable=val3), envir=slider.env)
   assign('e',e,envir=slider.env)
-  evalq(tkconfigure(e,textvariable=lab3), envir=slider.env)
+  evalq(tcltk::tkconfigure(e,textvariable=lab3), envir=slider.env)
 
-  tkpack(tkbutton(m, text="Refresh", command=wire.refresh),side='left')
+  tcltk::tkpack(tcltk::tkbutton(m, text="Refresh", command=wire.refresh),side='left')
 
-  tkpack(tkbutton(m, text="Exit", command=function()tkdestroy(m)),
+  tcltk::tkpack(tcltk::tkbutton(m, text="Exit", command=function()tcltk::tkdestroy(m)),
          side='right')
 
 

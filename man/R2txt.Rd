@@ -195,7 +195,7 @@ These functions are used to create transcript/command files of your R
 
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow, \email{greg.snow@imail.org} }
+\author{ Greg Snow, \email{538280@gmail.com} }
 \note{
 These commands do not do any fancy formatting of output, just what you
 see in the regular terminal window.  If you want more formatted output

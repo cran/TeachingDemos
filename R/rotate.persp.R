@@ -1,7 +1,7 @@
 "rotate.persp" <-
 function(x,y,z){
 
-  if(!require(tcltk)){stop('The tcltk package is needed')}
+  if(!requireNamespace('tcltk', quietly = TRUE)){stop('The tcltk package is needed')}
 
   persp.refresh <- function(...){
     persp(x,y,z, theta=slider(no=1), phi=slider(no=2),

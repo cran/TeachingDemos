@@ -53,7 +53,7 @@ vis.boxcoxu.old(lambda = sample(c(-1, -0.5, 0, 1/3, 1/2, 1, 2), 1))
 }
 \references{ GEP Box; DR Cox. An Analysis of Transformations.  Journal
   of the Royal Statitical Society. Series B, Vol. 26, No. 2 (1964) 211-252 }
-\author{ Greg Snow \email{greg.snow@imail.org} }
+\author{ Greg Snow \email{538280@gmail.com} }
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~

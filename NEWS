@@ -1,3 +1,16 @@
+New in TeachingDemos version 2.10
+
+* Modified z.test so that you can provide a sample mean and sample
+  size instead of the raw data.
+
+* Added digits function to compute digits of an integer
+
+* Fixed zoomplot to work with R 3.0
+
+* Fixed subplot function to work better in multi frame plots with type='fig'.
+
+* Fixed minor (and potentially major) bugs in TkListView
+
 New in TeachingDemos version 2.9
 
 * Removed sd.g, limits.g, and stats.g functions that work with the qcc

@@ -1,14 +1,12 @@
-"z.test" <-
-function(x, mu=0, stdev,
+z.test <- function(x, mu=0, stdev,
                    alternative = c("two.sided", "less", "greater"),
-                   sd=stdev,
-                   conf.level = 0.95, ... ){
+                   sd=stdev, n=length(x),
+                   conf.level = 0.95, ... ) {
 
   if(missing(stdev) && missing(sd)) stop("You must specify a Standard Deviation of the population")
 
   alternative <- match.arg(alternative)
 
-  n <- length(x)
   z <- (mean(x)-mu)/(sd/sqrt(n))
 
   out <- list(statistic=c(z=z))
@@ -39,4 +37,3 @@ function(x, mu=0, stdev,
 
   return(out)
 }
-

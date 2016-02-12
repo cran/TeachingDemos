@@ -60,7 +60,7 @@ cnvrt.coords(x, y = NULL, input = c("usr", "plt", "fig", "dev","tdev"))
   }
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{Greg Snow \email{greg.snow@imail.org}}
+\author{Greg Snow \email{538280@gmail.com}}
 \note{ You must provide both x and y, but one of them may be \code{NA}.
 
 This function is now depricated with the new functions

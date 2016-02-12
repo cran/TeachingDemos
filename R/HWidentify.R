@@ -44,7 +44,7 @@ HTKidentify <- function(x,y,label=seq_along(x), lab.col='darkgreen',
                             xlab=deparse(substitute(x)),
 			    ylab=deparse(substitute(y)), ...) {
 
-    if( !require(tkrplot) ) stop ('tkrplot package is required')
+    if( !requireNamespace("tkrplot", quietly=TRUE) ) stop ('tkrplot package is required')
 
 	dx <- numeric(0)
 	dy <- numeric(0)
@@ -68,11 +68,11 @@ HTKidentify <- function(x,y,label=seq_along(x), lab.col='darkgreen',
 			label[w], col=lab.col, adj=adj)
 	}
 
-	tt <- tktoplevel()
-	img <- tkrplot(tt, replot, hscale=1.5, vscale=1.5)
-	tkpack(img, side='top')
-	iw <- as.numeric(tcl("image","width", tkcget(img, "-image")))
-	ih <- as.numeric(tcl("image","height", tkcget(img, "-image")))
+	tt <- tcltk::tktoplevel()
+	img <- tkrplot::tkrplot(tt, replot, hscale=1.5, vscale=1.5)
+	tcltk::tkpack(img, side='top')
+	iw <- as.numeric(tcltk::tcl("image","width", tcltk::tkcget(img, "-image")))
+	ih <- as.numeric(tcltk::tcl("image","height", tcltk::tkcget(img, "-image")))
 
 	cc <- function(x,y) {
 		x <- (as.double(x) -1)/iw
@@ -84,27 +84,11 @@ HTKidentify <- function(x,y,label=seq_along(x), lab.col='darkgreen',
 		xy <- cc(x,y)
 		xx <<- xy[1]
 		yy <<- xy[2]
-		tkrreplot(img)
+		tkrplot::tkrreplot(img)
 	}
 
-	tkbind(img, "<Motion>", mm)
+	tcltk::tkbind(img, "<Motion>", mm)
 
 	invisible()
 }
 
-# tmpx <- runif(25)
-# tmpy <- rnorm(25)
-# HTKidentify(tmpx,tmpy,LETTERS[1:25], pch=letters)
-
-
-
-
-
-
-
-
-
-# getGraphicsEvent( onMouseDown = function(buttons, xx, yy) cat(buttons,'\n'),
-#   onMouseUp=function(buttons, xx, yy) cat('up: ',buttons,'\n'),
-#   onMouseMove=function(buttons, xx, yy) cat('move: ',buttons,' x:',xx,' y:',yy,'\n')
-# )

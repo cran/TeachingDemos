@@ -6,8 +6,10 @@
   Create (or add to) a trilinear plot of 3 proportions that sum to 1.
 }
 \usage{
-triplot(x, y = NULL, z = NULL, labels = dimnames(x)[[2]], txt =
-dimnames(x)[[1]], legend = NULL, legend.split = NULL, inner = TRUE, inner.col = c("lightblue", "pink"), inner.lty = c(2, 3), add = FALSE, main = "", ...)
+triplot(x, y = NULL, z = NULL, labels = dimnames(x)[[2]],
+  txt = dimnames(x)[[1]], legend = NULL, legend.split = NULL,
+  inner = TRUE, inner.col = c("lightblue", "pink"), inner.lty = c(2, 3),
+  add = FALSE, main = "", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -50,7 +52,7 @@ dimnames(x)[[1]], legend = NULL, legend.split = NULL, inner = TRUE, inner.col = 
 }
 \references{ Allen, Terry. Using and Interpreting the Trilinear Plot.
   Chance. 15 (Summer 2002). }
-\author{ Greg Snow \email{greg.snow@imail.org} }
+\author{ Greg Snow \email{538280@gmail.com} }
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~

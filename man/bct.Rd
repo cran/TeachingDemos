@@ -23,7 +23,7 @@ bct(y, lambda)
  A vector of the same length as y with the corresponding transformed values.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{Greg Snow \email{greg.snow@imail.org}}
+\author{Greg Snow \email{538280@gmail.com}}
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~

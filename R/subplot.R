@@ -58,6 +58,8 @@ subplot <- function(fun, x, y=NULL, size=c(1,1), vadj=0.5, hadj=0.5,
 
   par(pars)
   if(type=='fig'){
+      xyx <- grconvertX(xyx, from='nfc', to='ndc')
+      xyy <- grconvertY(xyy, from='nfc', to='ndc')
       par(fig=c(xyx,xyy), new=TRUE)
   } else {
       par(plt=c(xyx,xyy), new=TRUE)

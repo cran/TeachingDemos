@@ -1,6 +1,6 @@
 tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
 
-  if( !require(tkrplot) ) stop('This function depends on the tkrplot package being available')
+  if( !requireNamespace('tkrplot', quietly = TRUE) ) stop('This function depends on the tkrplot package being available')
 
   first <- TRUE
   bp <- FALSE
@@ -43,8 +43,8 @@ tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
   rx <- ry <- 0.5
   rw <- rh <- 0.05
 
-  epch<-tclVar(16)
-  ecol<-tclVar('red')
+  epch<-tcltk::tclVar(16)
+  ecol<-tcltk::tclVar('red')
 
   devlims <- c(0.05,0.95,0.05,0.95)
 
@@ -78,27 +78,27 @@ tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
      }
   }
 
-  tt <- tktoplevel()
-  tkwm.title(tt,"Tk Brush")
+  tt <- tcltk::tktoplevel()
+  tcltk::tkwm.title(tt,"Tk Brush")
 
-  img <- tkrplot(tt, replot, vscale=vscale, hscale=hscale)
+  img <- tkrplot::tkrplot(tt, replot, vscale=vscale, hscale=hscale)
 
-  tkpack(img,side='left')
-
-
-  tkpack( tklabel(tt,text='pch:'),side='top')
-  tkpack(tkentry(tt,textvariable=epch),side='top')
+  tcltk::tkpack(img,side='left')
 
 
-  tkpack( tklabel(tt,text='Color:'),side='top')
-  tkpack( tkentry(tt,textvariable=ecol),side='top')
+  tcltk::tkpack( tcltk::tklabel(tt,text='pch:'),side='top')
+  tcltk::tkpack(tcltk::tkentry(tt,textvariable=epch),side='top')
 
 
-  tkpack( tkbutton(tt, text='Quit', command=function()tkdestroy(tt)),
+  tcltk::tkpack( tcltk::tklabel(tt,text='Color:'),side='top')
+  tcltk::tkpack( tcltk::tkentry(tt,textvariable=ecol),side='top')
+
+
+  tcltk::tkpack( tcltk::tkbutton(tt, text='Quit', command=function()tcltk::tkdestroy(tt)),
          side='bottom')
 
-  iw <- as.numeric(tcl('image','width',tkcget(img,'-image')))
-  ih <- as.numeric(tcl('image','height',tkcget(img,'-image')))
+  iw <- as.numeric(tcltk::tcl('image','width',tcltk::tkcget(img,'-image')))
+  ih <- as.numeric(tcltk::tcl('image','height',tcltk::tkcget(img,'-image')))
 
   mm <- function(x,y){
     tx <- (as.numeric(x)-1)/iw
@@ -115,14 +115,14 @@ tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
     tmp <- di[ dx >= rx-rw & dx <= rx & dy >= ry & dy <= ry+rh ]
 
     tmpc <- rep(NA,nrow(mat))
-    tmpcol <- as.character(tclvalue(ecol))
+    tmpcol <- as.character(tcltk::tclvalue(ecol))
     if( !( tmpcol %in% colors() ) ) tmpcol <- 'black'
     tmpc[tmp] <- tmpcol
     tcols <<- tmpc
 
     tmpp <- rep(NA,nrow(mat))
-    tmppch <-  as.numeric(tclvalue(epch))
-    if(is.na(tmppch)) tmppch <- as.character(tclvalue(epch))
+    tmppch <-  as.numeric(tcltk::tclvalue(epch))
+    if(is.na(tmppch)) tmppch <- as.character(tcltk::tclvalue(epch))
     tmpp[tmp] <- tmppch
     tpch <<- tmpp
 
@@ -130,21 +130,21 @@ tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
       ppch <<- ifelse(is.na(tpch),ppch,tpch)
       pcols <<- ifelse(is.na(tcols),pcols,tcols)
     }
-    tkrreplot(img)
+    tkrplot::tkrreplot(img)
   }
 
   mmm <- function(){
     tmp <- di[ dx >= rx-rw & dx <= rx & dy >= ry & dy <= ry+rh ]
 
     tmpc <- rep(NA,nrow(mat))
-    tmpcol <- as.character(tclvalue(ecol))
+    tmpcol <- as.character(tcltk::tclvalue(ecol))
     if( !( tmpcol %in% colors() ) ) tmpcol <- 'black'
     tmpc[tmp] <- tmpcol
     tcols <<- tmpc
 
     tmpp <- rep(NA,nrow(mat))
-    tmppch <-  as.numeric(tclvalue(epch))
-    if(is.na(tmppch)) tmppch <- as.character(tclvalue(epch))
+    tmppch <-  as.numeric(tcltk::tclvalue(epch))
+    if(is.na(tmppch)) tmppch <- as.character(tcltk::tclvalue(epch))
     tmpp[tmp] <- tmppch
     tpch <<- tmpp
 
@@ -152,19 +152,19 @@ tkBrush <- function(mat,hscale=1.75,vscale=1.75,wait=TRUE,...){
       ppch <<- ifelse(is.na(tpch),ppch,tpch)
       pcols <<- ifelse(is.na(tcols),pcols,tcols)
     }
-    tkrreplot(img)
+    tkrplot::tkrreplot(img)
   }
 
-  tkbind(img, '<Motion>', mm)
-  tkbind(img, '<ButtonPress-1>', function() {bp<<-TRUE;mmm()})
-  tkbind(img, '<ButtonRelease-1>', function() bp<<-FALSE)
-  tkbind(tt, '<Key-Up>',function(){rh <<- rh+0.01;mmm()})
-  tkbind(tt, '<Key-Down>',function(){rh <<- rh-0.01;mmm()})
-  tkbind(tt, '<Key-Left>',function(){rw <<- rw+0.01;mmm()})
-  tkbind(tt, '<Key-Right>',function(){rw <<- rw-0.01;mmm()})
+  tcltk::tkbind(img, '<Motion>', mm)
+  tcltk::tkbind(img, '<ButtonPress-1>', function() {bp<<-TRUE;mmm()})
+  tcltk::tkbind(img, '<ButtonRelease-1>', function() bp<<-FALSE)
+  tcltk::tkbind(tt, '<Key-Up>',function(){rh <<- rh+0.01;mmm()})
+  tcltk::tkbind(tt, '<Key-Down>',function(){rh <<- rh-0.01;mmm()})
+  tcltk::tkbind(tt, '<Key-Left>',function(){rw <<- rw+0.01;mmm()})
+  tcltk::tkbind(tt, '<Key-Right>',function(){rw <<- rw-0.01;mmm()})
 
   if(wait){
-    tkwait.window(tt)
+    tcltk::tkwait.window(tt)
     return(list(col=pcols, pch=ppch))
   } else {
     return(invisible(NULL))

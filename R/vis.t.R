@@ -1,29 +1,29 @@
 "vis.t" <-
 function(){
 
-    if( !require(tcltk) ) stop('This function depends on the tcltk package')
+    if( !requireNamespace('tcltk', quietly = TRUE) ) stop('This function depends on the tcltk package')
 
     if(!exists('slider.env')) slider.env<<-new.env()
 
-  df <- 1; assign('df',tclVar(df),envir=slider.env)
-  sn <- 0; assign('sn',tclVar(sn),envir=slider.env)
+  df <- 1; assign('df',tcltk::tclVar(df),envir=slider.env)
+  sn <- 0; assign('sn',tcltk::tclVar(sn),envir=slider.env)
 
-  xmin <- -5; assign('xmin',tclVar(xmin),envir=slider.env)
-  xmax <- 5; assign('xmax',tclVar(xmax),envir=slider.env)
-  ymin <- 0; assign('ymin',tclVar(ymin),envir=slider.env)
-  ymax <- round(dnorm(0,0,1),2); assign('ymax',tclVar(ymax),envir=slider.env)
+  xmin <- -5; assign('xmin',tcltk::tclVar(xmin),envir=slider.env)
+  xmax <- 5; assign('xmax',tcltk::tclVar(xmax),envir=slider.env)
+  ymin <- 0; assign('ymin',tcltk::tclVar(ymin),envir=slider.env)
+  ymax <- round(dnorm(0,0,1),2); assign('ymax',tcltk::tclVar(ymax),envir=slider.env)
 
 
 
   t.refresh <- function(...){
 
-    df <- as.numeric(evalq(tclvalue(df), envir=slider.env))
-    sn <- as.numeric(evalq(tclvalue(sn), envir=slider.env))
+    df <- as.numeric(evalq(tcltk::tclvalue(df), envir=slider.env))
+    sn <- as.numeric(evalq(tcltk::tclvalue(sn), envir=slider.env))
 
-    xmin <- as.numeric(evalq(tclvalue(xmin), envir=slider.env))
-    xmax <- as.numeric(evalq(tclvalue(xmax), envir=slider.env))
-    ymin <- as.numeric(evalq(tclvalue(ymin), envir=slider.env))
-    ymax <- as.numeric(evalq(tclvalue(ymax), envir=slider.env))
+    xmin <- as.numeric(evalq(tcltk::tclvalue(xmin), envir=slider.env))
+    xmax <- as.numeric(evalq(tcltk::tclvalue(xmax), envir=slider.env))
+    ymin <- as.numeric(evalq(tcltk::tclvalue(ymin), envir=slider.env))
+    ymax <- as.numeric(evalq(tcltk::tclvalue(ymax), envir=slider.env))
 
     xx <- seq(xmin,xmax, length=500)
     yyt <- dt(xx,df)
@@ -41,59 +41,59 @@ function(){
   }
 
 
-  m <- tktoplevel()
-  tkwm.title(m,'Visualizing the t-Distribution')
-  tkwm.geometry(m,'+0+0')
+  m <- tcltk::tktoplevel()
+  tcltk::tkwm.title(m,'Visualizing the t-Distribution')
+  tcltk::tkwm.geometry(m,'+0+0')
 
   # df
-  tkpack(fr <- tkframe(m),side='top')
-  tkpack(tklabel(fr, text='d.f.', width='5'),side='right')
-  tkpack(sc <- tkscale(fr, command=t.refresh, from=1, to=50,
+  tcltk::tkpack(fr <- tcltk::tkframe(m),side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='d.f.', width='5'),side='right')
+  tcltk::tkpack(sc <- tcltk::tkscale(fr, command=t.refresh, from=1, to=50,
                        orient='horiz',
                        resolution=1, showvalue=T),
          side='left')
   assign('sc',sc,envir=slider.env)
-  evalq(tkconfigure(sc, variable=df),envir=slider.env)
+  evalq(tcltk::tkconfigure(sc, variable=df),envir=slider.env)
 
   # show normal
-  tkpack(fr <- tkframe(m),side='top')
-  tkpack(tklabel(fr, text='Show Normal Distribution', width='25'),side='right')
-  tkpack(sc <- tkcheckbutton(fr, command=t.refresh),
+  tcltk::tkpack(fr <- tcltk::tkframe(m),side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='Show Normal Distribution', width='25'),side='right')
+  tcltk::tkpack(sc <- tcltk::tkcheckbutton(fr, command=t.refresh),
          side='left')
   assign('sc',sc,envir=slider.env)
-  evalq(tkconfigure(sc, variable=sn),envir=slider.env)
+  evalq(tcltk::tkconfigure(sc, variable=sn),envir=slider.env)
 
 
   # xmin
-  tkpack(fr <- tkframe(m),side='top')
-  tkpack(tklabel(fr, text='Xmin:', width=6), side='left')
-  tkpack(e <- tkentry(fr,width=8), side='left')
+  tcltk::tkpack(fr <- tcltk::tkframe(m),side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='Xmin:', width=6), side='left')
+  tcltk::tkpack(e <- tcltk::tkentry(fr,width=8), side='left')
   assign('e',e,envir=slider.env)
-  evalq(tkconfigure(e, textvariable=xmin), envir=slider.env)
+  evalq(tcltk::tkconfigure(e, textvariable=xmin), envir=slider.env)
 
   # xmax
-  tkpack(tklabel(fr, text='Xmax:', width=6), side='left')
-  tkpack(e <- tkentry(fr,width=8), side='left')
+  tcltk::tkpack(tcltk::tklabel(fr, text='Xmax:', width=6), side='left')
+  tcltk::tkpack(e <- tcltk::tkentry(fr,width=8), side='left')
   assign('e',e,envir=slider.env)
-  evalq(tkconfigure(e, textvariable=xmax), envir=slider.env)
+  evalq(tcltk::tkconfigure(e, textvariable=xmax), envir=slider.env)
 
   # ymin
-  tkpack(fr <- tkframe(m),side='top')
-  tkpack(tklabel(fr, text='Ymin:', width=6), side='left')
-  tkpack(e <- tkentry(fr,width=8), side='left')
+  tcltk::tkpack(fr <- tcltk::tkframe(m),side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='Ymin:', width=6), side='left')
+  tcltk::tkpack(e <- tcltk::tkentry(fr,width=8), side='left')
   assign('e',e,envir=slider.env)
-  evalq(tkconfigure(e, textvariable=ymin), envir=slider.env)
+  evalq(tcltk::tkconfigure(e, textvariable=ymin), envir=slider.env)
 
   # ymax
-  tkpack(tklabel(fr, text='Ymax:', width=6), side='left')
-  tkpack(e <- tkentry(fr,width=8), side='left')
+  tcltk::tkpack(tcltk::tklabel(fr, text='Ymax:', width=6), side='left')
+  tcltk::tkpack(e <- tcltk::tkentry(fr,width=8), side='left')
   assign('e',e,envir=slider.env)
-  evalq(tkconfigure(e, textvariable=ymax), envir=slider.env)
+  evalq(tcltk::tkconfigure(e, textvariable=ymax), envir=slider.env)
 
 
-  tkpack(tkbutton(m, text="Refresh", command=t.refresh),side='left')
+  tcltk::tkpack(tcltk::tkbutton(m, text="Refresh", command=t.refresh),side='left')
 
-  tkpack(tkbutton(m, text="Exit", command=function()tkdestroy(m)),
+  tcltk::tkpack(tcltk::tkbutton(m, text="Exit", command=function()tcltk::tkdestroy(m)),
          side='right')
 
 }

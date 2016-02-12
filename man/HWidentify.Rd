@@ -13,7 +13,8 @@ HWidentify(x, y, label = seq_along(x), lab.col="darkgreen",
 pt.col="red", adj=c(0,0), clean=TRUE, xlab = deparse(substitute(x)),
 ylab = deparse(substitute(y)), ...)
 HTKidentify(x, y, label = seq_along(x), lab.col="darkgreen",
-pt.col="red", adj=c(0,0), xlab = deparse(substitute(x)), ylab = deparse(substitute(y)), ...)
+pt.col="red", adj=c(0,0), xlab = deparse(substitute(x)),
+ylab = deparse(substitute(y)), ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -47,7 +48,7 @@ These functions are run for their side effects, nothing meaningful is returned.
 %% ~put references to the literature/web site here ~
 %}
 \author{
-Greg Snow, \email{greg.snow@imail.org}
+Greg Snow, \email{538280@gmail.com}
 }
 %\note{
 %%  ~~further notes~~

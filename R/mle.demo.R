@@ -2,19 +2,18 @@
 function(x=rnorm(10, 10, 2), start.mean = mean(x)-start.sd,
                      start.sd = 1.2* sqrt(var(x)) ){
 
-    if( !require(tcltk) ) stop('This function depends on the tcltk package.')
+    if( !requireNamespace('tcltk', quietly = TRUE) ) stop('This function depends on the tcltk package.')
 
   if(!exists('slider.env')) slider.env <<- new.env()
-  #library(tcltk)
 
-  mu <- start.mean; assign('mu',tclVar(mu),envir=slider.env)
-  sig <- start.sd;  assign('sig',tclVar(sig),envir=slider.env)
+  mu <- start.mean; assign('mu',tcltk::tclVar(mu),envir=slider.env)
+  sig <- start.sd;  assign('sig',tcltk::tclVar(sig),envir=slider.env)
 
   .mu <- .sig <- .ll <- numeric(0)
 
   mle.refresh <- function(...){
-    mu <- as.numeric(evalq(tclvalue(mu), envir=slider.env))
-    sig <- as.numeric(evalq(tclvalue(sig), envir=slider.env))
+    mu <- as.numeric(evalq(tcltk::tclvalue(mu), envir=slider.env))
+    sig <- as.numeric(evalq(tcltk::tclvalue(sig), envir=slider.env))
 
     old.par <- par(no.readonly=T)
     on.exit(par(old.par))
@@ -48,43 +47,43 @@ function(x=rnorm(10, 10, 2), start.mean = mean(x)-start.sd,
 
   }
 
-  m <- tktoplevel()
-  tkwm.title(m,'Maximum Likelihood Estimation')
-  tkwm.geometry(m, '+0+0')
+  m <- tcltk::tktoplevel()
+  tcltk::tkwm.title(m,'Maximum Likelihood Estimation')
+  tcltk::tkwm.geometry(m, '+0+0')
 
   # mu
-  tkpack(fr <- tkframe(m), side='top')
-  tkpack(tklabel(fr, text='mu', width='10'), side='right')
+  tcltk::tkpack(fr <- tcltk::tkframe(m), side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='mu', width='10'), side='right')
 
   tmp <- pretty( c( start.mean - 2*start.sd, start.mean + 3*start.sd),
                 100)
 
-  tkpack(sc <- tkscale(fr, command=mle.refresh, from=min(tmp),
+  tcltk::tkpack(sc <- tcltk::tkscale(fr, command=mle.refresh, from=min(tmp),
                        to=max(tmp),
                        orient='horiz',
                        resolution=tmp[2] - tmp[1],showvalue=T),
          side='left')
   assign('sc',sc, envir=slider.env)
-  evalq(tkconfigure(sc, variable=mu), envir=slider.env)
+  evalq(tcltk::tkconfigure(sc, variable=mu), envir=slider.env)
 
   # sigma
-  tkpack(fr <- tkframe(m), side='top')
-  tkpack(tklabel(fr, text='sigma', width='10'), side='right')
+  tcltk::tkpack(fr <- tcltk::tkframe(m), side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='sigma', width='10'), side='right')
 
   tmp <- pretty( c( 0.5*start.sd, 2*start.sd), 100)
 
-  tkpack(sc <- tkscale(fr, command=mle.refresh, from=min(tmp),
+  tcltk::tkpack(sc <- tcltk::tkscale(fr, command=mle.refresh, from=min(tmp),
                        to=max(tmp),
                        orient='horiz',
                        resolution=tmp[2]-tmp[1], showvalue=T),
          side='left')
   assign('sc',sc,envir=slider.env)
-  evalq(tkconfigure(sc, variable=sig), envir=slider.env)
+  evalq(tcltk::tkconfigure(sc, variable=sig), envir=slider.env)
 
 
 
-  tkpack(tkbutton(m, text="Refresh", command=mle.refresh), side='left')
-  tkpack(tkbutton(m, text="Exit", command=function()tkdestroy(m)),
+  tcltk::tkpack(tcltk::tkbutton(m, text="Refresh", command=mle.refresh), side='left')
+  tcltk::tkpack(tcltk::tkbutton(m, text="Exit", command=function()tcltk::tkdestroy(m)),
          side='right')
 
   return(invisible(x))

@@ -73,7 +73,7 @@ Pressing enter without making a guess ends the game.
   \url{http://www.borrett.id.au/computing/petals-bg.htm}
 %% ~put references to the literature/web site here ~
 }
-\author{Greg Snow, \email{greg.snow@imail.org}
+\author{Greg Snow, \email{538280@gmail.com}
 %%  ~~who you are~~
 }
 \note{

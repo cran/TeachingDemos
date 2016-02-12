@@ -7,7 +7,8 @@
   instead of horizontally.
 }
 \usage{
-sliderv(refresh.code, names, minima, maxima, resolutions, starts, title = "control", no = 0, set.no.value = 0)
+sliderv(refresh.code, names, minima, maxima, resolutions, starts,
+  title = "control", no = 0, set.no.value = 0)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -33,7 +34,7 @@ sliderv(refresh.code, names, minima, maxima, resolutions, starts, title = "contr
   Returns the value of a given slider when used as: \code{slider(no=i)}.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@imail.org} }
+\author{ Greg Snow \email{538280@gmail.com} }
 \note{
   You can move the slider in 3 different ways:  You can left click
   and drag the slider itself, you can left click in the trough to either

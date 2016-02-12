@@ -46,7 +46,7 @@ run.old.cor2.examp(n = 100, seed)
   is returned.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@imail.org} }
+\author{ Greg Snow \email{538280@gmail.com} }
 \note{ If \code{wait} is TRUE then R will wait until you click on the
   "Exit" button before you can use your R session again.  If \code{wait}
   is FALSE then the tk window will appear, but R will regain control so

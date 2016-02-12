@@ -70,7 +70,7 @@ TkPredict(model, data, pred.var, ...)
   These functions are run for their side effects of creating plots and
   do not return anything.
 }
-\author{Greg Snow, \email{greg.snow@imail.org}}
+\author{Greg Snow, \email{538280@gmail.com}}
 
 \seealso{ \code{tkrplot}, \code{\link{tkexamp}}, \code{\link{predict}} }
 

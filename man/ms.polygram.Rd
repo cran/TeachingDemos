@@ -70,7 +70,7 @@ ms.face(features, ...)
   These functions either return a 2 column matrix of points to be passed
   to \code{lines} or \code{NULL}.
 }
-\author{Greg Snow \email{greg.snow@imail.org}}
+\author{Greg Snow \email{538280@gmail.com}}
 \seealso{\code{\link{my.symbols}}, \code{\link{polygon}},
   \code{\link{arrows}}, \code{\link{lines}}, \code{\link{faces}}, also see
   \code{\link{rasterImage}} for an alternative to ms.image

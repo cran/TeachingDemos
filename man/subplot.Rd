@@ -79,13 +79,13 @@ subplot(fun, x, y, size=c(1,1), vadj=0.5, hadj=0.5,
  enable you to augment the embedded plot.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{Greg Snow \email{greg.snow@imail.org}}
+\author{Greg Snow \email{538280@gmail.com}}
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{\code{\link{grconvertX}}, \code{\link{par}},
-  \code{\link{symbols}}, \code{\link{my.symbols}}}
+  \code{\link{symbols}}, \code{\link{my.symbols}}, \code{\link{ms.image}}}
 \examples{
 # make an original plot
 plot( 11:20, sample(51:60) )
@@ -128,23 +128,24 @@ par(op)
 
 
 # scatter-plot using images
-if(interactive() && require(EBImage)) {
+if(interactive() && require(png)) {
 
-  image.EBImage <- function(x,...) {
-    tmp <- imageData(flip(x))
-    cols <- rgb( tmp[,,1], tmp[,,2], tmp[,,3] )
+  image.png <- function(x,...) {
+    cols <- rgb( x[,,1], x[,,2], x[,,3], x[,,4] )
     z <- 1:length(cols)
-    dim(z) <- dim(tmp[,,1])
+    dim(z) <- dim(x[,,1])
+    z <- t(z)
+    z <- z[ ,rev(seq_len(ncol(z))) ]
     image(z, col=cols, axes=FALSE, ...)
   }
 
-  logo <- readImage( paste( R.home('doc'), '/html/logo.jpg', sep='' ) )
+  logo <- readPNG(system.file("img", "Rlogo.png", package="png"))
 
   x <- runif(10)
   y <- runif(10)
   plot(x,y, type='n')
   for(i in 1:10) {
-    subplot(image.EBImage(logo), x[i], y[i], size=c(0.3,0.3))
+    subplot(image.png(logo), x[i], y[i], size=c(0.3,0.3))
   }
 }
 

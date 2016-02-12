@@ -57,7 +57,7 @@ plotFagan2.old()
 }
 
 \author{ Guazzetti Stefano and Greg Snow
-  \email{greg.snow@imail.org}}
+  \email{538280@gmail.com}}
 \seealso{ \code{slider}}
 \examples{
  fagan.plot(0.8, 2)

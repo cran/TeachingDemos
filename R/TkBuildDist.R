@@ -4,8 +4,8 @@ TkBuildDist <- function(  x=seq(min+(max-min)/nbin/2,
                           min=0, max=10, nbin=10, logspline=TRUE,
                           intervals=FALSE) {
 
-    if(logspline) logspline <- require(logspline)
-    require(tkrplot)
+    if(logspline) logspline <- requireNamespace('logspline', quietly=TRUE)
+    requireNamespace('tkrplot', quietly = TRUE)
 
     xxx <- x
 
@@ -20,8 +20,8 @@ TkBuildDist <- function(  x=seq(min+(max-min)/nbin/2,
             function() {
                 hist(xxx, breaks=brks, probability=TRUE,xlab='', main='')
                 xx <- cut(xxx, brks, labels=FALSE)
-                fit <- oldlogspline( interval = cbind(brks[xx], brks[xx+1]) )
-                lines( nx, doldlogspline(nx,fit), lwd=3 )
+                fit <- logspline::oldlogspline( interval = cbind(brks[xx], brks[xx+1]) )
+                lines( nx, logspline::doldlogspline(nx,fit), lwd=3 )
                 if(first) {
                     first <<- FALSE
                     lx <<- grconvertX(min, to='ndc')
@@ -31,8 +31,8 @@ TkBuildDist <- function(  x=seq(min+(max-min)/nbin/2,
         } else {
             function() {
                 hist(xxx, breaks=brks, probability=TRUE,xlab='', main='')
-                fit <- logspline( xxx )
-                lines( nx, dlogspline(nx,fit), lwd=3 )
+                fit <- logspline::logspline( xxx )
+                lines( nx, logspline::dlogspline(nx,fit), lwd=3 )
                 if(first) {
                     first <<- FALSE
                     lx <<- grconvertX(min, to='ndc')
@@ -51,22 +51,22 @@ TkBuildDist <- function(  x=seq(min+(max-min)/nbin/2,
         }
     }
 
-    tt <- tktoplevel()
-    tkwm.title(tt, "Distribution Builder")
+    tt <- tcltk::tktoplevel()
+    tcltk::tkwm.title(tt, "Distribution Builder")
 
-    img <- tkrplot(tt, replot, vscale=1.5, hscale=1.5)
-    tkpack(img, side='top')
+    img <- tkrplot::tkrplot(tt, replot, vscale=1.5, hscale=1.5)
+    tcltk::tkpack(img, side='top')
 
-    tkpack( tkbutton(tt, text='Quit', command=function() tkdestroy(tt)),
+    tcltk::tkpack( tcltk::tkbutton(tt, text='Quit', command=function() tcltk::tkdestroy(tt)),
            side='right')
 
-    iw <- as.numeric(tcl('image','width',tkcget(img,'-image')))
+    iw <- as.numeric(tcltk::tcl('image','width',tcltk::tkcget(img,'-image')))
 
     mouse1.down <- function(x,y) {
         tx <- (as.numeric(x)-1)/iw
         ux <- (tx-lx)/(ux-lx)*(max-min)+min
         xxx <<- c(xxx,ux)
-        tkrreplot(img)
+        tkrplot::tkrreplot(img)
     }
 
     mouse2.down <- function(x,y) {
@@ -75,23 +75,23 @@ TkBuildDist <- function(  x=seq(min+(max-min)/nbin/2,
             ux <- (tx-lx)/(ux-lx)*(max-min)+min
             w <- which.min( abs(xxx-ux) )
             xxx <<- xxx[-w]
-            tkrreplot(img)
+            tkrplot::tkrreplot(img)
         }
     }
 
-    tkbind(img, '<ButtonPress-1>', mouse1.down)
-    tkbind(img, '<ButtonPress-2>', mouse2.down)
-    tkbind(img, '<ButtonPress-3>', mouse2.down)
+    tcltk::tkbind(img, '<ButtonPress-1>', mouse1.down)
+    tcltk::tkbind(img, '<ButtonPress-2>', mouse2.down)
+    tcltk::tkbind(img, '<ButtonPress-3>', mouse2.down)
 
-    tkwait.window(tt)
+    tcltk::tkwait.window(tt)
 
     out <- list(x=xxx)
     if(logspline) {
         if( intervals ) {
             xx <- cut(xxx, brks, labels=FALSE)
-            out$logspline <- oldlogspline( interval = cbind(brks[xx], brks[xx+1]) )
+            out$logspline <- logspline::oldlogspline( interval = cbind(brks[xx], brks[xx+1]) )
         } else {
-            out$logspline <- logspline(xxx)
+            out$logspline <- logspline::logspline(xxx)
         }
     }
 
@@ -108,8 +108,8 @@ TkBuildDist <- function(  x=seq(min+(max-min)/nbin/2,
 
 
 TkBuildDist2 <- function( min=0, max=1, nbin=10, logspline=TRUE) {
-    if(logspline) logspline <- require(logspline)
-    require(tkrplot)
+    if(logspline) logspline <- requireNamespace(logspline, quietly=TRUE)
+    requireNamespace('tkrplot', quietly=TRUE)
 
     xxx <- rep( 1/nbin, nbin )
 
@@ -125,8 +125,8 @@ TkBuildDist2 <- function( min=0, max=1, nbin=10, logspline=TRUE) {
                     ylim=c(0,0.5), col=NA)
             axis(1,at=brks)
             xx <- rep( 1:nbin, round(xxx*100) )
-            capture.output(fit <- oldlogspline( interval = cbind(brks[xx], brks[xx+1]) ))
-            lines( nx, doldlogspline(nx,fit)*(max-min)/nbin, lwd=3 )
+            capture.output(fit <- logspline::oldlogspline( interval = cbind(brks[xx], brks[xx+1]) ))
+            lines( nx, logspline::doldlogspline(nx,fit)*(max-min)/nbin, lwd=3 )
 
             if(first) {
                 first <<- FALSE
@@ -151,17 +151,17 @@ TkBuildDist2 <- function( min=0, max=1, nbin=10, logspline=TRUE) {
         }
     }
 
-    tt <- tktoplevel()
-    tkwm.title(tt, "Distribution Builder")
+    tt <- tcltk::tktoplevel()
+    tcltk::tkwm.title(tt, "Distribution Builder")
 
-    img <- tkrplot(tt, replot, vscale=1.5, hscale=1.5)
-    tkpack(img, side='top')
+    img <- tkrplot::tkrplot(tt, replot, vscale=1.5, hscale=1.5)
+    tcltk::tkpack(img, side='top')
 
-    tkpack( tkbutton(tt, text='Quit', command=function() tkdestroy(tt)),
+    tcltk::tkpack( tcltk::tkbutton(tt, text='Quit', command=function() tcltk::tkdestroy(tt)),
            side='right')
 
-    iw <- as.numeric(tcl('image','width',tkcget(img,'-image')))
-    ih <- as.numeric(tcl('image','height',tkcget(img,'-image')))
+    iw <- as.numeric(tcltk::tcl('image','width',tcltk::tkcget(img,'-image')))
+    ih <- as.numeric(tcltk::tcl('image','height',tcltk::tkcget(img,'-image')))
 
 
 
@@ -178,7 +178,7 @@ TkBuildDist2 <- function( min=0, max=1, nbin=10, logspline=TRUE) {
                  xxx[w] <<- 0.5*(ty-ly)/(uy-ly)
                 xxx[-w] <<- (1-xxx[w])*xxx[-w]/sum(xxx[-w])
 
-                tkrreplot(img)
+                tkrplot::tkrreplot(img)
             }
         }
     }
@@ -192,16 +192,16 @@ TkBuildDist2 <- function( min=0, max=1, nbin=10, logspline=TRUE) {
         md <<- FALSE
     }
 
-    tkbind(img, '<Motion>', mouse.move)
-    tkbind(img, '<ButtonPress-1>', mouse.down)
-    tkbind(img, '<ButtonRelease-1>', mouse.up)
+    tcltk::tkbind(img, '<Motion>', mouse.move)
+    tcltk::tkbind(img, '<ButtonPress-1>', mouse.down)
+    tcltk::tkbind(img, '<ButtonRelease-1>', mouse.up)
 
-    tkwait.window(tt)
+    tcltk::tkwait.window(tt)
 
     out <- list(breaks=brks, probs=xxx)
     if(logspline) {
         xx <- rep( 1:nbin, round(xxx*100) )
-        out$logspline <- oldlogspline( interval = cbind(brks[xx], brks[xx+1]) )
+        out$logspline <- logspline::oldlogspline( interval = cbind(brks[xx], brks[xx+1]) )
     }
 
     return(out)

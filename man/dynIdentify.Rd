@@ -10,8 +10,11 @@
   and label.
 }
 \usage{
-dynIdentify(x, y, labels = seq_along(x), corners = cbind(c(-1, 0, 1, -1, 1, -1, 0, 1), c(1, 1, 1, 0, 0, -1, -1, -1)), ...)
-TkIdentify(x, y, labels=seq_along(x), hscale=1.75, vscale=1.75, corners = cbind( c(-1,0,1,-1,1,-1,0,1), c(1,1,1,0,0,-1,-1,-1) ),...)
+dynIdentify(x, y, labels = seq_along(x),
+  corners = cbind(c(-1, 0, 1, -1, 1, -1, 0, 1),
+    c(1, 1, 1, 0, 0, -1, -1, -1)), ...)
+TkIdentify(x, y, labels=seq_along(x), hscale=1.75, vscale=1.75,
+  corners = cbind( c(-1,0,1,-1,1,-1,0,1), c(1,1,1,0,0,-1,-1,-1) ),...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -44,7 +47,7 @@ TkIdentify(x, y, labels=seq_along(x), hscale=1.75, vscale=1.75, corners = cbind(
   labels and the line ends.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow, \email{greg.snow@imail.org} }
+\author{ Greg Snow, \email{538280@gmail.com} }
 \seealso{\code{\link{identify}} }
 \note{
   The \code{dynIdentify} function only works on windows,

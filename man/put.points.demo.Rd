@@ -44,11 +44,7 @@ put.points.demo(x = NULL, y = NULL, lsline = TRUE)
 \value{
   This function does not return anything.
 }
-%\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@imail.org} }
-%\note{ ~~further notes~~ }
-
- 
+\author{ Greg Snow \email{538280@gmail.com} }
 
 \seealso{ \code{\link{plot}}, \code{\link{cor}} }
 \examples{

@@ -1,6 +1,6 @@
 "triplot" <-
-function(x, y=NULL, z=NULL, 
-         labels=dimnames(x)[[2]], 
+function(x, y=NULL, z=NULL,
+         labels=dimnames(x)[[2]],
          txt=dimnames(x)[[1]], legend=NULL,
          legend.split=NULL,
          inner=TRUE, inner.col=c('lightblue','pink'),
@@ -22,45 +22,45 @@ function(x, y=NULL, z=NULL,
   }
 
   if(dev.cur()==1){
-    win.graph()
+    dev.new()
     add <- FALSE
   }
-	
+
   if( !add ){
-    
+
     pin <- par("pin")
     xstar <- (pin[1]/pin[2]*sqrt(3)-2)/2
-    
+
     plot( c(0,1,2,0), c(0,sqrt(3),0,0), type="l",
          lwd=3, xlim=c(-xstar,2+xstar),
          xlab="",ylab="",axes=FALSE, main=main)
-	
+
     if(inner){
       lines( c(1,1.5,0.5,1), c(0,sqrt(3)/2,sqrt(3)/2,0),
             lwd=.5, col=inner.col[1], lty=inner.lty[1])
-      lines( c(1.25, 1, .75, 1.25), 
+      lines( c(1.25, 1, .75, 1.25),
             c(sqrt(3)/4, sqrt(3)/2, sqrt(3)/4, sqrt(3)/4),
             lwd=0.25, col=inner.col[2],lty=inner.lty[2])
     }
-	
+
     if(length(labels)==0){
       labels <- c("X","Y","Z")
     }
-	
+
     ystar <- par("cxy")[2] * 1.1
     text( c(0,2,1), c(-ystar,-ystar,sqrt(3)+ystar),
-         labels, cex=1.5 ) 
+         labels, cex=1.5 )
   }
-	
+
   newy <- x[,3] * sqrt(3)
   newx <- 2-2*x[,1]-x[,3]
-	
+
   if(length(txt)==length(newx)){
     text(newx,newy,txt,...)
   } else {
     points(newx,newy,...)
   }
-	
+
   if(length(legend)==length(newx)){
     labpos <- function(y){
       strh <- par("cxy")[2]*1.15
@@ -105,7 +105,7 @@ function(x, y=NULL, z=NULL,
       }
     }
   }
-  
+
   invisible(cbind(x=newx,y=newy))
 }
 

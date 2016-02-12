@@ -52,7 +52,7 @@ An object of class "htest" with components:
 \code{fortune(234)}
 }
 \author{
-Greg Snow \email{greg.snow@imail.org}
+Greg Snow \email{538280@gmail.com}
 }
 \note{
 Note: if you just use this function and report the p-value then the

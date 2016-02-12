@@ -7,20 +7,22 @@
   mean of a population when the standard deviation of the population is known.
 }
 \usage{
-z.test(x, mu = 0, stdev, alternative = c("two.sided", "less", "greater"), sd = stdev, conf.level = 0.95, ...)
+z.test(x, mu = 0, stdev, alternative = c("two.sided", "less", "greater"),
+  sd = stdev, n=length(x), conf.level = 0.95, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ Vector of data values. }
+  \item{x}{ Vector of data values or the mean of the data. }
   \item{mu}{ Hypothesized mean of the population. }
   \item{stdev}{ Known standard deviation of the population. }
   \item{alternative}{ Direction of the alternative hypothesis. }
   \item{sd}{ Alternative to \code{stdev} }
+  \item{n}{ The sample size if \code{x} is the sample mean. }
   \item{conf.level}{ Confidence level for the interval computation. }
   \item{\dots}{ Additional arguments are silently ignored. }
 }
 \details{
-  Most introductory statistical texts introduce inference by using the Z
+  Many introductory statistical texts introduce inference by using the Z
   test and Z based confidence intervals based on knowing the population
   standard deviation.  Most statistical packages do not include
   functions to do Z tests since the T test is usually more appropriate
@@ -36,7 +38,7 @@ z.test(x, mu = 0, stdev, alternative = c("two.sided", "less", "greater"), sd = s
   An object of class \code{htest} containing the results
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@imail.org} }
+\author{ Greg Snow \email{538280@gmail.com} }
 \note{ This function should be used for learning only, real data should
   generally use \code{t.test}. }
 

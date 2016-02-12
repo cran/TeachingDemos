@@ -10,7 +10,10 @@ see predicted y-values corresponding to selected x-values.}
   shows the differences between the pairs of x-values and y-values.
 }
 \usage{
-TkApprox(x, y, type = "b", snap.to.x = FALSE, digits = 4, cols = c("red", "#009900", "blue"), xlab = deparse(substitute(x)), ylab = deparse(substitute(y)), hscale = 1.5, vscale = 1.5, wait = TRUE, ...)
+TkApprox(x, y, type = "b", snap.to.x = FALSE, digits = 4,
+  cols = c("red", "#009900", "blue"), xlab = deparse(substitute(x)),
+  ylab = deparse(substitute(y)), hscale = 1.5, vscale = 1.5,
+  wait = TRUE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -48,7 +51,7 @@ TkApprox(x, y, type = "b", snap.to.x = FALSE, digits = 4, cols = c("red", "#0099
   the 3 reference lines is returned.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{Greg Snow \email{greg.snow@imail.org}}
+\author{Greg Snow \email{538280@gmail.com}}
 %\note{ ~~further notes~~
 %
 % ~Make other sections like Warning with \section{Warning }{....} ~

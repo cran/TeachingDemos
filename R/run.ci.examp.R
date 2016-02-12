@@ -1,7 +1,7 @@
 "run.ci.examp" <-
 function(reps=100,seed, method='z',n=25) {
 
-  if(!require(tcltk)){stop('The tcltk package is needed')}
+  if(!requireNamespace('tcltk', quietly = TRUE)){stop('The tcltk package is needed')}
     if (!missing(seed)){ set.seed(seed) }
   data <- matrix( rnorm( n*reps, 100, 10), ncol=n)
   rmeans <- rowMeans(data)

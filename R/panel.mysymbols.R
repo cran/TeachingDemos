@@ -34,9 +34,9 @@ panel.my.symbols <- function(x, y, symb, inches=1, polygon = FALSE,
             dots1$x <- x+xx
             dots1$y <- y+yy
             if(polygon) {
-                do.call(lpolygon, dots1)
+                do.call(lattice::lpolygon, dots1)
             } else {
-                do.call(llines, dots1)
+                do.call(lattice::llines, dots1)
             }
         }
     } else {
@@ -50,9 +50,9 @@ panel.my.symbols <- function(x, y, symb, inches=1, polygon = FALSE,
             dots$x <- x+xx
             dots$y <- y+yy
             if(polygon) {
-                do.call(lpolygon, dots)
+                do.call(lattice::lpolygon, dots)
             } else {
-                do.call(llines, dots)
+                do.call(lattice::llines, dots)
             }
         }
     }

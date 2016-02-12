@@ -167,7 +167,7 @@ R2etxt <- function(cmd,res,s,vis) {
       }
   } else {
 
-      if( R2txt.vars$cmd ){
+      if( R2txt.vars$cmd ) {
           cmdline <- deparse(cmd)
           cmdline <- gsub('    ', "\n", cmdline)
           cmdline <- gsub('}', "\n}", cmdline)
@@ -352,6 +352,7 @@ etxtPlot <- function(file=paste(tempfile('plot',R2txt.vars$dir),'.eps',sep=''),
 
 R2wdtxt <- function(cmd,res,s,vis) {
 
+  requireNamespace('R2wd', quietly = TRUE)
   if(R2txt.vars$first) {
       R2txt.vars$first <- FALSE
       if( R2txt.vars$res ) {
@@ -396,7 +397,7 @@ R2wdtxt <- function(cmd,res,s,vis) {
 wdtxtStart <- function(commands=TRUE, results=TRUE, fontsize=9,
                      cmdfile, visible.only=TRUE) {
 
-  if( !require(R2wd) ) stop('the R2wd package is required')
+  if( !requireNamespace('R2wd', quietly = TRUE) ) stop('the R2wd package is required')
 
   R2wd::wdGet()
 
@@ -461,7 +462,7 @@ wdtxtStop <- function() {
 }
 
 wdtxtComment <- function(txt,cmdtxt) {
-
+    requireNamespace('R2wd', quietly = TRUE)
     R2txt.vars$first <- TRUE
     if(!missing(txt)) {
         R2wd::wdParagraph()
@@ -480,7 +481,7 @@ wdtxtSkip <- function(expr) {
 }
 
 wdtxtPlot <- function(height=5, width=5, pointsize=10) {
-
+    requireNamespace('R2wd', quietly = TRUE)
     R2txt.vars$first <- TRUE
 
     tmp <- recordPlot()

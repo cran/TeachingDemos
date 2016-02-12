@@ -34,7 +34,7 @@ emp.hpd(x, conf=0.95)
 \value{
   A vector of length 2 with the lower and upper limits of the interval.
 }
-\author{ Greg Snow \email{greg.snow@imail.org }}
+\author{ Greg Snow \email{538280@gmail.com}}
 \note{These functions assume that the posterior distribution is
   unimodal, they compute only 1 interval, not the set of intervals that
   are appropriate for multimodal distributions.}

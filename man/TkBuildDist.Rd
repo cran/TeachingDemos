@@ -10,7 +10,9 @@ Build a probability distribution (one option for creating a prior
 distribution) by clicking or dragging a plot.
 }
 \usage{
-TkBuildDist(x = seq(min + (max - min)/nbin/2, max - (max - min)/nbin/2, length.out = nbin), min = 0, max = 10, nbin = 10, logspline = TRUE, intervals = FALSE)
+TkBuildDist(x = seq(min + (max - min)/nbin/2, max - (max - min)/nbin/2,
+  length.out = nbin), min = 0, max = 10, nbin = 10, logspline = TRUE,
+  intervals = FALSE)
 
 TkBuildDist2( min=0, max=1, nbin=10, logspline=TRUE)
 }
@@ -70,7 +72,7 @@ TkBuildDist2( min=0, max=1, nbin=10, logspline=TRUE)
   within each interval (for \code{TkBuildDist2} or if \code{intervals}
   is TRUE).
 }
-\author{Greg Snow \email{greg.snow@imail.org}}
+\author{Greg Snow \email{538280@gmail.com}}
 \seealso{
  The logspline package
 }

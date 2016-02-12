@@ -1,4 +1,5 @@
 \name{zoomplot}
+\alias{oldzoomplot}
 \alias{zoomplot}
 \title{Zoom or unzoom an existing plot in the plot window}
 \description{This function allows you to change the x and y ranges of
@@ -7,6 +8,7 @@
   a larger region than is currently shown.}
 \usage{
 zoomplot(xlim, ylim=NULL )
+oldzoomplot(xlim, ylim=NULL )
 }
 \arguments{
   \item{xlim, ylim}{The new x and y limits of the plot.  These can be
@@ -27,15 +29,21 @@ zoomplot(xlim, ylim=NULL )
 
   Only the x and y ranges are changed, the size of the plotting
   characters and text will stay the same.
+
+  The \code{oldzoomplot} function is the version that worked for 2.15
+  and earlier, \code{zoomplot} should be used for R 3.0.
 }
 \value{
   This function is run for its side effects and does not return anything
   meaningful.
 }
-\author{Greg Snow \email{greg.snow@imail.org}}
+\author{Greg Snow \email{538280@gmail.com}}
 \note{ For any serious projects it is best to put your code into a
   script to begin with and edit the original script rather than using
   this function.
+
+  This function works with the standard \code{plot} function and some
+  others, but may not work for more complicated plots.
 
   This function depends on the \code{recordPlot} function which can
   change in any version.  Therefore this function should not be

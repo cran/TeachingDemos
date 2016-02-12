@@ -1,24 +1,24 @@
 "vis.binom" <-
 function(){
 
-    if( !require(tcltk) ) stop('This function depends on the tcltk package')
+    if( !requireNamespace('tcltk', quietly = TRUE) ) stop('This function depends on the tcltk package')
 
   if(!exists('slider.env')) slider.env<<-new.env()
 
 
-  n <- 10  ; assign('n',tclVar(n),envir=slider.env)
-  p <-  0.5; assign('p',tclVar(p),envir=slider.env)
+  n <- 10  ; assign('n',tcltk::tclVar(n),envir=slider.env)
+  p <-  0.5; assign('p',tcltk::tclVar(p),envir=slider.env)
 
-  sn <- 0  ; assign('sn',tclVar(sn), envir=slider.env)
-  sp <- 0  ; assign('sp',tclVar(sp), envir=slider.env)
+  sn <- 0  ; assign('sn',tcltk::tclVar(sn), envir=slider.env)
+  sp <- 0  ; assign('sp',tcltk::tclVar(sp), envir=slider.env)
 
 
   binom.refresh <- function(...){
-    n <- as.numeric(evalq(tclvalue(n), envir=slider.env))
-    p <- as.numeric(evalq(tclvalue(p), envir=slider.env))
+    n <- as.numeric(evalq(tcltk::tclvalue(n), envir=slider.env))
+    p <- as.numeric(evalq(tcltk::tclvalue(p), envir=slider.env))
 
-    sn <- as.numeric(evalq(tclvalue(sn), envir=slider.env))
-    sp <- as.numeric(evalq(tclvalue(sp), envir=slider.env))
+    sn <- as.numeric(evalq(tcltk::tclvalue(sn), envir=slider.env))
+    sp <- as.numeric(evalq(tcltk::tclvalue(sp), envir=slider.env))
 
     mu <- p*n
     sd <- sqrt(n*p*(1-p))
@@ -56,50 +56,50 @@ function(){
 
   }
 
-  m <- tktoplevel()
-  tkwm.title(m,'Visualizing the Binomial Distribution')
-  tkwm.geometry(m,'+0+0')
+  m <- tcltk::tktoplevel()
+  tcltk::tkwm.title(m,'Visualizing the Binomial Distribution')
+  tcltk::tkwm.geometry(m,'+0+0')
 
   # n
-  tkpack(fr <- tkframe(m), side='top')
-  tkpack(tklabel(fr, text='n', width='10'), side='right')
-  tkpack(sc <- tkscale(fr, command=binom.refresh, from=1, to=100,
+  tcltk::tkpack(fr <- tcltk::tkframe(m), side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='n', width='10'), side='right')
+  tcltk::tkpack(sc <- tcltk::tkscale(fr, command=binom.refresh, from=1, to=100,
                        orient='horiz',
                        resolution=1, showvalue=T),
          side='left')
   assign('sc',sc,envir=slider.env)
-  evalq(tkconfigure(sc, variable=n), envir=slider.env)
+  evalq(tcltk::tkconfigure(sc, variable=n), envir=slider.env)
 
   # p
-  tkpack(fr <- tkframe(m), side='top')
-  tkpack(tklabel(fr, text='p', width='10'), side='right')
-  tkpack(sc <- tkscale(fr, command=binom.refresh, from=0, to=1,
+  tcltk::tkpack(fr <- tcltk::tkframe(m), side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='p', width='10'), side='right')
+  tcltk::tkpack(sc <- tcltk::tkscale(fr, command=binom.refresh, from=0, to=1,
                        orient='horiz',
                        resolution=0.01, showvalue=T),
          side='left')
   assign('sc',sc,envir=slider.env)
-  evalq(tkconfigure(sc, variable=p), envir=slider.env)
+  evalq(tcltk::tkconfigure(sc, variable=p), envir=slider.env)
 
   # show normal
-  tkpack(fr <- tkframe(m), side='top')
-  tkpack(sc <- tkcheckbutton(fr, command=binom.refresh),
+  tcltk::tkpack(fr <- tcltk::tkframe(m), side='top')
+  tcltk::tkpack(sc <- tcltk::tkcheckbutton(fr, command=binom.refresh),
          side='left')
-  tkpack(tklabel(fr, text='Show Normal Approximation',width='25'),
+  tcltk::tkpack(tcltk::tklabel(fr, text='Show Normal Approximation',width='25'),
          side='left')
   assign('sc',sc,envir=slider.env)
-  evalq(tkconfigure(sc, variable=sn), envir=slider.env)
+  evalq(tcltk::tkconfigure(sc, variable=sn), envir=slider.env)
 
   # show poisson
-  tkpack(fr <- tkframe(m), side='top')
-  tkpack(sc <- tkcheckbutton(fr, command=binom.refresh),
+  tcltk::tkpack(fr <- tcltk::tkframe(m), side='top')
+  tcltk::tkpack(sc <- tcltk::tkcheckbutton(fr, command=binom.refresh),
          side='left')
-  tkpack(tklabel(fr, text='Show Poisson Approximation',width='25'),
+  tcltk::tkpack(tcltk::tklabel(fr, text='Show Poisson Approximation',width='25'),
          side='left')
   assign('sc',sc,envir=slider.env)
-  evalq(tkconfigure(sc, variable=sp), envir=slider.env)
+  evalq(tcltk::tkconfigure(sc, variable=sp), envir=slider.env)
 
-  tkpack(tkbutton(m, text="Refresh", command=binom.refresh), side='left')
-  tkpack(tkbutton(m, text="Exit", command=function()tkdestroy(m)),
+  tcltk::tkpack(tcltk::tkbutton(m, text="Refresh", command=binom.refresh), side='left')
+  tcltk::tkpack(tcltk::tkbutton(m, text="Exit", command=function()tcltk::tkdestroy(m)),
          side='right')
 
 }

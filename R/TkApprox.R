@@ -3,10 +3,10 @@ TkApprox <- function(x, y, type='b', snap.to.x=FALSE, digits=4,
                      xlab=deparse(substitute(x)), ylab=deparse(substitute(y)),
                      hscale=1.5, vscale=1.5, wait=TRUE,
                      ...) {
-  if( !require(tkrplot) ) stop('This function depends on the tkrplot package being available')
+  if( !requireNamespace('tkrplot', quietly = TRUE) ) stop('This function depends on the tkrplot package being available')
 
-  snap.x <- tclVar()
-  tclvalue(snap.x) <- ifelse(snap.to.x,"T","F")
+  snap.x <- tcltk::tclVar()
+  tcltk::tclvalue(snap.x) <- ifelse(snap.to.x,"T","F")
 
   xxx <- as.numeric(x)
   ax <- min(x)
@@ -23,8 +23,8 @@ TkApprox <- function(x, y, type='b', snap.to.x=FALSE, digits=4,
 
   yy <- c(ay,by,cy)
 
-  txtvar <- tclVar()
-  tclvalue(txtvar) <- " \n \n "
+  txtvar <- tcltk::tclVar()
+  tcltk::tclvalue(txtvar) <- " \n \n "
 
   first <- TRUE
   ul <- ur <- 0
@@ -40,7 +40,7 @@ TkApprox <- function(x, y, type='b', snap.to.x=FALSE, digits=4,
           line=1:3, col=cols)
     mtext( format( yy, digits=digits), side=4, at=yy,
           line=1:3, col=cols)
-    tclvalue(txtvar) <<- paste( c('A:B   ','B:C   ','A:C   '),
+    tcltk::tclvalue(txtvar) <<- paste( c('A:B   ','B:C   ','A:C   '),
                      format(pmax( xx[c(1,2,1)], xx[c(2,3,3)] ), digits=digits),
                      '-',
                      format(pmin( xx[c(1,2,1)], xx[c(2,3,3)] ), digits=digits),
@@ -56,30 +56,29 @@ TkApprox <- function(x, y, type='b', snap.to.x=FALSE, digits=4,
                      )
     if(first) {
       first <<- FALSE
-#      tmp <- cnvrt.coords(c(0,1),c(0,1), input='dev')$usr
       tmpx <- grconvertX(c(0,1), from='ndc')
       ul <<- tmpx[1]
       ur <<- tmpx[2]
     }
   }
 
-  tt <- tktoplevel()
-  tkwm.title(tt, "TkApprox")
+  tt <- tcltk::tktoplevel()
+  tcltk::tkwm.title(tt, "TkApprox")
 
-  img <- tkrplot(tt, replot, vscale=vscale, hscale=hscale)
-  tkpack(img, side='top')
+  img <- tkrplot::tkrplot(tt, replot, vscale=vscale, hscale=hscale)
+  tcltk::tkpack(img, side='top')
 
-  tkpack(tklabel(tt, textvariable=txtvar), side='top')
+  tcltk::tkpack(tcltk::tklabel(tt, textvariable=txtvar), side='top')
 
-  tkpack(tkcheckbutton(tt,variable=snap.x, onvalue="T", offvalue="F",
+  tcltk::tkpack(tcltk::tkcheckbutton(tt,variable=snap.x, onvalue="T", offvalue="F",
                        text="Snap to points"),
          side='left')
-  tkpack(tkbutton(tt, text='Quit', command=function() tkdestroy(tt)),
+  tcltk::tkpack(tcltk::tkbutton(tt, text='Quit', command=function() tcltk::tkdestroy(tt)),
          side='right')
 
   md <- FALSE
-  iw <- as.numeric(tcl('image','width',tkcget(img,'-image')))
-  ih <- as.numeric(tcl('image','height',tkcget(img,'-image')))
+  iw <- as.numeric(tcltk::tcl('image','width',tcltk::tkcget(img,'-image')))
+  ih <- as.numeric(tcltk::tcl('image','height',tcltk::tkcget(img,'-image')))
   ccx <- ccy <- 0
   ci <- 0
 
@@ -87,14 +86,14 @@ TkApprox <- function(x, y, type='b', snap.to.x=FALSE, digits=4,
     if(md) {
       tx <- (as.numeric(x)-1)/iw
       ccx <<- tx*ur + (1-tx)*ul
-      if(as.logical(tclvalue(snap.x))) {
+      if(as.logical(tcltk::tclvalue(snap.x))) {
         ccx <<- xxx[ which.min( abs(ccx-xxx) ) ]
       }
       xx[ci] <<- ccx
       ccy <<- af(ccx)
       yy[ci] <<- ccy
 
-      tkrreplot(img)
+      tkrplot::tkrreplot(img)
     }
   }
 
@@ -110,12 +109,12 @@ TkApprox <- function(x, y, type='b', snap.to.x=FALSE, digits=4,
     md <<- FALSE
   }
 
-  tkbind(img, '<Motion>', mouse.move)
-  tkbind(img, '<ButtonPress-1>', mouse.down)
-  tkbind(img, '<ButtonRelease-1>', mouse.up)
+  tcltk::tkbind(img, '<Motion>', mouse.move)
+  tcltk::tkbind(img, '<ButtonPress-1>', mouse.down)
+  tcltk::tkbind(img, '<ButtonRelease-1>', mouse.up)
 
   if(wait) {
-    tkwait.window(tt)
+    tcltk::tkwait.window(tt)
     out <- list( x=xx, y=yy )
   } else {
     out <- NULL

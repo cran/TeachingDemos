@@ -40,7 +40,7 @@ plot2script(file='clipboard')
   This function is run for its side effects and does not return anything
   meaningful.
 }
-\author{Greg Snow \email{greg.snow@imail.org}}
+\author{Greg Snow \email{538280@gmail.com}}
 \note{ For any serious projects it is best to put your code into a
   script to begin with and edit the original script rather than using
   this function.

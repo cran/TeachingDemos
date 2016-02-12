@@ -40,7 +40,7 @@ spread.labs(x, mindiff, maxiter = 1000, stepsize = 1/10, min = -Inf, max = Inf)
   that can be used as a replacement for \code{x} in placing labels.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow, \email{greg.snow@imail.org} }
+\author{ Greg Snow, \email{538280@gmail.com} }
 %\note{ ~~further notes~~
 %
 % ~Make other sections like Warning with \section{Warning }{....} ~

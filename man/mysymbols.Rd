@@ -90,7 +90,7 @@ my.symbols(x, y=NULL, symb, inches=1, xsize, ysize,
   This function is run for its side effect of plotting, it returns an
   invisible NULL.
 }
-\author{Greg Snow \email{greg.snow@imail.org}}
+\author{Greg Snow \email{538280@gmail.com}}
 \note{Since the '...' argument is passed to both \code{lines} and
   \code{symb}, the \code{symb} function should have a '...' argument so
   that it will ignore any additional arguments.

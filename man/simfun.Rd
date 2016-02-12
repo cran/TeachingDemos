@@ -5,7 +5,11 @@
   Create a function to simulate data
 }
 \description{
-This function is used to create a new function that will simulate data.  This could be used by a teacher to create homework or test conditions that the students would then simulate data from (each student could have their own unique data set) or this function could be used in simulations for power or other values of interest.
+This function is used to create a new function that will simulate data.
+This could be used by a teacher to create homework or test conditions
+that the students would then simulate data from (each student could have
+their own unique data set) or this function could be used in simulations
+for power or other values of interest. 
 }
 \usage{
 simfun(expr, drop, ...)
@@ -13,40 +17,82 @@ simfun(expr, drop, ...)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{expr}{
-  This is an expression, usually just one or more statements, that will generate the simulated data.
+  This is an expression, usually just one or more statements, that will
+  generate the simulated data. 
 }
   \item{drop}{
-A character vector of names of objects/columns that will be dropped from the return value.  These are usually intermediate objects or parameter values that you don't want carried into the final returned object.
+A character vector of names of objects/columns that will be dropped from
+the return value.  These are usually intermediate objects or parameter
+values that you don't want carried into the final returned object. 
 }
   \item{\dots}{
-Additional named items that will be in the environment when \code{expr} is evaluated.
+Additional named items that will be in the environment when \code{expr}
+is evaluated. 
 }
 }
 \details{
-  This function creates another function to simulate data.  You supply the general ideas of the simulation to this function and the resulting function can then be used to create simulated datasets.  The resulting function can then be given to students for them to simulate datasets, or used localy as part of larger simulations\
+  This function creates another function to simulate data.  You supply
+  the general ideas of the simulation to this function and the resulting
+  function can then be used to create simulated datasets.  The resulting
+  function can then be given to students for them to simulate datasets,
+  or used localy as part of larger simulations. 
   
-  The environment where the expression is evaluated will have all the columns or elements of the \code{data} argument available as well as the \code{data} argument itself.  Any variables/parameters passed through \code{...} in the original function will also be available.  You then supply the code based on those variables to create the simulated data.  The names of any columns or parameters submitted as part of \code{data} will need to match the code exactly (provide specific directions to the users on what columns need to be named).  Rember that indexing using factors indexes based on the underlying integers not the character representation.  See the examples for details.
+  The environment where the expression is evaluated will have all the
+  columns or elements of the \code{data} argument available as well as
+  the \code{data} argument itself.  Any variables/parameters passed
+  through \code{...} in the original function will also be available.
+  You then supply the code based on those variables to create the
+  simulated data.  The names of any columns or parameters submitted as
+  part of \code{data} will need to match the code exactly (provide
+  specific directions to the users on what columns need to be named).
+  Rember that indexing using factors indexes based on the underlying
+  integers not the character representation.  See the examples for
+  details. 
   
-  The resulting function can be saved and loaded/attached in different R sessions (it is important to use \code{save} rather than something like \code{dput} so that the environment of the function is preserved).
+  The resulting function can be saved and loaded/attached in different R
+  sessions (it is important to use \code{save} rather than something
+  like \code{dput} so that the environment of the function is
+  preserved). 
   
-  The function includes an optional seed that will be used with the \code{\link{char2seed}} function (if the seed is a character) so that each student could use a unique but identifiable seed (such as their name or something based on their name) so that each student will use a different dataset, but the instructor will be able to generate the exact same dataset to check answers.
+  The function includes an optional seed that will be used with the
+  \code{\link{char2seed}} function (if the seed is a character) so that
+  each student could use a unique but identifiable seed (such as their
+  name or something based on their name) so that each student will use a
+  different dataset, but the instructor will be able to generate the
+  exact same dataset to check answers. 
   
-  The "True" parameters are hidden in the environment of the function so the student will not see the "true" values by simply printing the function.  However an intermediate level R programmer/user would be able to extract the simulation parameters (but the correct homework or test answer will not be the simulation parameters).
+  The "True" parameters are hidden in the environment of the function so
+  the student will not see the "true" values by simply printing the
+  function.  However an intermediate level R programmer/user would be
+  able to extract the simulation parameters (but the correct homework or
+  test answer will not be the simulation parameters). 
 }
 \value{
-The return value is a function that will generate simulated datasets.  The function will have 2 arguments, \code{data} and \code{seed}.  The \code{data} argument can be either a data frame of the predictor variables (study design) or a list of simulation parameters.  The \code{seed} argument will be passed on to \code{\link{set.seed}} if it is numeric and \code{\link{char2seed}} if it is a character.
+The return value is a function that will generate simulated datasets.
+  The function will have 2 arguments, \code{data} and \code{seed}.  The
+  \code{data} argument can be either a data frame of the predictor
+  variables (study design) or a list of simulation parameters.  The
+  \code{seed} argument will be passed on to \code{\link{set.seed}} if it
+  is numeric and \code{\link{char2seed}} if it is a character. 
 
-The return value of this function is a dataframe with the simulated data and any explanitory variables passed to the function.
+The return value of this function is a dataframe with the simulated data
+and any explanitory variables passed to the function. 
 
 See the examples for how to use the result function.
 }
-\author{Greg Snow, \email{greg.snow@imail.org}}
+\author{Greg Snow, \email{538280@gmail.com}}
 \note{
-  This function was not designed for speed, if you are doing long simulations then hand crafting the simulation function will probably run quicker than one created using this function.
+  This function was not designed for speed, if you are doing long
+  simulations then hand crafting the simulation function will probably
+  run quicker than one created using this function. 
   
-  Like the prediction functions the data frame passed in as the data argument will need to have exact names of the columns to match with the code (including capitolization).
+  Like the prediction functions the data frame passed in as the data
+  argument will need to have exact names of the columns to match with
+  the code (including capitolization). 
   
-  This function is different from the \code{\link{simulate}} functions in that it allows for different sample sizes, user specified parameters, and different predictor variables.
+  This function is different from the \code{\link{simulate}} functions
+  in that it allows for different sample sizes, user specified
+  parameters, and different predictor variables. 
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~

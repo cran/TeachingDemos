@@ -9,7 +9,8 @@
   background better.
 }
 \usage{
-shadowtext(x, y = NULL, labels, col = "white", bg = "black", theta = seq(pi/4, 2 * pi, length.out = 8), r = 0.1, ...)
+shadowtext(x, y = NULL, labels, col = "white", bg = "black",
+  theta = seq(pi/4, 2 * pi, length.out = 8), r = 0.1, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -42,7 +43,7 @@ shadowtext(x, y = NULL, labels, col = "white", bg = "black", theta = seq(pi/4, 2
 %\references{
 %% ~put references to the literature/web site here ~
 %}
-\author{Greg Snow, \email{greg.snow@imail.org}}
+\author{Greg Snow, \email{538280@gmail.com}}
 %\note{
 %%  ~~further notes~~
 %}

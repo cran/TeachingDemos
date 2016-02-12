@@ -10,7 +10,9 @@
   change the confidence level using a Tk slider.
 }
 \usage{
-ci.examp(mean.sim = 100, sd = 10, n = 25, reps = 50, conf.level = 0.95, method = "z", lower.conf = (1 - conf.level)/2, upper.conf = 1 - (1 - conf.level)/2)
+ci.examp(mean.sim = 100, sd = 10, n = 25, reps = 50, conf.level = 0.95,
+  method = "z", lower.conf = (1 - conf.level)/2,
+  upper.conf = 1 - (1 - conf.level)/2)
 run.ci.examp(reps = 100, seed, method="z", n=25)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -54,7 +56,7 @@ run.ci.examp(reps = 100, seed, method="z", n=25)
   intervals, there is no meaningfull return value.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{Greg Snow \email{greg.snow@imail.org} }
+\author{Greg Snow \email{538280@gmail.com} }
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~

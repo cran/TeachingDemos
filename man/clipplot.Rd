@@ -29,7 +29,7 @@ clipplot(fun, xlim = par("usr")[1:2], ylim = par("usr")[3:4])
   Nothing meaningful is returned
 }
 
-\author{ Greg Snow \email{greg.snow@imail.org} }
+\author{ Greg Snow \email{538280@gmail.com} }
 \note{
   This function abuses some of the intent of what par(plt=...) is
   supposed to mean.  In R2.7.0 and beyond there is a new funcntion

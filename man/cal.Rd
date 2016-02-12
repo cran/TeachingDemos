@@ -50,7 +50,7 @@ cal(month, year)
     the current plotting figure.  See the examples below.
 }
 
-\author{Greg Snow, \email{greg.snow@imail.org}}
+\author{Greg Snow, \email{538280@gmail.com}}
 
 
 

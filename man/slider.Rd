@@ -9,7 +9,9 @@
   all axes rotation of objects in a plot.
 }
 \usage{
-slider(sl.functions, sl.names, sl.mins, sl.maxs, sl.deltas, sl.defaults, but.functions, but.names, no, set.no.value, obj.name, obj.value, reset.function, title)
+slider(sl.functions, sl.names, sl.mins, sl.maxs, sl.deltas, sl.defaults,
+but.functions, but.names, no, set.no.value, obj.name, obj.value,
+reset.function, title) 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

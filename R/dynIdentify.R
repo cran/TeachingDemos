@@ -77,7 +77,7 @@ TkIdentify <- function(x,y,labels=seq_along(x), hscale=1.75, vscale=1.75,
                        corners = cbind( c(-1,0,1,-1,1,-1,0,1),
                                         c(1,1,1,0,0,-1,-1,-1) ),
                        ...) {
-    if( !require(tkrplot) ) stop('This function depends on the tkrplot package being available')
+    if( !requireNamespace('tkrplot', quietly = TRUE) ) stop('This function depends on the tkrplot package being available')
 
     md <- FALSE
 
@@ -116,13 +116,13 @@ TkIdentify <- function(x,y,labels=seq_along(x), hscale=1.75, vscale=1.75,
         dly <<- grconvertY(ly, to='ndc')
     }
 
-    tt <- tktoplevel()
-    tkwm.title(tt, "TkIdentify")
+    tt <- tcltk::tktoplevel()
+    tcltk::tkwm.title(tt, "TkIdentify")
 
-    img <- tkrplot(tt, replot, vscale=vscale, hscale=hscale)
-    tkpack(img, side='top')
+    img <- tkrplot::tkrplot(tt, replot, vscale=vscale, hscale=hscale)
+    tcltk::tkpack(img, side='top')
 
-    tkpack( tkbutton(tt, text='Quit', command=function() tkdestroy(tt)),
+    tcltk::tkpack( tcltk::tkbutton(tt, text='Quit', command=function() tcltk::tkdestroy(tt)),
            side='right')
 
     corners <- cbind( c(-1,0,1,-1,1,-1,0,1), c(1,1,1,0,0,-1,-1,-1) )
@@ -130,8 +130,8 @@ TkIdentify <- function(x,y,labels=seq_along(x), hscale=1.75, vscale=1.75,
     ci <- 0  # current label
     cx <- cy <- 0
 
-    iw <- as.numeric(tcl('image','width',tkcget(img,'-image')))
-    ih <- as.numeric(tcl('image','height',tkcget(img,'-image')))
+    iw <- as.numeric(tcltk::tcl('image','width',tcltk::tkcget(img,'-image')))
+    ih <- as.numeric(tcltk::tcl('image','height',tcltk::tkcget(img,'-image')))
 
     mouse.move <- function(x,y) {
         if(md){
@@ -163,7 +163,7 @@ TkIdentify <- function(x,y,labels=seq_along(x), hscale=1.75, vscale=1.75,
             llx[ci] <<- tmpx[i]
             lly[ci] <<- tmpy[i]
 
-            tkrreplot(img)
+            tkrplot::tkrreplot(img)
         }
     }
 
@@ -180,11 +180,11 @@ TkIdentify <- function(x,y,labels=seq_along(x), hscale=1.75, vscale=1.75,
         md <<- FALSE
     }
 
-    tkbind(img, '<Motion>', mouse.move)
-    tkbind(img, '<ButtonPress-1>', mouse.down)
-    tkbind(img, '<ButtonRelease-1>', mouse.up)
+    tcltk::tkbind(img, '<Motion>', mouse.move)
+    tcltk::tkbind(img, '<ButtonPress-1>', mouse.down)
+    tcltk::tkbind(img, '<ButtonRelease-1>', mouse.up)
 
-    tkwait.window(tt)
+    tcltk::tkwait.window(tt)
     out <- list( labels=list(x=lx, y=ly),
                  lineends=list(x=llx, y=lly) )
     invisible(out)

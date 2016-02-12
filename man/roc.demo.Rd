@@ -36,7 +36,7 @@ roc.demo(x = rnorm(25, 10, 1), y = rnorm(25, 11, 1.5))
   side effects.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@imail.org} }
+\author{ Greg Snow \email{538280@gmail.com}}
 %\note{ ~~further notes~~ }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~

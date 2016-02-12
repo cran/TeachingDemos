@@ -14,7 +14,8 @@ gp.open(where='c:/progra~1/GnuPlot/bin/pgnuplot.exe')
 gp.close(pipe=gpenv$gp)
 gp.send(cmd='replot',pipe=gpenv$gp)
 gp.plot(x,y,type='p',add=FALSE, title=deparse(substitute(y)),pipe=gpenv$gp)
-gp.splot(x,y,z, add=FALSE, title=deparse(substitute(z)), pipe=gpenv$gp, datafile=tempfile())
+gp.splot(x,y,z, add=FALSE, title=deparse(substitute(z)), pipe=gpenv$gp,
+  datafile=tempfile())
 }
 \arguments{
   \item{where}{Path to GnuPlot Executable}
@@ -52,7 +53,7 @@ gp.splot(x,y,z, add=FALSE, title=deparse(substitute(z)), pipe=gpenv$gp, datafile
 \references{
   \url{http://www.gnuplot.info/}
 }
-\author{ Greg Snow \email{greg.snow@imail.org} }
+\author{ Greg Snow \email{538280@gmail.com}}
 \note{
   These functions create some temporary files and 2 temporary global
   variables (.gp and .gp.tempfiles), running \code{gp.close} will clean

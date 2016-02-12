@@ -56,7 +56,7 @@ would be willing to publish this test.
 fortune(264)
 }
 \author{
-Greg Snow \email{greg.snow@imail.org}
+Greg Snow \email{538280@gmail.com}
 }
 \note{
 If someone has suggested that you consider this test, they most likely

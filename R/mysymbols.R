@@ -308,6 +308,9 @@ ms.image <- function(img, transpose=TRUE, ...) {
 
 
 
+# do ms.raster that uses rasterImage
+
+
 
 
 

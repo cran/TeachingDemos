@@ -19,7 +19,7 @@ plot2script <- function(file='clipboard'){
 	close(con)
 }
 
-zoomplot <- function( xlim, ylim=NULL ){
+oldzoomplot <- function( xlim, ylim=NULL ){
 	xy <- xy.coords(xlim,ylim)
 	xlim <- range(xy$x)
 	ylim <- range(xy$y)
@@ -44,5 +44,20 @@ zoomplot <- function( xlim, ylim=NULL ){
 
 
 
+zoomplot <- function( xlim, ylim=NULL ){
+	xy <- xy.coords(xlim,ylim)
+	xlim <- range(xy$x)
+	ylim <- range(xy$y)
+
+	tmp <- recordPlot()
+	for(i in seq(along=tmp[[1]])){
+		fn <- tmp[[1]][[i]][[2]][[1]]
+		if(fn$name == 'C_plot_window') {
+			tmp[[1]][[i]][[2]][[2]] <- xlim
+			tmp[[1]][[i]][[2]][[3]] <- ylim
+		}
+	}
+        replayPlot(tmp)
+}
 
 

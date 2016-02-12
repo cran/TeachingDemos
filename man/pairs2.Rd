@@ -37,7 +37,7 @@ pairs2(x, y, xlabels, ylabels, panel = points, ..., row1attop = TRUE, gap = 1)
   return anything useful.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow, \email{greg.snow@imail.org} }
+\author{ Greg Snow, \email{538280@gmail.com}}
 \note{
   Large amounts of the code for this function were blatently
   borrowed/stolen from the \code{pairs} function, the credit for the

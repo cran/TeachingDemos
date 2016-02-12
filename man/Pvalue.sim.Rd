@@ -63,7 +63,7 @@ run.Pvalue.binom.sim()
 }
 \references{ Murdock, D, Tsai, Y, and Adcock, J (2008) _P-Values are
   Random Variables_. The American Statistician. (62) 242-245.}
-\author{Greg Snow, \email{greg.snow@imail.org}}
+\author{Greg Snow, \email{538280@gmail.com}}
 \note{
   Note: the 2-sided p-values for the binomial may not match the results
   from binom.test and prop.test.  The method used here is an

@@ -46,7 +46,7 @@ TkListView(list)
   of use.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{Greg Snow, \email{greg.snow@imail.org} }
+\author{Greg Snow, \email{538280@gmail.com} }
 %\note{ ~~further notes~~
 %
 % ~Make other sections like Warning with \section{Warning }{....} ~
@@ -59,7 +59,8 @@ if(interactive()) {
   TkListView(tmp)
 
   if(require(maptools)){
-    TkListView(state.vbm)
+    data(state.vbm)
+    TkListView(list(state.vbm))
   # change the eval box to: plot(x, type='l') and eval the main branches
   }
 

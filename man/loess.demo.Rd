@@ -8,7 +8,8 @@
   of \code{x}.
 }
 \usage{
-loess.demo(x, y, span = 2/3, degree = 1, nearest = FALSE, xlim = numeric(0), ylim = numeric(0), verbose = FALSE)
+loess.demo(x, y, span = 2/3, degree = 1, nearest = FALSE,
+  xlim = numeric(0), ylim = numeric(0), verbose = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -62,9 +63,9 @@ loess.demo(x, y, span = 2/3, degree = 1, nearest = FALSE, xlim = numeric(0), yli
   This function does not return anything, it is run purely for its side
   effects.
 }
-%\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@imail.org} }
-%\note{ ~~further notes~~ }
+
+\author{ Greg Snow \email{538280@gmail.com}}
+
 
 
 

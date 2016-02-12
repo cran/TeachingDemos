@@ -41,7 +41,7 @@ updateusr(x1, y1 = NULL, x2, y2 = NULL)
   An invisible list with the previous 'usr' coordinates from \code{par}.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow, \email{greg.snow@imail.org} }
+\author{ Greg Snow, \email{538280@gmail.com} }
 \note{
   Currently you need to give coordinates for exactly 2 points without
   missing values.  Future versions of the function will allow missing

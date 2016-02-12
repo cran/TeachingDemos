@@ -105,79 +105,79 @@ plotFagan2.old<-function(){
 
 plotFagan <- function(hscale=1.5, vscale=1.5, wait=FALSE) {
 
-  if( !require(tkrplot) ) stop('This function depends on the tkrplot package being available')
+  if( !requireNamespace('tkrplot', quietly=TRUE) ) stop('This function depends on the tkrplot package being available')
 
-  ppt <- tclVar()
-  tclvalue(ppt) <- 0.5
-  lr <- tclVar()
-  tclvalue(lr) <- 1
-  tr <- tclVar()
-  tclvalue(tr) <- '+'
+  ppt <- tcltk::tclVar()
+  tcltk::tclvalue(ppt) <- 0.5
+  lr <- tcltk::tclVar()
+  tcltk::tclvalue(lr) <- 1
+  tr <- tcltk::tclVar()
+  tcltk::tclvalue(tr) <- '+'
 
-  hsc <- tclVar()
-  tclvalue(hsc) <- hscale
-  vsc <- tclVar()
-  tclvalue(vsc) <- hscale
+  hsc <- tcltk::tclVar()
+  tcltk::tclvalue(hsc) <- hscale
+  vsc <- tcltk::tclVar()
+  tcltk::tclvalue(vsc) <- hscale
 
   replot <- function(...) {
-    probs.pre.test <- as.numeric(tclvalue(ppt))
-    LR <- as.numeric(tclvalue(lr))
-    test.result <- tclvalue(tr)
+    probs.pre.test <- as.numeric(tcltk::tclvalue(ppt))
+    LR <- as.numeric(tcltk::tclvalue(lr))
+    test.result <- tcltk::tclvalue(tr)
     fagan.plot(probs.pre.test, LR, test.result)
   }
 
-  tt <- tktoplevel()
-  tkwm.title(tt, "Fagan Plot Demo")
+  tt <- tcltk::tktoplevel()
+  tcltk::tkwm.title(tt, "Fagan Plot Demo")
 
-  img <- tkrplot(tt, replot, vscale=vscale, hscale=hscale)
-  tkpack(img, side='top')
+  img <- tkrplot::tkrplot(tt, replot, vscale=vscale, hscale=hscale)
+  tcltk::tkpack(img, side='top')
 
-  tkpack(fr <- tkframe(tt), side='top')
-  tkpack(tklabel(fr, text='Pre Test Probability: '), side='left', anchor='s')
-  tkpack(tkscale(fr, variable=ppt, orient='horizontal',
-                 command=function(...) tkrreplot(img,
-                   hscale=as.numeric(tclvalue(hsc)),
-                   vscale=as.numeric(tclvalue(vsc)) ),
+  tcltk::tkpack(fr <- tcltk::tkframe(tt), side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='Pre Test Probability: '), side='left', anchor='s')
+  tcltk::tkpack(tcltk::tkscale(fr, variable=ppt, orient='horizontal',
+                 command=function(...) tkrplot::tkrreplot(img,
+                   hscale=as.numeric(tcltk::tclvalue(hsc)),
+                   vscale=as.numeric(tcltk::tclvalue(vsc)) ),
                  from=0, to=1, resolution=.01), side='right')
 
-  tkpack(fr <- tkframe(tt), side='top')
-  tkpack(tklabel(fr, text='Likelihood Ratio: '), side='left', anchor='s')
-  tkpack(tkscale(fr, variable=lr, orient='horizontal',
-                 command=function(...) tkrreplot(img,
-                   hscale=as.numeric(tclvalue(hsc)),
-                   vscale=as.numeric(tclvalue(vsc)) ),
+  tcltk::tkpack(fr <- tcltk::tkframe(tt), side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='Likelihood Ratio: '), side='left', anchor='s')
+  tcltk::tkpack(tcltk::tkscale(fr, variable=lr, orient='horizontal',
+                 command=function(...) tkrplot::tkrreplot(img,
+                   hscale=as.numeric(tcltk::tclvalue(hsc)),
+                   vscale=as.numeric(tcltk::tclvalue(vsc)) ),
                  from=0.01, to=100, resolution=.01), side='right')
 
-  tkpack(fr <- tkframe(tt), side='top')
-  tkpack(tkcheckbutton(fr, text='Positive Test Result', variable=tr,
+  tcltk::tkpack(fr <- tcltk::tkframe(tt), side='top')
+  tcltk::tkpack(tcltk::tkcheckbutton(fr, text='Positive Test Result', variable=tr,
                        onvalue='+', offvalue='-',
-                       command=function(...) tkrreplot(img,
-                         hscale=as.numeric(tclvalue(hsc)),
-                         vscale=as.numeric(tclvalue(vsc)) )
+                       command=function(...) tkrplot::tkrreplot(img,
+                         hscale=as.numeric(tcltk::tclvalue(hsc)),
+                         vscale=as.numeric(tcltk::tclvalue(vsc)) )
                        ),
          side='left')
 
-  tkpack(tfr <- tkframe(tt), side='bottom', fill='x')
-  tkpack(tkbutton(tfr, text="Refresh", command=function() tkrreplot(img,
-                                         hscale=as.numeric(tclvalue(hsc)),
-                                         vscale=as.numeric(tclvalue(vsc)) ) ),
+  tcltk::tkpack(tfr <- tcltk::tkframe(tt), side='bottom', fill='x')
+  tcltk::tkpack(tcltk::tkbutton(tfr, text="Refresh", command=function() tkrplot::tkrreplot(img,
+                                         hscale=as.numeric(tcltk::tclvalue(hsc)),
+                                         vscale=as.numeric(tcltk::tclvalue(vsc)) ) ),
                   side='left',anchor='s')
 
-  tkpack(tkbutton(tfr, text="Exit", command=function()tkdestroy(tt)),
+  tcltk::tkpack(tcltk::tkbutton(tfr, text="Exit", command=function()tcltk::tkdestroy(tt)),
              side='right',anchor='s')
 
 
-  tkpack(tfr <- tkframe(tt), side='bottom', fill='x')
-  tkpack(tklabel(tfr,text="Hscale: "), side='left')
-  tkpack(tkentry(tfr,textvariable=hsc,width=6), side='left')
-  tkpack(tklabel(tfr,text="      Vscale: "), side='left')
-  tkpack(tkentry(tfr,textvariable=vsc,width=6), side='left')
+  tcltk::tkpack(tfr <- tcltk::tkframe(tt), side='bottom', fill='x')
+  tcltk::tkpack(tcltk::tklabel(tfr,text="Hscale: "), side='left')
+  tcltk::tkpack(tcltk::tkentry(tfr,textvariable=hsc,width=6), side='left')
+  tcltk::tkpack(tcltk::tklabel(tfr,text="      Vscale: "), side='left')
+  tcltk::tkpack(tcltk::tkentry(tfr,textvariable=vsc,width=6), side='left')
 
   if(wait) {
-    tkwait.window(tt)
-    return( list(ppt = as.numeric(tclvalue(ppt)),
-                 lr = as.numeric(tclvalue(lr)),
-                 tr = tclvalue(tr)
+    tcltk::tkwait.window(tt)
+    return( list(ppt = as.numeric(tcltk::tclvalue(ppt)),
+                 lr = as.numeric(tcltk::tclvalue(lr)),
+                 tr = tcltk::tclvalue(tr)
                  ))
   } else {
     return(invisible(NULL))
@@ -190,91 +190,91 @@ plotFagan <- function(hscale=1.5, vscale=1.5, wait=FALSE) {
 
 plotFagan2 <- function(hscale=1.5, vscale=1.5, wait=FALSE) {
 
-  if( !require(tkrplot) ) stop('This function depends on the tkrplot package being available')
+  if( !requireNamespace('tkrplot', quietly = TRUE) ) stop('This function depends on the tkrplot package being available')
 
-  ppt <- tclVar()
-  tclvalue(ppt) <- 0.5
-  sens <- tclVar()
-  tclvalue(sens) <- 0.5
-  spec <- tclVar()
-  tclvalue(spec) <- 0.5
-  tr <- tclVar()
-  tclvalue(tr) <- '+'
+  ppt <- tcltk::tclVar()
+  tcltk::tclvalue(ppt) <- 0.5
+  sens <- tcltk::tclVar()
+  tcltk::tclvalue(sens) <- 0.5
+  spec <- tcltk::tclVar()
+  tcltk::tclvalue(spec) <- 0.5
+  tr <- tcltk::tclVar()
+  tcltk::tclvalue(tr) <- '+'
 
-  hsc <- tclVar()
-  tclvalue(hsc) <- hscale
-  vsc <- tclVar()
-  tclvalue(vsc) <- hscale
+  hsc <- tcltk::tclVar()
+  tcltk::tclvalue(hsc) <- hscale
+  vsc <- tcltk::tclVar()
+  tcltk::tclvalue(vsc) <- hscale
 
   replot <- function(...) {
-    probs.pre.test <- as.numeric(tclvalue(ppt))
-    sns <- as.numeric(tclvalue(sens))
-    spc <- as.numeric(tclvalue(spec))
-    test.result <- tclvalue(tr)
+    probs.pre.test <- as.numeric(tcltk::tclvalue(ppt))
+    sns <- as.numeric(tcltk::tclvalue(sens))
+    spc <- as.numeric(tcltk::tclvalue(spec))
+    test.result <- tcltk::tclvalue(tr)
     fagan.plot(probs.pre.test, sns/(1-spc), test.result)
   }
 
-  tt <- tktoplevel()
-  tkwm.title(tt, "Fagan Plot Demo")
+  tt <- tcltk::tktoplevel()
+  tcltk::tkwm.title(tt, "Fagan Plot Demo")
 
-  img <- tkrplot(tt, replot, vscale=vscale, hscale=hscale)
-  tkpack(img, side='top')
+  img <- tkrplot::tkrplot(tt, replot, vscale=vscale, hscale=hscale)
+  tcltk::tkpack(img, side='top')
 
-  tkpack(fr <- tkframe(tt), side='top')
-  tkpack(tklabel(fr, text='Pre Test Probability: '), side='left', anchor='s')
-  tkpack(tkscale(fr, variable=ppt, orient='horizontal',
-                 command=function(...) tkrreplot(img,
-                   hscale=as.numeric(tclvalue(hsc)),
-                   vscale=as.numeric(tclvalue(vsc)) ),
+  tcltk::tkpack(fr <- tcltk::tkframe(tt), side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='Pre Test Probability: '), side='left', anchor='s')
+  tcltk::tkpack(tcltk::tkscale(fr, variable=ppt, orient='horizontal',
+                 command=function(...) tkrplot::tkrreplot(img,
+                   hscale=as.numeric(tcltk::tclvalue(hsc)),
+                   vscale=as.numeric(tcltk::tclvalue(vsc)) ),
                  from=0, to=1, resolution=.01), side='right')
 
-  tkpack(fr <- tkframe(tt), side='top')
-  tkpack(tklabel(fr, text='Sensitivity: '), side='left', anchor='s')
-  tkpack(tkscale(fr, variable=sens, orient='horizontal',
-                 command=function(...) tkrreplot(img,
-                   hscale=as.numeric(tclvalue(hsc)),
-                   vscale=as.numeric(tclvalue(vsc)) ),
+  tcltk::tkpack(fr <- tcltk::tkframe(tt), side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='Sensitivity: '), side='left', anchor='s')
+  tcltk::tkpack(tcltk::tkscale(fr, variable=sens, orient='horizontal',
+                 command=function(...) tkrplot::tkrreplot(img,
+                   hscale=as.numeric(tcltk::tclvalue(hsc)),
+                   vscale=as.numeric(tcltk::tclvalue(vsc)) ),
                  from=0, to=1, resolution=.01), side='right')
 
-   tkpack(fr <- tkframe(tt), side='top')
-  tkpack(tklabel(fr, text='Specificity: '), side='left', anchor='s')
-  tkpack(tkscale(fr, variable=spec, orient='horizontal',
-                 command=function(...) tkrreplot(img,
-                   hscale=as.numeric(tclvalue(hsc)),
-                   vscale=as.numeric(tclvalue(vsc)) ),
+  tcltk::tkpack(fr <- tcltk::tkframe(tt), side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='Specificity: '), side='left', anchor='s')
+  tcltk::tkpack(tcltk::tkscale(fr, variable=spec, orient='horizontal',
+                 command=function(...) tkrplot::tkrreplot(img,
+                   hscale=as.numeric(tcltk::tclvalue(hsc)),
+                   vscale=as.numeric(tcltk::tclvalue(vsc)) ),
                  from=0, to=1, resolution=.01), side='right')
 
-  tkpack(fr <- tkframe(tt), side='top')
-  tkpack(tkcheckbutton(fr, text='Positive Test Result', variable=tr,
+  tcltk::tkpack(fr <- tcltk::tkframe(tt), side='top')
+  tcltk::tkpack(tcltk::tkcheckbutton(fr, text='Positive Test Result', variable=tr,
                        onvalue='+', offvalue='-',
-                       command=function(...) tkrreplot(img,
-                         hscale=as.numeric(tclvalue(hsc)),
-                         vscale=as.numeric(tclvalue(vsc)) )
+                       command=function(...) tkrplot::tkrreplot(img,
+                         hscale=as.numeric(tcltk::tclvalue(hsc)),
+                         vscale=as.numeric(tcltk::tclvalue(vsc)) )
                        ),
          side='left')
 
-  tkpack(tfr <- tkframe(tt), side='bottom', fill='x')
-  tkpack(tkbutton(tfr, text="Refresh", command=function() tkrreplot(img,
-                                         hscale=as.numeric(tclvalue(hsc)),
-                                         vscale=as.numeric(tclvalue(vsc)) ) ),
+  tcltk::tkpack(tfr <- tcltk::tkframe(tt), side='bottom', fill='x')
+  tcltk::tkpack(tcltk::tkbutton(tfr, text="Refresh", command=function() tkrplot::tkrreplot(img,
+                                         hscale=as.numeric(tcltk::tclvalue(hsc)),
+                                         vscale=as.numeric(tcltk::tclvalue(vsc)) ) ),
                   side='left',anchor='s')
 
-  tkpack(tkbutton(tfr, text="Exit", command=function()tkdestroy(tt)),
+  tcltk::tkpack(tcltk::tkbutton(tfr, text="Exit", command=function()tcltk::tkdestroy(tt)),
              side='right',anchor='s')
 
 
-  tkpack(tfr <- tkframe(tt), side='bottom', fill='x')
-  tkpack(tklabel(tfr,text="Hscale: "), side='left')
-  tkpack(tkentry(tfr,textvariable=hsc,width=6), side='left')
-  tkpack(tklabel(tfr,text="      Vscale: "), side='left')
-  tkpack(tkentry(tfr,textvariable=vsc,width=6), side='left')
+  tcltk::tkpack(tfr <- tcltk::tkframe(tt), side='bottom', fill='x')
+  tcltk::tkpack(tcltk::tklabel(tfr,text="Hscale: "), side='left')
+  tcltk::tkpack(tcltk::tkentry(tfr,textvariable=hsc,width=6), side='left')
+  tcltk::tkpack(tcltk::tklabel(tfr,text="      Vscale: "), side='left')
+  tcltk::tkpack(tcltk::tkentry(tfr,textvariable=vsc,width=6), side='left')
 
   if(wait) {
-    tkwait.window(tt)
-    return( list(ppt = as.numeric(tclvalue(ppt)),
-                 sens = as.numeric(tclvalue(sens)),
-                 spec = as.numeric(tclvalue(spec)),
-                 tr = tclvalue(tr)
+    tcltk::tkwait.window(tt)
+    return( list(ppt = as.numeric(tcltk::tclvalue(ppt)),
+                 sens = as.numeric(tcltk::tclvalue(sens)),
+                 spec = as.numeric(tcltk::tclvalue(spec)),
+                 tr = tcltk::tclvalue(tr)
                  ))
   } else {
     return(invisible(NULL))

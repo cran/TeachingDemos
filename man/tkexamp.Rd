@@ -133,7 +133,7 @@ plotloc='top', an.play=TRUE, print=FALSE, ...)
   \code{wait} is TRUE then it returns a list with the argument values
   when the window was closed.
 }
-\author{Greg Snow, \email{greg.snow@imail.org}}
+\author{Greg Snow, \email{538280@gmail.com}}
 
 \note{You can move the sliders in 3 different ways:  You can left click
   and drag the slider itself, you can left click in the trough to either

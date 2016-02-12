@@ -11,7 +11,7 @@ function(x,y){
   for( i in seq(along=x) ){
     xo <- y[i] %% xx
     yo <- yy-1-(y[i] %/% xx)
-    llines( box.x+xo, box.y+yo,col=tmp.cols[i] )
+    lattice::llines( box.x+xo, box.y+yo,col=tmp.cols[i] )
     which <- c( x[i] %%2 == 1, x[i] > c(1,1,3,3,5,5) )
     tmp.x <- pips.x[which]
     tmp.y <- pips.y[which]
@@ -23,7 +23,7 @@ function(x,y){
       tmp.x <- tmp.y
       tmp.y <- tmp
     }
-    lpoints( tmp.x+xo, tmp.y+yo, pch=16,col='black')
+    lattice::lpoints( tmp.x+xo, tmp.y+yo, pch=16,col='black')
   }
 }
 

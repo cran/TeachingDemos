@@ -1,7 +1,7 @@
 vis.boxcoxu.old <-
 function(lambda = sample( c(-1, -0.5, 0, 1/3, 1/2, 1, 2), 1)) {
 
-  if( !require(tkrplot) ) stop('This function depends on the tkrplot package being available')
+  if( !requireNamespace('tkrplot', quietly = TRUE) ) stop('This function depends on the tkrplot package being available')
 
 
   y <- rnorm(1000, 7, 2)
@@ -15,10 +15,10 @@ function(lambda = sample( c(-1, -0.5, 0, 1/3, 1/2, 1, 2), 1)) {
     if(!exists('slider.env')) slider.env <<-new.env()
   #library(tcltk)
 
-  lam <- 1 ; assign('lam',tclVar(lam), envir=slider.env)
+  lam <- 1 ; assign('lam',tcltk::tclVar(lam), envir=slider.env)
 
   bc.refresh <- function(...){
-    lam <- as.numeric(evalq(tclvalue(lam), envir=slider.env))
+    lam <- as.numeric(evalq(tcltk::tclvalue(lam), envir=slider.env))
 
     old.par <- par(mfcol=c(2,2))
     on.exit(par(old.par))
@@ -38,20 +38,20 @@ function(lambda = sample( c(-1, -0.5, 0, 1/3, 1/2, 1, 2), 1)) {
     qqline(ty)
   }
 
-  m <- tktoplevel()
-  tkwm.title(m, 'Box Cox Transform')
-  tkwm.geometry(m,'+0+0')
+  m <- tcltk::tktoplevel()
+  tcltk::tkwm.title(m, 'Box Cox Transform')
+  tcltk::tkwm.geometry(m,'+0+0')
 
-  tkpack(fr <- tkframe(m), side='top')
-  tkpack(tklabel(fr, text='lambda', width='10'), side='right')
-  tkpack(sc <- tkscale(fr, command=bc.refresh, from=-2, to=3, orient='horiz',
+  tcltk::tkpack(fr <- tcltk::tkframe(m), side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='lambda', width='10'), side='right')
+  tcltk::tkpack(sc <- tcltk::tkscale(fr, command=bc.refresh, from=-2, to=3, orient='horiz',
                        resolution=0.1, showvalue=T),
          side='left')
   assign('sc',sc,envir=slider.env)
-  evalq(tkconfigure(sc, variable=lam), envir=slider.env)
+  evalq(tcltk::tkconfigure(sc, variable=lam), envir=slider.env)
 
-  tkpack(tkbutton(m, text="Refresh", command=bc.refresh), side='left')
-  tkpack(tkbutton(m, text="Exit", command=function()tkdestroy(m)),
+  tcltk::tkpack(tcltk::tkbutton(m, text="Refresh", command=bc.refresh), side='left')
+  tcltk::tkpack(tcltk::tkbutton(m, text="Exit", command=function()tcltk::tkdestroy(m)),
          side='right')
 
 }
@@ -75,15 +75,15 @@ vis.boxcoxu <- function(lambda = sample( c(-1,-0.5,0,1/3,1/2,1,2), 1),
   }
 
 
-  lam <- tclVar()
-  tclvalue(lam) <- 1
-  hsc <- tclVar()
-  tclvalue(hsc) <- hscale
-  vsc <- tclVar()
-  tclvalue(vsc) <- hscale
+  lam <- tcltk::tclVar()
+  tcltk::tclvalue(lam) <- 1
+  hsc <- tcltk::tclVar()
+  tcltk::tclvalue(hsc) <- hscale
+  vsc <- tcltk::tclVar()
+  tcltk::tclvalue(vsc) <- hscale
 
   replot <- function(...) {
-    tmp.l <- as.numeric(tclvalue(lam))
+    tmp.l <- as.numeric(tcltk::tclvalue(lam))
 
     par(mfcol=c(2,2))
 
@@ -102,40 +102,40 @@ vis.boxcoxu <- function(lambda = sample( c(-1,-0.5,0,1/3,1/2,1,2), 1),
     qqline(ty)
   }
 
-  tt <- tktoplevel()
-  tkwm.title(tt, "Box Cox Demo")
+  tt <- tcltk::tktoplevel()
+  tcltk::tkwm.title(tt, "Box Cox Demo")
 
-  img <- tkrplot(tt, replot, vscale=vscale, hscale=hscale)
-  tkpack(img, side='top')
+  img <- tkrplot::tkrplot(tt, replot, vscale=vscale, hscale=hscale)
+  tcltk::tkpack(img, side='top')
 
-  tkpack(fr <- tkframe(tt), side='top')
-  tkpack(tklabel(fr, text='lambda: '), side='left', anchor='s')
-  tkpack(tkscale(fr, variable=lam, orient='horizontal',
-                 command=function(...) tkrreplot(img,
-                   hscale=as.numeric(tclvalue(hsc)),
-                   vscale=as.numeric(tclvalue(vsc)) ),
+  tcltk::tkpack(fr <- tcltk::tkframe(tt), side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='lambda: '), side='left', anchor='s')
+  tcltk::tkpack(tcltk::tkscale(fr, variable=lam, orient='horizontal',
+                 command=function(...) tkrplot::tkrreplot(img,
+                   hscale=as.numeric(tcltk::tclvalue(hsc)),
+                   vscale=as.numeric(tcltk::tclvalue(vsc)) ),
                  from=-2, to=4, resolution=.05), side='right')
 
-  tkpack(tfr <- tkframe(tt), side='bottom', fill='x')
-  tkpack(tkbutton(tfr, text="Refresh", command=function() tkrreplot(img,
-                                         hscale=as.numeric(tclvalue(hsc)),
-                                         vscale=as.numeric(tclvalue(vsc)) ) ),
+  tcltk::tkpack(tfr <- tcltk::tkframe(tt), side='bottom', fill='x')
+  tcltk::tkpack(tcltk::tkbutton(tfr, text="Refresh", command=function() tkrplot::tkrreplot(img,
+                                         hscale=as.numeric(tcltk::tclvalue(hsc)),
+                                         vscale=as.numeric(tcltk::tclvalue(vsc)) ) ),
                   side='left',anchor='s')
 
-  tkpack(tkbutton(tfr, text="Exit", command=function()tkdestroy(tt)),
+  tcltk::tkpack(tcltk::tkbutton(tfr, text="Exit", command=function()tcltk::tkdestroy(tt)),
              side='right',anchor='s')
 
-  tkpack(tfr <- tkframe(tt), side='bottom', fill='x')
-  tkpack(tklabel(tfr,text="Hscale: "), side='left')
-  tkpack(tkentry(tfr,textvariable=hsc,width=6), side='left')
-  tkpack(tklabel(tfr,text="      Vscale: "), side='left')
-  tkpack(tkentry(tfr,textvariable=vsc,width=6), side='left')
+  tcltk::tkpack(tfr <- tcltk::tkframe(tt), side='bottom', fill='x')
+  tcltk::tkpack(tcltk::tklabel(tfr,text="Hscale: "), side='left')
+  tcltk::tkpack(tcltk::tkentry(tfr,textvariable=hsc,width=6), side='left')
+  tcltk::tkpack(tcltk::tklabel(tfr,text="      Vscale: "), side='left')
+  tcltk::tkpack(tcltk::tkentry(tfr,textvariable=vsc,width=6), side='left')
 
   if(wait) {
-    tkwait.window(tt)
-    return( list(lambda = as.numeric(tclvalue(lam)),
+    tcltk::tkwait.window(tt)
+    return( list(lambda = as.numeric(tcltk::tclvalue(lam)),
                  y = y,
-                 ty = bct(y,as.numeric(tclvalue(lam))) ) )
+                 ty = bct(y,as.numeric(tcltk::tclvalue(lam))) ) )
   } else {
     return(invisible(NULL))
   }

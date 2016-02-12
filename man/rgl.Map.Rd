@@ -24,7 +24,7 @@ rgl.Map(Map, which, ...)
   There is no return value, this function is run for its side effect.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@imail.org} }
+\author{ Greg Snow \email{538280@gmail.com}}
 \note{ This function is still beta level software (some extra lines show
 up).  This needs to be updated to use the new spatial objects, you can
 use it as an idea, but probably won't work directly.}

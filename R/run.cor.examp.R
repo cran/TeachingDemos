@@ -1,7 +1,7 @@
 "run.old.cor.examp" <-
 function(n=100,seed) {
   if (!missing(seed)){ set.seed(seed) }
-  if(!require(tcltk)){stop('The tcltk package is needed')}
+  if(!requireNamespace('tcltk', quietly = TRUE)){stop('The tcltk package is needed')}
 
   x <- scale(matrix(rnorm(2*n,0,1), ncol=2))
   x <- x %*% solve( chol( cor(x) ) )
@@ -29,7 +29,7 @@ function(n=100,seed) {
 
 run.cor.examp <- function(n=100,seed,vscale=1.5,hscale=1.5,wait=FALSE) {
 
-    if( !require(tkrplot) ) stop('This function depends on the tkrplot package being available')
+    if( !requireNamespace('tkrplot', quietly = TRUE) ) stop('This function depends on the tkrplot package being available')
 
     if(!missing(seed) ) set.seed(seed)
 
@@ -37,16 +37,16 @@ run.cor.examp <- function(n=100,seed,vscale=1.5,hscale=1.5,wait=FALSE) {
     x <- x %*% solve( chol( cor(x) ) )
     xr <- range(x,-x)
 
-    hsc <- tclVar()
-    tclvalue(hsc) <- hscale
-    vsc <- tclVar()
-    tclvalue(vsc) <- vscale
+    hsc <- tcltk::tclVar()
+    tcltk::tclvalue(hsc) <- hscale
+    vsc <- tcltk::tclVar()
+    tcltk::tclvalue(vsc) <- vscale
 
-    r <- tclVar()
-    tclvalue(r) <- 0
+    r <- tcltk::tclVar()
+    tcltk::tclvalue(r) <- 0
 
     replot <- function(...) {
-        tmp.r <- as.numeric(tclvalue(r))
+        tmp.r <- as.numeric(tcltk::tclvalue(r))
         if( tmp.r == 1 ) {
             cmat <- matrix( c(1,0,1,0),2 )
         } else if(  tmp.r == -1 ) {
@@ -60,40 +60,40 @@ run.cor.examp <- function(n=100,seed,vscale=1.5,hscale=1.5,wait=FALSE) {
         title(paste("r =", round( tmp.r, 3)))
     }
 
-    tt <- tktoplevel()
-    tkwm.title(tt, "Cor2 Example")
+    tt <- tcltk::tktoplevel()
+    tcltk::tkwm.title(tt, "Cor2 Example")
 
-    img <- tkrplot(tt, replot, vscale=vscale, hscale=hscale)
-    tkpack(img, side='top')
+    img <- tkrplot::tkrplot(tt, replot, vscale=vscale, hscale=hscale)
+    tcltk::tkpack(img, side='top')
 
 
-    tkpack(fr <- tkframe(tt), side='top')
-    tkpack(tklabel(fr,text='r: '), side='left',anchor='s')
-    tkpack(tkscale(fr, variable=r, orient='horizontal',
-                   command=function(...) tkrreplot(img,
-                    hscale=as.numeric(tclvalue(hsc)),
-                    vscale=as.numeric(tclvalue(vsc)) ),
+    tcltk::tkpack(fr <- tcltk::tkframe(tt), side='top')
+    tcltk::tkpack(tcltk::tklabel(fr,text='r: '), side='left',anchor='s')
+    tcltk::tkpack(tcltk::tkscale(fr, variable=r, orient='horizontal',
+                   command=function(...) tkrplot::tkrreplot(img,
+                    hscale=as.numeric(tcltk::tclvalue(hsc)),
+                    vscale=as.numeric(tcltk::tclvalue(vsc)) ),
                    from=-1, to=1,
                    resolution=0.01), side='right')
 
 
-    tkpack(tfr <- tkframe(tt), side='bottom', fill='x')
-    tkpack(tkbutton(tfr, text="Refresh", command=function() tkrreplot(img,
-                                          hscale=as.numeric(tclvalue(hsc)),
-                                          vscale=as.numeric(tclvalue(vsc)) ) ),
+    tcltk::tkpack(tfr <- tcltk::tkframe(tt), side='bottom', fill='x')
+    tcltk::tkpack(tcltk::tkbutton(tfr, text="Refresh", command=function() tkrplot::tkrreplot(img,
+                                          hscale=as.numeric(tcltk::tclvalue(hsc)),
+                                          vscale=as.numeric(tcltk::tclvalue(vsc)) ) ),
            side='left',anchor='s')
-    tkpack(tkbutton(tfr, text="Exit", command=function()tkdestroy(tt)),
+    tcltk::tkpack(tcltk::tkbutton(tfr, text="Exit", command=function()tcltk::tkdestroy(tt)),
            side='right',anchor='s')
 
-    tkpack(tfr <- tkframe(tt), side='bottom', fill='x')
-    tkpack(tklabel(tfr,text="Hscale: "), side='left')
-    tkpack(tkentry(tfr,textvariable=hsc,width=6), side='left')
-    tkpack(tklabel(tfr,text="      Vscale: "), side='left')
-    tkpack(tkentry(tfr,textvariable=vsc,width=6), side='left')
+    tcltk::tkpack(tfr <- tcltk::tkframe(tt), side='bottom', fill='x')
+    tcltk::tkpack(tcltk::tklabel(tfr,text="Hscale: "), side='left')
+    tcltk::tkpack(tcltk::tkentry(tfr,textvariable=hsc,width=6), side='left')
+    tcltk::tkpack(tcltk::tklabel(tfr,text="      Vscale: "), side='left')
+    tcltk::tkpack(tcltk::tkentry(tfr,textvariable=vsc,width=6), side='left')
 
     if(wait){
-        tkwait.window(tt)
-        tmp.r <- as.numeric(tclvalue(r))
+        tcltk::tkwait.window(tt)
+        tmp.r <- as.numeric(tcltk::tclvalue(r))
         if( tmp.r == 1 ) {
             cmat <- matrix( c(1,0,1,0),2 )
         } else if(  tmp.r == -1 ) {

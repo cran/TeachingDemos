@@ -21,7 +21,7 @@ col2gray(cols)
 \value{
   A vector of colors (greys) corresponding to the input colors.
 }
-\author{ Greg Snow \email{greg.snow@imail.org} }
+\author{ Greg Snow \email{538280@gmail.com} }
 \seealso{ \code{\link{grey}}, \code{\link{col2rgb}}, dichromat package }
 \examples{
 par(mfcol=c(2,2))

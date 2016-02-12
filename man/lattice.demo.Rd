@@ -38,7 +38,7 @@ lattice.demo(x, y, z, show3d = TRUE)
   No meaningful return value, this function is run for the side effects.
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Greg Snow \email{greg.snow@imail.org} }
+\author{ Greg Snow \email{538280@gmail.com}}
 %\note{ ~~further notes~~ }
 
 

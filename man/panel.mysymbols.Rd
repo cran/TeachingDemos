@@ -55,7 +55,7 @@ panel.my.symbols(x, y, symb, inches=1, polygon=FALSE,
   This function is run for its side effect of plotting, it returns an
   invisible NULL.
 }
-\author{Greg Snow \email{greg.snow@imail.org}}
+\author{Greg Snow \email{538280@gmail.com}}
 \note{
   Plotting coordinates and sizes are based on the size of the device at
   the time the function is called.  If you resize the device after

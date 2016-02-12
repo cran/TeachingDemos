@@ -1,13 +1,13 @@
 "roc.demo" <-
 function(x=rnorm(25,10,1), y=rnorm(25,11,1.5) ){
 
-    if(!require(tcltk)){stop('The tcltk package is needed')}
+    if(!requireNamespace('tcltk', quietly = TRUE)){stop('The tcltk package is needed')}
     if(!exists('slider.env')) slider.env <<- new.env()
 
   range.min <- min(x,y) - 0.1 * diff(range(x,y))
   range.max <- max(x,y) + 0.1 * diff(range(x,y))
 
-  cutoff <- range.max; assign('cutoff',tclVar(cutoff), envir=slider.env)
+  cutoff <- range.max; assign('cutoff', tcltk::tclVar(cutoff), envir=slider.env)
 
   .sens <-c(0,1)
   .spec <-c(0,1)
@@ -16,7 +16,7 @@ function(x=rnorm(25,10,1), y=rnorm(25,11,1.5) ){
   dy <- density(y)
 
   roc.refresh <- function(...){
-    cutoff <- as.numeric(evalq(tclvalue(cutoff), envir=slider.env))
+    cutoff <- as.numeric(evalq(tcltk::tclvalue(cutoff), envir=slider.env))
 
     old.par <- par(no.readonly=T)
     on.exit(par(old.par))
@@ -69,27 +69,27 @@ function(x=rnorm(25,10,1), y=rnorm(25,11,1.5) ){
     abline(v=cutoff, col='green')
   }
 
-  m <- tktoplevel()
-  tkwm.title(m,'ROC curve demo')
-  tkwm.geometry(m, '+0+0')
+  m <- tcltk::tktoplevel()
+  tcltk::tkwm.title(m,'ROC curve demo')
+  tcltk::tkwm.geometry(m, '+0+0')
 
   # cutoff
-  tkpack(fr <- tkframe(m), side='top')
-  tkpack(tklabel(fr, text='cutoff', width='10'), side='right')
+  tcltk::tkpack(fr <- tcltk::tkframe(m), side='top')
+  tcltk::tkpack(tcltk::tklabel(fr, text='cutoff', width='10'), side='right')
 
-  tkpack(sc <- tkscale(fr, command=roc.refresh, from=range.min,
+  tcltk::tkpack(sc <- tcltk::tkscale(fr, command=roc.refresh, from=range.min,
                        to=range.max, orient='horiz',
                        resolution = (range.max-range.min)/100,
                        showvalue=T),
          side='left')
 
   assign('sc',sc, envir=slider.env)
-  evalq(tkconfigure(sc, variable=cutoff), envir=slider.env)
+  evalq(tcltk::tkconfigure(sc, variable=cutoff), envir=slider.env)
 
 
 
-  tkpack(tkbutton(m, text="Refresh", command=roc.refresh), side='left')
-  tkpack(tkbutton(m, text="Exit", command=function()tkdestroy(m)),
+  tcltk::tkpack(tcltk::tkbutton(m, text="Refresh", command=roc.refresh), side='left')
+  tcltk::tkpack(tcltk::tkbutton(m, text="Exit", command=function()tcltk::tkdestroy(m)),
          side='right')
 
 }
