@@ -58,7 +58,7 @@ The third dimension is the variable:
   }
 }
 \source{
-\url{http://www.ucrdatatool.gov/}
+\url{https://ucrdatatool.gov/}
 }
 %\references{
 %%  ~~ possibly secondary sources and usages ~~

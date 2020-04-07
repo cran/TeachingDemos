@@ -65,7 +65,7 @@ panel.my.symbols(x, y, symb, inches=1, polygon=FALSE,
   \code{\link{mapply}}, \code{\link{ms.polygram}}, \code{\link{lines}}}
 \examples{
 if(require(lattice)) {
-  tmpdf <- data.frame( x=1:10, y=1:10, g=rep( c("A","B"), each=5 ),
+  tmpdf <- data.frame( x=1:10, y=1:10, g=factor(rep( c("A","B"), each=5 )),
 	z=c(1:5,5:1) )
 
   xyplot( y ~ x, tmpdf, panel=panel.my.symbols, symb=ms.female, inches=0.3 )

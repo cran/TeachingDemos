@@ -52,7 +52,6 @@ plotFagan2.old()
 \code{wait} is TRUE, then a list with the current values is returned.}
 \references{
   Fagan TJ. Nomogram for Bayes theorem. N Engl J Med 1975;293(5):257-61.
-\url{http://www.cmh.edu/stats/definitions/fagan.htm}
 \url{http://ebm.bmjjournals.com/cgi/content/full/6/6/164}
 }
 

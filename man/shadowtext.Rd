@@ -10,7 +10,8 @@
 }
 \usage{
 shadowtext(x, y = NULL, labels, col = "white", bg = "black",
-  theta = seq(pi/4, 2 * pi, length.out = 8), r = 0.1, ...)
+  theta = seq(pi/32, 2 * pi, length.out = 64), r = 0.1, 
+  cex = 1, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -21,6 +22,7 @@ shadowtext(x, y = NULL, labels, col = "white", bg = "black",
   \item{bg}{Color of the background shadow}
   \item{theta}{Angles for plotting the background}
   \item{r}{Thickness of the shadow relative to plotting size}
+  \item{cex}{Character expansion passed through to \code{text}  and used in computing text size.}
   \item{\dots}{Additional arguments passed on to \code{text}}
 }
 \details{
@@ -43,7 +45,7 @@ shadowtext(x, y = NULL, labels, col = "white", bg = "black",
 %\references{
 %% ~put references to the literature/web site here ~
 %}
-\author{Greg Snow, \email{538280@gmail.com}}
+\author{Greg Snow, \email{538280@gmail.com}, with improvements by Thomas Danhorn}
 %\note{
 %%  ~~further notes~~
 %}

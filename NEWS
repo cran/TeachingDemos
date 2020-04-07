@@ -1,3 +1,12 @@
+TeachingDemos version 2.12
+
+* Made factors explicit in examples using data.frame since 
+  the default for conversion to factors is changing.
+
+New in TeachingDemos version 2.11
+
+* Improvements in shadowtext function to work on log scales and defaults to higher resolution.
+
 New in TeachingDemos version 2.10
 
 * Modified z.test so that you can provide a sample mean and sample

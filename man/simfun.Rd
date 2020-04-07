@@ -105,7 +105,7 @@ See the examples for how to use the result function.
 
 simheight <- simfun( {h <- c(64,69); height<-h[sex]+ rnorm(10,0,3)}, drop='h' )
 
-my.df <- data.frame(sex=rep(c('Male','Female'),each=5))
+my.df <- data.frame(sex=factor(rep(c('Male','Female'),each=5)))
 simdat <- simheight(my.df)
 t.test(height~sex, data=simdat)
 
@@ -119,7 +119,7 @@ myexpr <- quote({
 })
 
 simheight <- simfun(eval(myexpr), drop=c('n','h'))
-my.df <- data.frame(sex=sample(rep(c('Male','Female'),c(5,10))))
+my.df <- data.frame(sex=factor(sample(rep(c('Male','Female'),c(5,10)))))
 (simdat <- simheight(my.df))
 
 # similar to above, but use named parameter vector and index by names
@@ -131,7 +131,7 @@ myexpr <- quote({
 
 simheight <- simfun(eval(myexpr), drop=c('n','h','sig'), 
   h=c(Male=69,Female=64), sig=3)
-my.df <- data.frame( sex=sample(c('Male','Female'),100, replace=TRUE))
+my.df <- data.frame(sex=factor(sample(c('Male','Female'),100, replace=TRUE)))
 (simdat <- simheight(my.df, seed='example'))
 
 # Create a function to simulate Sex and Height for a given sample size 
