@@ -101,16 +101,16 @@ subplot( hist(rt(100,3)), c(12,16), c(57,59), pars=list(lwd=3,ask=FALSE) )
 ### but loading the packages required does not work well in testing.
 
 # augment a map
-if( interactive() && require(maptools) ){
-	plot(state.vbm,fg=NULL)
-	tmp <- cbind( state.vbm$center_x, state.vbm$center_y )
-	for( i in 1:50 ){
-		tmp2 <- as.matrix(USArrests[i,c(1,4)])
-		tmp3 <- max(USArrests[,c(1,4)])
-		subplot( barplot(tmp2, ylim=c(0,tmp3),names=c('',''),yaxt='n'),
-			x=tmp[i,1], y=tmp[i,2], size=c(.1,.1))
-	}
-}
+%% if( interactive() && require(maptools) ){
+%% 	plot(state.vbm,fg=NULL)
+%% 	tmp <- cbind( state.vbm$center_x, state.vbm$center_y )
+%% 	for( i in 1:50 ){
+%% 		tmp2 <- as.matrix(USArrests[i,c(1,4)])
+%% 		tmp3 <- max(USArrests[,c(1,4)])
+%% 		subplot( barplot(tmp2, ylim=c(0,tmp3),names=c('',''),yaxt='n'),
+%% 			x=tmp[i,1], y=tmp[i,2], size=c(.1,.1))
+%% 	}
+%% }
 
 tmp <- rnorm(25)
 qqnorm(tmp)

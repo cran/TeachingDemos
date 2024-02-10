@@ -31,16 +31,15 @@ use it as an idea, but probably won't work directly.}
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{\code{rgl} in package rgl, \code{plot.Map} in
-  package maptools }
+\seealso{\code{rgl} in package rgl }
 \examples{
 if(interactive()){
 # assumes that the time zone shape files have been downloaded
 # from: http://openmap.bbn.com/data/shape/timezone/
 
-tz <- maptools:::read.shape('WRLDTZA')
-rgl.Map(tz)
-rgl.spheres(0,0,0,.999, col='darkblue')
+%% tz <- maptools:::read.shape('WRLDTZA')
+%% rgl.Map(tz)
+%% rgl.spheres(0,0,0,.999, col='darkblue')
 }
 }
 \keyword{ hplot }% at least one, from doc/KEYWORDS

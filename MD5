@@ -1,4 +1,4 @@
-0722190353e5e5cb189132a25266b02a *DESCRIPTION
+6fe7715c028d22d01fbfb8e22ddb0938 *DESCRIPTION
 76e7aa439672adf69fd8da2ba0c84df7 *NAMESPACE
 9718cf7eadbfd42bb6937e746fe55590 *NEWS
 af63983980ef4756e1654375eab35a56 *R/00vars.R
@@ -108,10 +108,10 @@ d2101e3256d7046e7173a48028220001 *man/Pvalue.sim.Rd
 2909f310ddf48911e75f60f221d6bf55 *man/TeachingDemos-package.Rd
 b8999431ef804a11be37925559935b8f *man/TkApprox.Rd
 2dd60e5129058668181186714c0540d5 *man/TkBuildDist.Rd
-61281ae4682c84945788a79240547c97 *man/TkListView.Rd
+e3936292487a3b7b81ee003060e92226 *man/TkListView.Rd
 d652b08eaef94ea3676c0e44e96aa4dd *man/TkPredict.Rd
 11fcb9cd2d53698e6538a4c7888a866d *man/TkSpline.Rd
-d5cf00a0d2dea9a90f434174313cf030 *man/USCrimes.Rd
+431258d496752395338d34869931c278 *man/USCrimes.Rd
 5eeec237c1c216684a04bb2a795f0511 *man/bct.Rd
 197be677a8d19f38fcb9014e55d8631c *man/cal.Rd
 9e251af8547372c52f9f087aa9aa5998 *man/ccc.Rd
@@ -151,7 +151,7 @@ c2e16ef8481dc28a4321e052afdf4e22 *man/plot.rgl.coin.Rd
 da0f417b8f49753c1ffaee8e1cee2951 *man/plot2script.Rd
 597aaddc7c24dffabd8b547892eb16ae *man/power.examp.Rd
 351cbefc6c4d6b4f45c5b19247bac709 *man/put.points.demo.Rd
-7cb2453b961a967c7f82ef32a0f4ca2e *man/rgl.Map.Rd
+252dfdc069f3a8e9d2946930a1e72c80 *man/rgl.Map.Rd
 899582bf2feb1c16c6f86f74261bc76b *man/roc.demo.Rd
 9fbc32b81cf7e1a4431d4a87be39b6b3 *man/rotate.cloud.Rd
 96c57bab8a79e3e7bb4a6971a2219650 *man/run.cor.examp.Rd
@@ -165,7 +165,7 @@ b9cdb4d73d75f6d8db56b8a456866a06 *man/sliderv.Rd
 5b1ac4a906bff3dd390b626b64042280 *man/squishplot.Rd
 a0f02b9530a79681925970402fd61d52 *man/steps.Rd
 939e0eda45e163643a0011bf565e66ff *man/stork.Rd
-85e77faaf5cf24a276fbf850d3b7969c *man/subplot.Rd
+e4987182e5484469ffd1cb99ba21d5c2 *man/subplot.Rd
 7adf8ab5c65775a51b7c84b133e12301 *man/tkBrush.Rd
 bc4df3320f86f835966550efb2873e1c *man/tkexamp.Rd
 133b0eb9442c1f391f1e03e292b5d01c *man/tree.demo.Rd
