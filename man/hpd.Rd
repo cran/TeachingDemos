@@ -12,16 +12,18 @@
 \usage{
 hpd(posterior.icdf, conf=0.95, tol=0.00000001,...)
 
-emp.hpd(x, conf=0.95)
+emp.hpd(x, conf=0.95, lower, upper)
 }
 \arguments{
   \item{posterior.icdf}{ Function, the inverse cdf of the posterior
     distribution (usually a function whose name starts with 'q').}
   \item{x}{ A vector of realizations from the posterior distribution.}
-  \item{conf}{ Scalar, the confidence level desired. }
+  \item{conf}{ Scalar, the credible level desired. }
   \item{tol}{ Scalar, the tolerance for \code{optimize}.}
   \item{\dots}{Additional arguments to \code{posterior.icdf}.}
-}
+  \item{lower}{Optional lower bound on support of x.}
+  \item{upper}{Optional upper bound on support of x.}
+  }
 \details{
   These functions compute the highest posterior density intervals
   (sometimes called minimum length confidence intervals) for a Bayesian

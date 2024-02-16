@@ -6,7 +6,7 @@ Growth of The Church of Jesus Christ of Latter-day Saints.
 }
 \description{
 Data on the Growth of The Church of Jesus Christ of Latter-day Saints
-(commonly known as the Mormon church (\url{http://www.mormon.org})).
+(commonly known as the Mormon church (\url{https://www.churchofjesuschrist.org/comeuntochrist})).
 }
 \usage{data(ldsgrowth)}
 \format{

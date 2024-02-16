@@ -7,7 +7,7 @@
 Less than or Less than and equal operators that can be chained together.
 }
 \description{Comparison operators that can be chained together into
-  something like 0 \%<\% x \%<\% 1 instead of 0 < x \&\& x < 1. }
+  something like 0 \%<\% x \%<\% 1 instead of 0 < x && x < 1. }
 \usage{
 x \%<\% y
 x \%<=\% y

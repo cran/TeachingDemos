@@ -161,7 +161,7 @@ These functions are used to create transcript/command files of your R
 	 by whitespace in the transcript file, highlighted in the
 	 etxt version, and the default font in Word.
 	 If \code{cmdtxt} is specified then that line
-	 will be inserted into \code{cmdfile} preceded by a \# so it
+	 will be inserted into \code{cmdfile} preceded by a # so it
 	 will be skipped if sourced or copied.
 
 	 The \code{txtSkip}, \code{etxtSkip}, \code{wdtxtSkip}, and

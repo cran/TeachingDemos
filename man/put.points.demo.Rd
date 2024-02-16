@@ -36,7 +36,7 @@ put.points.demo(x = NULL, y = NULL, lsline = TRUE)
   When deleting or moving points, the closest point to where you click
   will be deleted or moved, even if you click in an empty area.
 
-  Whenever you add, delete, or move a point the correlation, r\^2, and
+  Whenever you add, delete, or move a point the correlation, r^2, and
   regression line will be updated.  You can start with a set of points
   then demonstrate what happens to the correlation and regression line
   when outliers are added or important points are moved or deleted.

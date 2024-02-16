@@ -15,8 +15,8 @@ bct(y, lambda)
   \item{lambda}{Scalar exponent for transform (1 is linear, 0 is log).}
 }
 \details{
-  \code{bct} computes the Box-Cox family of transforms:  y = (y\^lambda -
-  1)/(lambda*gm\^(lambda-1)), where gm is the geometric mean of the y's.
+  \code{bct} computes the Box-Cox family of transforms:  y = (y^lambda -
+  1)/(lambda*gm^(lambda-1)), where gm is the geometric mean of the y's.
   returns log(y)*gm when lambda equals 0.
 }
 \value{

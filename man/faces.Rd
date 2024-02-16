@@ -46,7 +46,7 @@ JASA, 68, pp 361--368.
 The smooth curves are computed by an algorithm found in
 Ralston, A. and Rabinowitz, P. (1985):
 A first course in numerical analysis, McGraw-Hill, pp 76ff.
-\url{http://www.wiwi.uni-bielefeld.de/~wolf/} : S/R - functions : faces
+\url{http://www.uni-bielefeld.de/fakultaeten/wirtschaftswissenschaften} : S/R - functions : faces
    }
 \author{   H. P. Wolf    }
 \note{ version 12/2003   }

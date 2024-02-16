@@ -58,12 +58,6 @@ if(interactive()) {
         z=data.frame(x=rnorm(10),y=rnorm(10))))
   TkListView(tmp)
 
-  %% if(require(maptools)){
-  %%   data(state.vbm)
-  %%   TkListView(list(state.vbm))
-  %% # change the eval box to: plot(x, type='l') and eval the main branches
-  %% }
-
   fit <- lm(Petal.Width ~ ., data=iris)
   TkListView(fit)
 

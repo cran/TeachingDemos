@@ -7,7 +7,7 @@
 \title{ Interactively demonstrate correlations }
 \description{
   Make a scatterplot and a Tk slider window that allows you to
-  interactively set the correlation and/or R\^2.
+  interactively set the correlation and/or R^2.
 }
 \usage{
 run.cor.examp(n=100, seed, vscale=1.5, hscale=1.5, wait=FALSE)
@@ -28,7 +28,7 @@ run.old.cor2.examp(n = 100, seed)
   to set the correlation using a Tk slider window.
 
   The function \code{run.cor2.examp} does the same, but has a slider for
-  R\^2 as well as the correlation, when either slider is moved the other
+  R^2 as well as the correlation, when either slider is moved the other
   one will update to match.
 
   The 2 "old" versions use the default graphics device with a seperate
